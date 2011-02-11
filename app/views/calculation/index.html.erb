@@ -1,0 +1,4 @@
+<h1>Available Calculations</h1>
+<%@calculations.each do |calc|%>
+<%=link_to calc.name, :action=>'enter', :calculation=>calc.label%><br/>
+<%end%>
