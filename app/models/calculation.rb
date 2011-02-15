@@ -39,6 +39,15 @@ class Calculation
     ActiveSupport::OrderedHash[contents_class(klass).select{|k,v|v.value==:unset}]
   end
 
+  def unset_this_and_after!(klass,label)
+    found=false
+    contents_class(klass).each_value do |x|
+      found||=(x.label==label)
+      next unless found
+      x.value :unset
+    end
+  end
+
   def profiles
     contents_class Profile
   end
@@ -60,6 +69,8 @@ class Calculation
   end
 
   def satisfied?
+    pp unset_drills
+    pp unset_profiles
     unset_drills.values.empty? && unset_profiles.values.empty?
   end
 
@@ -124,11 +135,13 @@ class Calculation
     item=AMEE::Profile::Item.get(AMEE::Rails.connection, location, get_options)
     # Extract default result
     unset_outputs.values.each do |output|
+      res=nil
       if output.path==:default
-        output.value item.amounts.find{|x| x[:default] == true}[:value]
+        res= item.amounts.find{|x| x[:default] == true}
       else
-        output.value item.amounts.find{|x| x[:type] == 'CO2e'}[:value]
+        res= item.amounts.find{|x| x[:type] == output.path}
       end
+      output.value res[:value] if res
     end
     return self
   ensure
@@ -148,7 +161,10 @@ class Calculation
 
   def choose!(choice)
     choice.each do |k,v|
-      self[k].value v
+      self[k].value v unless v.blank?
+    end
+    drills.each_value do |d|
+      d.value :unset unless d.valid_choice?
     end
     autodrill!
   end
@@ -214,13 +230,16 @@ class Term
   def unset_siblings
     parent.unset_contents_class(self.class)
   end
+  def earlier_siblings
+    parent.earlier_contents_class(self.class)
+  end
   def next?
     label==unset_siblings.values.first.label
   end
   def unset_others
-     ActiveSupport::OrderedHash[parent.unset_contents_class(self.class).reject{|k,v|
-       k==label
-     }]
+    ActiveSupport::OrderedHash[parent.unset_contents_class(self.class).reject{|k,v|
+        k==label
+      }]
   end
   
   def inspect
@@ -229,9 +248,23 @@ class Term
 end
 
 class Drill < Term
- def choices
-    raise "You can't get choices for other than the next drill" unless next?
-    parent.amee_drill.choices
+  def choices
+    c=calculation_with_only_earlier.amee_drill.choices
+    c.length==1 ? [value] : c #Intention is to get autodrilled, drill will result in a UID
+  end
+  def calculation_with_only_earlier
+    res=parent.clone
+    res.unset_this_and_after!(self.class,self.label)
+    return res
+  end
+  def valid_choice?
+    (choices.include? value) && (choices.length > 1)
+  end
+  def options_for_select
+    ([nil]+choices).map{|x|[x,x.nil? ? :unset : x]}
+  end
+  def disabled?
+    !set? && !next?
   end
 end
 

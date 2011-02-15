@@ -5,6 +5,7 @@ class CalculationController < ApplicationController
 
   def enter
     @calculation=Calculations[params[:calculation]]
+    Rails.logger.debug(@calculation.inspect)
   end
 
   def result

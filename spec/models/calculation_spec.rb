@@ -24,7 +24,7 @@ describe AMEE::Filters::Filter do
         value 'argentina' #Not to be unset, value pre-given
         label :country  #Name will default to label.humanize if not given
         path 'country' #Some of the fields on the form are drill-downs, but the application doesn't need to display these differently
-        #type :autocompleting_text_box #Default for a drill with entries is probably a dropdown
+        #type :autocompleting_text_box #default for a drill with entries is probably a dropdown
       }
       # Alternatively, the drill might be fixed
       #permanent :country {

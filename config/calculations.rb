@@ -40,5 +40,10 @@ Calculations=CalculationSet.new {
       label :distance
       name 'Distance Driven'
     }
+    output {
+      label :co2
+      name 'Carbon Dioxide'
+      path :default
+    }
   }
 }
