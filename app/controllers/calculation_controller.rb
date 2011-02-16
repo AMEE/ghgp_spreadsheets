@@ -1,6 +1,6 @@
 class CalculationController < ApplicationController
   def index
-    @calculations=Calculations.values
+    @calculations=Calculations.calculations.values
   end
 
   def enter

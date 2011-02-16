@@ -221,6 +221,13 @@ class Term
   def set?
     value!=:unset
   end
+  def fixed val
+    value val
+    @fixed=true
+  end
+  def fixed?
+    @fixed
+  end
   def siblings
     parent.contents_class(self.class)
   end
@@ -241,7 +248,9 @@ class Term
         k==label
       }]
   end
-  
+  def disabled?
+    fixed? || (!set? && !next?)
+  end
   def inspect
     "[#{self.class} #{label} : #{value}]"
   end
@@ -263,9 +272,7 @@ class Drill < Term
   def options_for_select
     ([nil]+choices).map{|x|[x,x.nil? ? :unset : x]}
   end
-  def disabled?
-    !set? && !next?
-  end
+ 
 end
 
 class Profile < Term
