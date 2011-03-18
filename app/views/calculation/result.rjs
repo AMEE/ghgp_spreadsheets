@@ -1,1 +1,1 @@
-page.replace params[:form_id], :partial => 'calculator_form'
+page.replace params[:form_id], :partial => 'data-abstraction/calculator_form'

@@ -1,4 +1,4 @@
-Calculations=CalculationSet.new {
+Calculations=AMEE::DataAbstraction::CalculationSet.new {
   calculation{
     name 'electricity'
     label :electricity

@@ -21,7 +21,7 @@ Rails::Initializer.run do |config|
   # config.gem "aws-s3", :lib => "aws/s3"
   config.gem "amee", :version => "~> 2.5.1"
   config.gem "amee-internal", :version => "~> 3.6.3"
-    config.gem "uuidtools"
+  config.gem "amee-data-abstraction"
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
@@ -41,6 +41,3 @@ Rails::Initializer.run do |config|
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
 end
-require 'ostruct'
-require "#{RAILS_ROOT}/app/models/calculation.rb"
-require "#{RAILS_ROOT}/config/calculations.rb"

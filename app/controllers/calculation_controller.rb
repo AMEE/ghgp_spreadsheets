@@ -4,11 +4,11 @@ class CalculationController < ApplicationController
   end
 
   def enter
-    @calculation=Calculations[params[:calculation]]
+    @calculation=Calculations[params[:calculation]].begin_calculation
   end
 
   def result
-    @calculation=Calculations[params[:calculation]].clone
+    @calculation=Calculations[params[:calculation]].begin_calculation
     @calculation.choose!(params['entry'])   
     @calculation.calculate!
   end
