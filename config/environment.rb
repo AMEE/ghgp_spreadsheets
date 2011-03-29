@@ -21,7 +21,7 @@ Rails::Initializer.run do |config|
   # config.gem "aws-s3", :lib => "aws/s3"
   config.gem "amee", :version => "~> 2.5.1"
   config.gem "amee-internal", :version => "~> 3.6.3"
-  config.gem "amee-data-abstraction", :version => "~> 0.3.0"
+  config.gem "amee-data-abstraction", :version => "~> 0.4.1"
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]

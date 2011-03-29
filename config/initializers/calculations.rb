@@ -1,4 +1,12 @@
 Calculations=AMEE::DataAbstraction::CalculationSet.new {
+  all_calculations {
+    metadatum {
+      label :department
+      choices %w{stuff things more_stuff meta_things}
+    }
+    start_and_end_dates
+  }
+
   calculation{
     name 'electricity'
     label :electricity
@@ -32,6 +40,11 @@ Calculations=AMEE::DataAbstraction::CalculationSet.new {
       name 'Carbon Dioxide'
       path :default
     }
+  }
+
+  calculations_all_usages('/business/energy/stationaryCombustion/epa/coal') {|usage|
+    label "coal_#{usage.underscore}".to_sym
+    terms_from_amee usage
   }
 
   calculation {
