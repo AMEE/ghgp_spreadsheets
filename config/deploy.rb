@@ -48,3 +48,19 @@ namespace :gems do
     run "sudo #{rake_path} RAILS_ENV=#{rails_env} -f #{release_path}/Rakefile gems:install"
   end
 end
+
+namespace :deploy do
+  # Restart passenger on deploy
+  desc "Restarting mod_rails and background tasks with restart.txt"
+  task :restart, :roles => :app, :except => { :no_release => true } do
+    run "touch #{current_path}/tmp/restart.txt"
+  end
+  desc "Start the background daemons"
+  task :start do
+
+  end
+  desc "Stop the background daemons"
+  task :stop do
+
+  end
+end

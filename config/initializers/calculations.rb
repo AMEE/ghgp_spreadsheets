@@ -2,16 +2,16 @@ Calculations=AMEE::DataAbstraction::CalculationSet.new {
   calculation{
     name 'electricity'
     label :electricity
-    path '/business/energy/electricity/grid'
-    profile {
-      label :usage
-      name 'Electricity Used'
-      path 'energyPerTime'
-    }
+    path '/business/energy/electricity/grid' 
     drill {
       label :country
       path 'country'
       fixed 'Argentina'
+    }
+    profile {
+      label :usage
+      name 'Electricity Used'
+      path 'energyPerTime'
     }
     output {
       label :co2
@@ -25,25 +25,19 @@ Calculations=AMEE::DataAbstraction::CalculationSet.new {
     label :transport
     path '/transport/car/generic'
   
-    drill {
-      path 'fuel'
-      label :fuel
-      name 'Fuel type'
-    }
-    drill {
-      path 'size'
-      label :size
-      name 'Vehicle size'
-    }
-    profile {
-      path 'distance'
-      label :distance
-      name 'Distance Driven'
-    }
+    all_drills
+    usage {value 'byDistance'}
     output {
       label :co2
       name 'Carbon Dioxide'
       path :default
     }
+  }
+
+  calculation {
+    name 'Coal'
+    label :coal
+    path '/business/energy/stationaryCombustion/epa/coal'
+    terms_from_amee_dynamic_usage 'byMass'
   }
 }
