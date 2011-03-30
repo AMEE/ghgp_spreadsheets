@@ -1,4 +1,5 @@
-Calculations=AMEE::DataAbstraction::CalculationSet.new {
+Calculations=
+  AMEE::DataAbstraction::CalculationSet.new {
   all_calculations {
     metadatum {
       label :department
