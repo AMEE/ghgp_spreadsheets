@@ -1,0 +1,9 @@
+table th, table td
+{
+	border-bottom: 1px dotted #ddd;
+    padding:5px 11px 5px 0px;
+    text-align: left;
+    font-size: 12px;
+    line-height: 1.2em;
+    font-family: 'helvetica neue', helvetica, san-serif;
+}
