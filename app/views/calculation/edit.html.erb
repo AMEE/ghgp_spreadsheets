@@ -1,3 +1,4 @@
 <h1><%= @calculation.name%> </h1>
+Existing profile UID: <%= @calculation.profile_item_uid %>
 <%= render :partial=>'data-abstraction/calculator_form'%>
 <%= link_to "Return to list",:action=>'index' %>

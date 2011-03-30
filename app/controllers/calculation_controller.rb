@@ -1,8 +1,7 @@
 class CalculationController < ApplicationController
   def index
-    @calculations=Calculations.calculations.values
-    @loaded_calc = AMEE::DataAbstraction::OngoingCalculation.find(:first)
-    @loaded_calc.save
+    @available=Calculations.calculations.values
+    @existing = AMEE::DataAbstraction::OngoingCalculation.find(:all)
   end
 
   def enter
@@ -12,6 +11,13 @@ class CalculationController < ApplicationController
   def result
     @calculation=Calculations[params[:calculation]].begin_calculation
     @calculation.choose!(params['entry'])   
+    @calculation.calculate!
+    @calculation.save if @calculation.satisfied?
+  end
+
+  def edit
+    @calculation= AMEE::DataAbstraction::OngoingCalculation.
+      find(:first,:conditions=>{:profile_item_uid=>params[:uid]})
     @calculation.calculate!
   end
   
