@@ -1,6 +1,8 @@
 class CalculationController < ApplicationController
   def index
     @calculations=Calculations.calculations.values
+    @loaded_calc = AMEE::DataAbstraction::OngoingCalculation.find(:first)
+    @loaded_calc.save
   end
 
   def enter
