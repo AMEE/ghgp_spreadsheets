@@ -5,10 +5,16 @@ Calculations=AMEE::DataAbstraction::CalculationSet.new {
       choices %w{stuff things more_stuff meta_things}
     }
     start_and_end_dates
+
+    #Correct titles for outputs
+    correcting(:co2) { name "Carbon Dioxide"}
+    correcting(:ch4) { name "Methane"}
+    correcting(:n2_o) { name "Nitrous Oxide"}
+    correcting(:co2e) { name "Equivalent Carbon Dioxide"}
   }
 
   calculation{
-    name 'electricity'
+    name 'Electricity'
     label :electricity
     path '/business/energy/electricity/grid' 
     drill {
@@ -29,7 +35,7 @@ Calculations=AMEE::DataAbstraction::CalculationSet.new {
   }
   
   calculation {
-    name 'transport'
+    name 'Transport'
     label :transport
     path '/transport/car/generic'
   
