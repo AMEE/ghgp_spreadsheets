@@ -22,7 +22,7 @@ Rails::Initializer.run do |config|
   config.gem "amee", :version => "~> 2.5.1"
   config.gem "amee-internal", :version => "~> 3.6.3"
   config.gem "amee-data-abstraction", :version => "~> 0.4.2"
-  config.gem "amee-data-persistence", :version => "~> 0.1.0"
+  config.gem "amee-data-persistence", :version => "~> 0.2.0"
   config.gem "quantify"
   config.gem 'ultraviolet', :lib => 'uv', :version => '0.10.2'
   # Only load the plugins named here, in the order given (default is alphabetical).

@@ -2,7 +2,7 @@ class CalculationController < ApplicationController
   def index
     @existing={}
     Calculations.calculations.keys.each do |label|
-      @existing[label] = AMEE::DataAbstraction::OngoingCalculation.find(:all,:conditions=>{:calculation_type=>label.to_s})
+      @existing[label] = AMEE::DataAbstraction::OngoingCalculation.find_by_type(:all,label.to_s)
     end
   end
 
