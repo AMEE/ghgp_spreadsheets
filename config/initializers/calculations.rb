@@ -5,6 +5,7 @@ Calculations=
       label :department
       choices %w{stuff things more_stuff meta_things}
     }
+    organisational_metadata
     start_and_end_dates
 
     #Correct titles for outputs
@@ -49,9 +50,17 @@ Calculations=
     }
   }
 
-  calculations_all_usages('/business/energy/stationaryCombustion/epa/coal') {|usage|
-    label "coal_#{usage.underscore}".to_sym
-    terms_from_amee usage
+
+  calculation {
+    name 'Food'
+    label :food
+    path '/embodied/clm/processes'
+    terms_from_amee
+    output {
+      label :co2
+      name 'Carbon Dioxide'
+      path :default
+    }
   }
 
   calculation {

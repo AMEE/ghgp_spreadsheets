@@ -6,6 +6,29 @@ RAILS_GEM_VERSION = '2.3.9' unless defined? RAILS_GEM_VERSION
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 
+#Patch https://rails.lighthouseapp.com/projects/8994/tickets/2283-unnecessary-exception-raised-in-asdependenciesload_missing_constant
+module ActiveSupport
+  module Dependencies
+    extend self
+
+    #def load_missing_constant(from_mod, const_name)
+
+    def forgiving_load_missing_constant( from_mod, const_name )
+      begin
+        old_load_missing_constant(from_mod, const_name)
+      rescue ArgumentError => arg_err
+        if arg_err.message == "#{from_mod} is not missing constant #{const_name}!"
+          return from_mod.const_get(const_name)
+        else
+          raise
+        end
+      end
+    end
+    alias :old_load_missing_constant :load_missing_constant
+    alias :load_missing_constant :forgiving_load_missing_constant
+  end
+end
+
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
@@ -23,6 +46,7 @@ Rails::Initializer.run do |config|
   config.gem "amee-internal", :version => "~> 3.6.3"
   config.gem "amee-data-abstraction", :version => "~> 0.4.3"
   config.gem "amee-data-persistence", :version => "~> 0.2.0"
+  config.gem "amee-organisational-modelling", :version => "~> 0.1.0"
   config.gem "quantify"
   config.gem 'ultraviolet', :lib => 'uv', :version => '0.10.2'
   # Only load the plugins named here, in the order given (default is alphabetical).
