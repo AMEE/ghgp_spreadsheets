@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110330120214) do
+ActiveRecord::Schema.define(:version => 20110427092236) do
 
   create_table "calculations", :force => true do |t|
     t.string   "profile_uid"
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(:version => 20110330120214) do
     t.integer  "calculation_id"
     t.string   "label"
     t.string   "value"
+    t.string   "unit"
+    t.string   "per_unit"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

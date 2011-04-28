@@ -27,11 +27,14 @@ Calculations=
       label :usage
       name 'Electricity Used'
       path 'energyPerTime'
+      default_unit :BTU
+      alternative_units :kWh, :MWh, :MBTU
     }
     output {
       label :co2
       name 'Carbon Dioxide'
       path :default
+      default_unit :t
     }
   }
   

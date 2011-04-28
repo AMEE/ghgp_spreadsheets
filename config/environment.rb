@@ -12,7 +12,7 @@ Rails::Initializer.run do |config|
   # -- all .rb files in that directory are automatically loaded.
 
   # Add additional load paths for your own custom dirs
-  # config.autoload_paths += %W( #{RAILS_ROOT}/extras )
+  config.autoload_paths += %W( #{RAILS_ROOT}/vendor/plugins )
 
   # Specify gems that this application depends on and have them installed with rake gems:install
   # config.gem "bj"
@@ -21,9 +21,9 @@ Rails::Initializer.run do |config|
   # config.gem "aws-s3", :lib => "aws/s3"
   config.gem "amee", :version => "~> 2.5.1"
   config.gem "amee-internal", :version => "~> 3.6.3"
-  config.gem "amee-data-abstraction", :version => "~> 0.4.3"
-  config.gem "amee-data-persistence", :version => "~> 0.2.0"
   config.gem "quantify"
+  config.gem "amee-data-abstraction", :version => "~> 0.4.3"
+  config.gem "amee-data-persistence", :version => "~> 0.2.1"
   config.gem 'ultraviolet', :lib => 'uv', :version => '0.10.2'
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named

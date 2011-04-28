@@ -2,13 +2,21 @@
   <%proto=Calculations[label]%>
   <h2><%=proto.name%></h2>
   <table>
-    <tr><%proto.terms.each do |term|%><th><%=term.name%></th><%end%><th>Action</th></tr>
-  <%calcs.each do |calc|%>
-    <tr><%calc.terms.each do |term|%><td><%=term.value%></td><%end%><td><%=
-        link_to "Edit", :action=>'edit',
-          :calculation=>calc.label,
-          :uid=>calc.profile_item_uid%>
-      </td></tr>
+    <tr><%proto.terms.each do |term|%>
+      <th><%=term.name%></th><%end%><th>Action</th>
+    </tr>
+    <%calcs.each do |calc|%>
+      <tr>
+        <%calc.terms.each do |term|%>
+          <%value = (term.value.nil? ? "" : "#{term.value}")%>
+          <%unit = (term.unit.nil? || value.empty? ? "" : " #{term.unit.symbol}")%>
+          <%per_unit = (term.per_unit.nil? || value.empty? ? "" : " / #{term.per_unit.symbol}")%>
+          <td><%=value+unit+per_unit%></td>
+        <%end%>
+        <td><%= link_to "Edit", :action=>'edit',
+                                :calculation=>calc.label,
+                                :uid=>calc.profile_item_uid%>
+        </td></tr>
 
   <%end%>
   <tr><%proto.terms.each do |term|%><td></td><%end%><td><%=
