@@ -11,12 +11,37 @@
 
 ActiveRecord::Schema.define(:version => 20110427092236) do
 
+  create_table "aspects", :force => true do |t|
+    t.string "name"
+  end
+
   create_table "calculations", :force => true do |t|
     t.string   "profile_uid"
     t.string   "profile_item_uid"
     t.string   "calculation_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "components", :force => true do |t|
+    t.string "name"
+  end
+
+  create_table "components_sections", :id => false, :force => true do |t|
+    t.integer "section_id"
+    t.integer "component_id"
+  end
+
+  create_table "layers", :force => true do |t|
+    t.string  "name"
+    t.integer "aspect_id"
+  end
+
+  create_table "sections", :force => true do |t|
+    t.string  "name"
+    t.integer "parent_id"
+    t.integer "aspect_id"
+    t.integer "layer_id"
   end
 
   create_table "terms", :force => true do |t|

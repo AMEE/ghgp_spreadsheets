@@ -5,3 +5,28 @@
 #   
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Major.create(:name => 'Daley', :city => cities.first)
+include AMEE::Organisations
+Parser.instance.parse {
+      aspect("Product") {
+        section("Furniture") {
+          section 'Home'
+          section 'Office'
+        }
+        section("Tools") {
+          section "Spanners"
+          section "Screwdrivers"
+        }
+      }
+      aspect("Location") {
+        layers "Continent","Country","Region","County"
+        continent("Europe") {
+          country("England") {
+            region("The North-West") {
+              county("Cumbria")
+            }
+            county("Essex")
+            #Layers don't actually have to be all specified, this one has no region
+          }
+        }
+      }
+    }
