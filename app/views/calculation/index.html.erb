@@ -15,14 +15,14 @@
         <%end%>
         <td><%= link_to "Edit", :action=>'edit',
                                 :calculation=>calc.label,
-                                :uid=>calc.profile_item_uid%>
-        </td></tr>
+                                :uid=>calc.profile_item_uid,
+                                :id=>calc.id %>
+        </td>
+      </tr>
 
-  <%end%>
-  <tr><%proto.terms.each do |term|%><td></td><%end%><td><%=
+    <%end%>
+    <tr><%proto.terms.each do |term|%><td></td><%end%><td><%=
       link_to "Create", :action=>'enter', :calculation=>label%>
     </td></tr>
   </table>
 <%end%>
-
-<%= link_to "View config file",:controller=>'config',:action=>'show'%>

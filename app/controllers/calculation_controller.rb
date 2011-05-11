@@ -11,7 +11,11 @@ class CalculationController < ApplicationController
   end
 
   def result
-    @calculation=Calculations[params[:calculation]].begin_calculation
+    if params['entry']['id']
+      @calculation=AMEE::DataAbstraction::OngoingCalculation.find(params['entry']['id'].to_i)
+    else
+      @calculation=Calculations[params[:calculation]].begin_calculation
+    end
     @calculation.choose!(params['entry'])   
     @calculation.calculate!
     @calculation.save if @calculation.satisfied?
@@ -19,8 +23,14 @@ class CalculationController < ApplicationController
 
   def edit
     @calculation= AMEE::DataAbstraction::OngoingCalculation.
-      find(:first,:conditions=>{:profile_item_uid=>params[:uid]})
+      find(params[:id])
     @calculation.calculate!
   end
-  
+
+  def delete
+    @calculation= AMEE::DataAbstraction::OngoingCalculation.
+      find(params[:id])
+    @calculation.delete
+  end
+
 end

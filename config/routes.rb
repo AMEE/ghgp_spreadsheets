@@ -10,7 +10,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'calculations',:controller=>'calculation',:action=>'index'
   map.connect 'calculations/:calculation',:controller=>'calculation',:action=>'enter'
   map.connect 'calculations/:calculation/result',:controller=>'calculation',:action=>'result'
-  map.connect 'calculations/:calculation/:uid/',:controller=>'calculation',:action=>'edit'
+  map.connect 'calculations/:calculation/:id/',:controller=>'calculation',:action=>'edit'
   map.connect 'config',:controller=>'config',:action=>'show'
   map.root :controller => 'calculation', :action=>'index'
 end

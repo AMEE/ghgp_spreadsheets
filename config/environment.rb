@@ -47,9 +47,9 @@ Rails::Initializer.run do |config|
   config.gem "amee-internal", :version => "~> 3.6.3"
   config.gem "quantify"
   config.gem "amee-data-abstraction", :version => "~> 0.4.4"
-  config.gem "amee-data-persistence", :version => "~> 0.2.0"
+  config.gem "amee-data-persistence", :version => "~> 0.2.2"
   config.gem "amee-organisational-modelling", :version => "~> 0.1.0"
-  config.gem 'ultraviolet', :lib => 'uv', :version => '0.10.2'
+  #config.gem 'ultraviolet', :lib => 'uv', :version => '0.10.2'
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
