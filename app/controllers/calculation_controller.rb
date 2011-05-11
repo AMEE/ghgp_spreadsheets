@@ -16,7 +16,9 @@ class CalculationController < ApplicationController
     else
       @calculation=Calculations[params[:calculation]].begin_calculation
     end
-    @calculation.choose!(params['entry'])   
+    unless @calculation.choose(params['entry'])
+      @calculation.clear_invalid_terms!
+    end
     @calculation.calculate!
     @calculation.save if @calculation.satisfied?
   end
