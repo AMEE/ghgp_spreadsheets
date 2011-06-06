@@ -1,0 +1,44 @@
+<% row_id = "row-#{rand(1e8)}" %>
+<tr id="<%= row_id%>">
+<% calculation.inputs.visible.each do |term|%>
+  <td>
+    <% string = ( calculation.id ? "entry[id]=#{calculation.id}" : "calculation=#{calculation.label}") %>
+    <% if term.drop_down? %>
+      <%= select_tag "entry[#{term.label}]",
+                     options_for_select(term.options_for_select, (term.set? ? term.value : nil)),
+                     {:disabled => term.disabled?,
+                      :onchange => "#{remote_function(:url => {:controller => 'calculation',:action => 'update'},
+                                                      :with => "'#{string}&entry[#{term.label}][value]='+value+'&update=#{row_id}'")}"} %>
+    <%else%>
+      <%= text_field_tag nil,
+                     term.value,
+                     {:size => 20,
+                     :disabled => term.disabled?,
+                     :onchange => "#{remote_function(:url => {:controller => 'calculation',:action => 'update'},
+                                                     :with => "'#{string}&entry[#{term.label}][value]='+value+'&update=#{row_id}'")}"} %>
+      <% unless term.default_unit.nil? %>
+        <%= collection_select nil,
+                              :unit,
+                              term.alternative_units,
+                              :label,
+                              :symbol,
+                              {:selected => term.unit.label},
+                              {:onchange => "#{remote_function(:url => {:controller => 'calculation',:action => 'update'},
+                                                       :with => "'#{string}&entry[#{term.label}][unit]='+value+'&update=#{row_id}'")}"} %>
+      <% end %>
+      <% unless term.default_per_unit.nil? %>
+        <%= "/" %>
+        <%= collection_select nil,
+                              :per_unit,
+                              term.alternative_per_units,
+                              :label,
+                              :symbol,
+                              {:selected => term.per_unit.label},
+                              {:onchange => "#{remote_function(:url => {:controller => 'calculation',:action => 'update'},
+                                                       :with => "'#{string}&entry[#{term.label}][per_unit]='+value+'&update=#{row_id}'")}"} %>
+      <% end %>
+    <%end%>
+  </td>
+<% end %>
+<td id="ajaxloader" style="display:none"><%= image_tag 'loading.gif' %></td>
+</tr>

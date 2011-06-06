@@ -1,12 +1,12 @@
 Calculations=
   AMEE::DataAbstraction::CalculationSet.new {
   all_calculations {
-    metadatum {
-      label :department
-      choices %w{stuff things more_stuff meta_things}
-    }
-    organisational_metadata
-    start_and_end_dates
+    #metadatum {
+    #  label :department
+    #  choices %w{stuff things more_stuff meta_things}
+    #}
+    #organisational_metadata
+    #start_and_end_dates
 
     #Correct titles for outputs
     correcting(:co2) { name "Carbon Dioxide"}
@@ -15,61 +15,60 @@ Calculations=
     correcting(:co2e) { name "Equivalent Carbon Dioxide"}
   }
 
-  calculation{
-    name 'Electricity'
-    label :electricity
-    path '/business/energy/electricity/grid' 
-    drill {
-      label :country
-      path 'country'
-      fixed 'Argentina'
-    }
-    profile {
-      label :usage
-      name 'Electricity Used'
-      path 'energyPerTime'
-      default_unit :BTU
-      alternative_units :kWh, :MWh, :MBTU
-    }
-    output {
-      label :co2
-      name 'Carbon Dioxide'
-      path :default
-      default_unit :t
-    }
-  }
-  
   calculation {
-    name 'Transport'
-    label :transport
-    path '/transport/car/generic'
-  
-    all_drills
-    usage {value 'byDistance'}
+    name 'Default methodology'
+    label :default
+    path '/business/processes/production/aluminium/defaults'
+    terms_from_amee 'default'
     output {
       label :co2
       name 'Carbon Dioxide'
       path :default
     }
   }
-
-
   calculation {
-    name 'Food'
-    label :food
-    path '/embodied/clm/processes'
-    terms_from_amee
+    name 'Soderberg methodology'
+    label :soderberg
+    path '/business/processes/production/aluminium/soderberg'
+    terms_from_amee 'default'
     output {
       label :co2
       name 'Carbon Dioxide'
       path :default
     }
   }
-
   calculation {
-    name 'Coal'
-    label :coal
-    path '/business/energy/stationaryCombustion/epa/coal'
-    terms_from_amee_dynamic_usage 'byMass'
+    name 'Prebake methodology'
+    label :prebake
+    path '/business/processes/production/aluminium/prebake/electrolysis'
+    terms_from_amee 'default'
+    correcting(:type) { hide! }
+    output {
+      label :co2
+      name 'Carbon Dioxide'
+      path :default
+    }
+  }
+  calculation {
+    name 'Pitchcooking with default waste tar methodology'
+    label :pitchcook_default_tar
+    path '/business/processes/production/aluminium/prebake/pitchcooking'
+    terms_from_amee 'defaultWasteTarQuantity'
+    output {
+      label :co2
+      name 'Carbon Dioxide'
+      path :default
+    }
+  }
+  calculation {
+    name 'Pitchcooking with default anode weight methodology'
+    label :pitchcook_default_anode
+    path '/business/processes/production/aluminium/prebake/pitchcooking'
+    terms_from_amee 'defaultAnodeWeight'
+    output {
+      label :co2
+      name 'Carbon Dioxide'
+      path :default
+    }
   }
 }

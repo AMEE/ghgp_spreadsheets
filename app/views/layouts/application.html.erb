@@ -7,14 +7,14 @@
 
     <%= javascript_include_tag :defaults %>
     <%= javascript_include_tag "jquery.ba-bbq"  %>
-    <%= stylesheet_link_tag 'main', 'explorer', 'framework'%>
-    <%= stylesheet_link_tag :harsh %>
+    <%= stylesheet_link_tag 'main' %>
+    <!--<%= stylesheet_link_tag :harsh %>-->
 
   </head>
   <body>
     <%= render :partial => "layouts/header" %>
     <div id="debug" style="display:none"></div>
-    <%=  yield %>
+    <%= yield %>
     <%= render :partial => "layouts/footer" %>
 
     <script type="text/javascript" charset="utf-8">

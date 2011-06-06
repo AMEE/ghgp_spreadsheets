@@ -1,0 +1,3 @@
+page.remove params[:row]
+page.replace "totals", :partial => 'total_row',
+                   :locals =>{:calculations=>@all_calcs, :prototype_calc => Calculations[@calculation.label]}

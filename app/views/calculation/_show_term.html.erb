@@ -1,0 +1,11 @@
+<% if include_label %>
+  <%= "<#{tag}>#{term.name}: </#{tag}>" %>
+<% end %>
+<%= "<#{tag}>#{term.value} </#{tag}>" %>
+<% unless term.unit.nil? %>
+  <%= "<#{tag}>#{term.unit.send(unit_format)} </#{tag}>" %>
+<% end %>
+<% unless term.per_unit.nil? %>
+  <%= "<#{tag}>/ </#{tag}>" %>
+  <%= "<#{tag}>#{term.per_unit.send(unit_format)}</#{tag}>" %>
+<% end %>

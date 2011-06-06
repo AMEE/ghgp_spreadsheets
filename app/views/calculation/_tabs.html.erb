@@ -1,0 +1,11 @@
+<div class="tabs">
+  <% prototype_calculations.each do |label,calc| %>
+    <% div_class = "tab" %>
+    <% if defined? prototype_calculation %>
+      <% div_class += "#{label} #{prototype_calculation.label}" %>
+    <% end %>
+    <div class="<%= div_class %>">
+      <%= link_to_remote calc.name, :url => index_path(:type => label)  %>
+    </div>
+  <% end %>
+</div>

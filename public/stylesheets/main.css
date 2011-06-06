@@ -5,6 +5,7 @@
 
 /* DISPLAY PRODUCT NAME AS "explorer" EVERYWHERE */
 
+
 span.explorer {
     font-style: italic;
 }
@@ -14,19 +15,20 @@ span.explorer {
 body {
     margin: 0;
     padding: 0;
-    background-color: #A7d4d4;
-    background-position: 0px -22px;
-    background-repeat: repeat-x;
+    background-color: White;
     font-family: Arial, sans-serif;
 }
 
 /* SITE HEADER STYLES */
 
 div#header {
-    margin: 0 auto;
-    max-width: 960px;
-    font-size: 62.5%;
-    line-height: 1;
+    width: 100%;
+    margin: auto 0;
+    background-color: #A1A4A6;
+    height: 70px;
+    position: fixed;
+    top: 0px;
+    left: 0px;
 }
 
 div#header a {
@@ -34,17 +36,13 @@ div#header a {
 }
 
 div#header a:hover {
-    text-decoration: none;
     background-color: transparent;
-    border-bottom-width: 1px;
-    border-left-width: 0px;
-    border-right-width: 0px;
-    border-top-width: 0px;
-    border-style: dotted;
+    
 }
 
 div#multisitenav {
-    background-color: white;
+    float: right;
+    background-color: #A1A4A6;
     font-size: 12px;
     margin-left: -20px;
     width: 1000px;
@@ -53,19 +51,11 @@ div#multisitenav {
     padding-top: 0.3em;
 }
 
-div#multisitenav a.currentsite {
-    color: black;
-}
-
 div#multisitenav a {
-    color: #B4B4B4;
+    color: White;
     margin: 0 10px;
     border-color: #B4B4B4;
     line-height: 12px;
-}
-
-div#multisitenav img {
-    vertical-align: -5px;
 }
 
 div#menu {
@@ -107,119 +97,39 @@ div#menu ul#submenu li {
     text-align: left;
 }
 
-div#sitenav {
-    margin-left: -20px;
-    width: 960px;
-    padding-left: 20px;
-    padding-right: 20px;
-    min-height: 61px;
-    height: auto;
-    background-image: url('../images/header-bg-slice.png');
-    background-position: 0px -3px;
-    background-repeat: repeat-x;
-    background-color: #A1A4A6;
+
+
+.tabs {
+  float: left;
+  position: absolute;
+  width: 100%;
+  padding: 0;
+  top: 37px;
+  z-index:1
 }
 
-div.header_right {
-    float: right;
+.tabs .tab {
+  float: left;
+  background: #3f9d9b;
+  padding: 9px 15px;
+  font-size: 13px;
+  margin-right: 2px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  -moz-border-radius-topleft: 10px;
+  -moz-border-radius-topright: 10px;
+  -webkit-border-top-left-radius: 10px;
+  -webkit-border-top-right-radius: 10px;
 }
-
-div.searchform {
-    padding-top: 10px;
+.tabs .selected, .tab:hover {
+  background: #c5df5e;
 }
-
-div.searchform input {
-    font-size: 1.2em;
-    border: 0px;
+.tabs .tab a {
+  color: #FFF;
+  text-decoration: none;
 }
-
-input#header_search_input{
-    text-indent: 10px;
-    background-color: white;
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
-
-input#header_search_submit_button{
-    margin-left: 10px;
-    background-image: url('../images/search-button-slice-faded.png');
-    background-repeat: repeat-x;
-    padding: 4px 5px;
-    background-color: #3F9DA5;
-    color: white;
-}
-
-input#header_search_submit_button:hover{
-    background-image: url('../images/search-button-slice.png');
-    background-repeat: repeat-x;
-    background-color: #138d98;
-}
-
-div#sitenav ul {
-    margin: 0 31px 0 0;
-    padding: 0;
-    text-align: right;
-    float: none;
-    margin-right: 0px;
-}
-
-div#sitenav li {
-    color: white;
-    display: block;
-    float: left;
-    list-style-image: none;
-    list-style-position: outside;
-    list-style-type: none;
-    padding: 5px 4px;
-    font-size: 1.4em;
-    margin-right: 0px;
-}
-
-div#sitenav li.current_page_item a {
-    color: black;
-}
-
-div#sitenav li.current_page_item {
-    font-weight: bold;
-}
-
-div#sitenav li a {
-    color: white;
-    border-color: white;
-}
-
-div#sitenav li input {
-    font-size:0.8em;
-}
-
-/* RAILS FLASH ERROR SYSTEM STYLES */
-
-div.flash {
-    width: 50%;
-    margin: 0px auto;
-    padding: 5px;
-    text-align: center;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-    margin-bottom: 5px;
-}
-
-div.formError {
-    padding: 2px 10px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    text-align: center;
-}
-
-div.f_error, div.formError {
-    background-color: #EB008B;
-    color: white;
-}
-
-div.f_notice {
-    background-color: #EEEEEE;
+.tabs .selected a, .tabs .tab a:hover, .tab:hover a {
+  color: #000;
 }
 
 /* MAIN CONTENT AREA STYLES */
@@ -228,10 +138,12 @@ div#contentarea {
     font-size: 0.8em;
     clear: both;
     margin: 0px auto;
-    max-width: 960px;
+    width: 100%;
     padding: 20px;
-    background-color: #ffffff;
+    background-color: White;
     position: relative;
+    top: 75px
+    
 }
 
 /* MAIN CONTENT STYLES */
@@ -248,7 +160,7 @@ h1 a {
 
 h2 {
     color: #0B7883;
-    font-size: 120%;
+    font-size: 150%;
     margin-top: 20px;
 }
 
@@ -273,36 +185,97 @@ img {
     vertical-align: middle;
 }
 
-/* TABLE STYLES */
-
-table {
-    border-spacing: 20px 5px;
-    margin-bottom: 20px;
+#calculation_page {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
 }
 
-th {
-    font-weight: bold;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+#calculation_page h2 {
+    position: absolute;
+    top: 5px;
+    margin-left: 5%;
+}
+
+#calculation_page .links {
+  float: left;
+  width: 100%;
+  padding: 0;
+  margin-top: 70px;
+  position: absolute;
+  margin-left: 5%;
+}
+
+#calculation_page .links .link {
+  float: left;
+  white-space: nowrap;
+  font-family:"Trebuchet MS", Helvetica, sans-serif;
+  background: Gainsboro;
+  padding: 9px 15px;
+  font-size: 13px;
+  margin-right: 2px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  -moz-border-radius-topleft: 10px;
+  -moz-border-radius-topright: 10px;
+  -webkit-border-top-left-radius: 10px;
+  -webkit-border-top-right-radius: 10px;
+}
+#calculation_page .links .link:hover {
+  background: #c5df5e;
+}
+#calculation_page .links .link a {
+  color: #FFF;
+  text-decoration: none;
+}
+#calculation_page .links .link a, #calculation .links .link a:hover {
+  color: #000;
+}
+
+/* TABLE STYLES */
+
+#calculation_page table {
+    width: auto;
+    font-family:"Trebuchet MS", Helvetica, sans-serif;
+    background: White;
+    border-collapse: collapse;
+    position: absolute;
+    top: 100px;
+    margin-left: 5%;
 }
 
 td {
-    vertical-align: top;
+    text-align: left;
+    padding: 3px;
+    border-top: 2px solid LightGray;
+    white-space: nowrap;
+}
+
+th {
+    text-align: left;
+    padding:7px 5px;
+    background: Gainsboro;
+    white-space: nowrap;
+}
+
+table tr:hover {
+    background-color: LightGoldenRodYellow;
 }
 
 /* SITE FOOTER STYLES */
 
 div#footer {
+    position: fixed;
+    bottom: 0px;
+    text-align: center;
     font-size: 75%; /*62.5 * 1.2 */
     padding-top: 4px;
     color: black;
     border-top: none;
     margin: 0 auto;
-    max-width: 980px;
+    width: 100%;
     padding-left: 20px;
-    min-height: 50px;
-    background-image: url('../images/footer-bg-slice.png');
-    background-repeat: repeat-x;
     background-color: #A1A4A6;
     line-height: 2em;
 }
@@ -320,14 +293,6 @@ div#footer a:hover {
     border-right-width: 0px;
     border-top-width: 0px;
     border-style: dotted;
-}
-
-div#footer-logo {
-    background-image: url('../images/PoweredbyAMEE.png');
-    background-repeat: no-repeat;
-    height: 47px;
-    width: 120px;
-    float: right;
 }
 
 /* CLEARING DIV STYLES */

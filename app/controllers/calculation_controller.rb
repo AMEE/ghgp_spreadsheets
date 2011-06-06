@@ -1,38 +1,52 @@
 class CalculationController < ApplicationController
+
+  acts_as_amee_calculator
+
   def index
-    @existing={}
-    Calculations.calculations.keys.each do |label|
-      @existing[label] = AMEE::DataAbstraction::OngoingCalculation.find_by_type(:all,label.to_s)
+    @prototype_calculations = Calculations.calculations
+    if params[:type]
+      type = params[:type].to_sym
+      unless defined?(session[type][:show_optional])
+        session[type] = { :show_optional => false }
+      end
+      @optional = session[type][:show_optional]
+      if params[:show_optional] == 'true'
+        session[type] = { :show_optional => true}
+        @optional = true
+      end
+      if params[:show_optional] == 'false'
+        session[type] = { :show_optional => false }
+        @optional = false
+      end
+      @prototype_calculation = @prototype_calculations[type]
+      @calculations = find_all_by_type(type)
+      render 'index.rjs'
     end
   end
 
-  def enter
-    @calculation=Calculations[params[:calculation]].begin_calculation
+  def add
+    @calculation = initialize_calculation(params[:type])
   end
 
-  def result
-    if params['entry']['id']
-      @calculation=AMEE::DataAbstraction::OngoingCalculation.find(params['entry']['id'].to_i)
+  def delete
+    if @calculation = find_calculation_by_id(params[:id])
+      @calculation.delete
+    end
+    redirect_to :action => 'index', :type => @calculation.label
+  end
+
+  def update
+    if id = params['entry']['id']
+      @calculation = find_calculation_by_id(id)
     else
-      @calculation=Calculations[params[:calculation]].begin_calculation
+      @calculation = initialize_calculation(params['calculation'])
     end
     unless @calculation.choose(params['entry'])
       @calculation.clear_invalid_terms!
     end
     @calculation.calculate!
-    @calculation.save if @calculation.satisfied?
-  end
-
-  def edit
-    @calculation= AMEE::DataAbstraction::OngoingCalculation.
-      find(params[:id])
-    @calculation.calculate!
-  end
-
-  def delete
-    @calculation= AMEE::DataAbstraction::OngoingCalculation.
-      find(params[:id])
-    @calculation.delete
+    @calculation.save
+    redirect_to :action => 'index', :type => @calculation.label
   end
 
 end

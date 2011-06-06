@@ -1,0 +1,39 @@
+<h2><%= @prototype_calculation.name %></h2>
+<% optional = session[prototype_calc.label][:show_optional] %>
+<div class="links">
+  <div class="link">
+    <%= link_to_remote 'Add another calculation', :url => add_path(:type => prototype_calc.label) %>
+  </div>
+  <% if optional %>
+    <div class="link">
+      <%= link_to_remote 'Show compulsory inputs only', :url => index_path(:type => prototype_calc.label,
+                                                                         :show_optional => 'false') %>
+    </div>
+  <% else %>
+    <div class="link">
+    <%= link_to_remote 'Show optional inputs', :url => index_path(:type => prototype_calc.label,
+                                                                  :show_optional => 'true') %>
+    </div>
+  <% end %>
+  <span id="ajaxloader" style="display:none"><%= image_tag 'loading.gif' %></span>
+</div>
+<br />
+<table id="table">
+  <tr>
+    <% style = "margin-left: auto; margin-right: auto; text-align: center; color: #404040; font-size: 1.25em; font-family: 'Trebuchet MS', Helvetica, sans-serif; vertical-align: width: 100%; display: inherit;" %>
+    <% terms = (optional ? prototype_calc.inputs : prototype_calc.inputs.compulsory ) %>
+    <% terms.visible.each do |term| %>
+      <th style="position: relative; margin-left: auto; margin-right: auto; text-align: center;"><span style="<%= style %>"><%=term.name%></span></th>
+    <%end%>
+    <% prototype_calc.outputs.each do |term| %>
+      <th><span style="<%= style %>"><%=term.name%></span></th>
+    <%end%>
+    <th></th>
+  </tr>
+    <% calculations.each do |calc| %>
+      <tr><%= render 'edit_row', :calculation=>calc, :optional => optional %></tr>
+    <%end%>
+  <tr id="totals">
+    <%= render("total_row", :calculations => calculations, :prototype_calc => prototype_calc, :optional => optional) unless calculations.empty? %>
+  </tr>
+</table>

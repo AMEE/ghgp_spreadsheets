@@ -1,0 +1,44 @@
+<% string = ( term.parent.id ? "entry[id]=#{term.parent.id}" : "calculation=#{term.parent.label}") %>
+<% if term.drop_down? %>
+  <%= select_tag "entry[#{term.label}]",
+                 options_for_select(term.options_for_select, (term.set? ? term.value : nil)),
+                 {:disabled => term.disabled?,
+                  :onchange => "#{remote_function(:url => {:controller => 'calculation',:action => 'update'},
+                                                  :loading=> "$('#ajaxloader').show()",
+                                                  :with => "'#{string}&entry[#{term.label}][value]='+value")}",
+                  :style => "border: 1px solid White; background: White ; color: #202020 ; font-size: 1.5em; font-family: \"Trebuchet MS\", Helvetica, sans-serif; color: Darkgray; vertical-align: middle; text-align:right; padding-right: 2px; width: auto; display: inherit;" } %>
+<%else%>
+  <%= text_field_tag nil,
+                 term.value,
+                 {:size => 10,
+                  :disabled => term.disabled?,
+                  :onchange => "#{remote_function(:url => {:controller => 'calculation',:action => 'update'},
+                                                  :loading=> "$('#ajaxloader').show()",
+                                                  :with => "'#{string}&entry[#{term.label}][value]='+value")}",
+                  :style => "border: 1px solid White; background: White ; color: #202020 ; font-size: 1.5em; font-family: \"Trebuchet MS\", Helvetica, sans-serif; color: Darkgray; vertical-align: middle; text-align:right; padding-right: 5px; width: auto; display: inherit;" } %>
+  <% unless term.default_unit.nil? %>
+    <%= collection_select nil,
+                          :unit,
+                          term.alternative_units,
+                          :label,
+                          :symbol,
+                          {:selected => term.unit.label},
+                          {:onchange => "#{remote_function(:url => {:controller => 'calculation',:action => 'update'},
+                                                           :loading=> "$('#ajaxloader').show()",
+                                                           :with => "'#{string}&entry[#{term.label}][unit]='+value")}",
+                           :style => "border: 1px solid White; background: White ; color: #202020 ; font-size: 1.5em; font-family: \"Trebuchet MS\", Helvetica, sans-serif; color: Darkgray; vertical-align: middle; text-align:right; padding-right: 2px; width: auto; display: inherit;"} %>
+  <% end %>
+  <% unless term.default_per_unit.nil? %>
+    <%= "/" %>
+    <%= collection_select nil,
+                          :per_unit,
+                          term.alternative_per_units,
+                          :label,
+                          :symbol,
+                          {:selected => term.per_unit.label},
+                          {:onchange => "#{remote_function(:url => {:controller => 'calculation',:action => 'update'},
+                                                           :loading=> "$('#ajaxloader').show()",
+                                                           :with => "'#{string}&entry[#{term.label}][per_unit]='+value")}",
+                           :style => "border: 1px solid White; background: White ; color: #202020 ; font-size: 1.5em; font-family: \"Trebuchet MS\", Helvetica, sans-serif; color: Darkgray; vertical-align: middle; text-align:left; padding-right: 2px; width: auto; display: inherit;"} %>
+  <% end %>
+<%end%>

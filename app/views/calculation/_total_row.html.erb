@@ -1,0 +1,8 @@
+<% terms = (session[prototype_calc.label][:show_optional] ? prototype_calc.inputs : prototype_calc.inputs.compulsory ) %>
+<% terms.visible.each do |term| %>
+  <td></td>
+<% end %>
+<% term = calculations.co2.sum rescue nil %>
+<% style = "border: 1px solid White; background: White ; color: #202020 ; font-size: 1.5em; font-family: 'Trebuchet MS', Helvetica, sans-serif; color: Black; vertical-align: middle; text-align:right; padding-right: 5px; width: auto; display: inherit;" %>
+<td><span style="<%= style %>"><%= show_term_tag(term) %></span></td>
+<td></td>

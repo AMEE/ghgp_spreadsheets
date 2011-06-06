@@ -1,0 +1,18 @@
+<% table_row_id = "row-#{rand(1e8)}" %>
+<tr id=<%= table_row_id %> >
+  <%calculation.terms.each do |term|%>
+    <td><%= show_term_tag(term) %></td>
+  <%end%>
+  <td><%= link_to_remote "Edit",:url => {:action=>'edit',
+                                         :calculation=>calculation.label,
+                                         :uid=>calculation.profile_item_uid,
+                                         :id=>calculation.id },
+                                :update => table_row_id  %>
+  </td>
+  <td><%= link_to "Delete", :action=>'delete',
+                            :calculation=>calculation.label,
+                            :uid=>calculation.profile_item_uid,
+                            :id=>calculation.id,
+                            :table_row_id => table_row_id %>
+  </td>
+</tr>

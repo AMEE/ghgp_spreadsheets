@@ -9,11 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110511120521) do
-
-  create_table "aspects", :force => true do |t|
-    t.string "name"
-  end
+ActiveRecord::Schema.define(:version => 20110531022204) do
 
   create_table "calculations", :force => true do |t|
     t.string   "profile_uid"
@@ -23,26 +19,8 @@ ActiveRecord::Schema.define(:version => 20110511120521) do
     t.datetime "updated_at"
   end
 
-  create_table "components", :force => true do |t|
-    t.string "name"
-  end
-
-  create_table "components_sections", :id => false, :force => true do |t|
-    t.integer "section_id"
-    t.integer "component_id"
-  end
-
-  create_table "layers", :force => true do |t|
-    t.string  "name"
-    t.integer "aspect_id"
-  end
-
-  create_table "sections", :force => true do |t|
-    t.string  "name"
-    t.integer "parent_id"
-    t.integer "aspect_id"
-    t.integer "layer_id"
-  end
+  add_index "calculations", ["calculation_type"], :name => "index_calculations_on_calculation_type"
+  add_index "calculations", ["profile_item_uid"], :name => "index_calculations_on_profile_item_uid"
 
   create_table "terms", :force => true do |t|
     t.integer  "calculation_id"
@@ -53,5 +31,8 @@ ActiveRecord::Schema.define(:version => 20110511120521) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "terms", ["calculation_id", "label"], :name => "calc_id_label_index"
+  add_index "terms", ["label", "value", "calculation_id"], :name => "label_name_calc_id_index"
 
 end
