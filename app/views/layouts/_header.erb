@@ -1,17 +1,14 @@
 <div id="header">
-  <div id="multisitenav">
-    <div id="menu">
-      <ul>
-        <li class="menuitem"><a href="http://www.amee.com">About AMEE</a></li>
-        <li class="menuitem"><a href="http://explorer.amee.com">AMEE <span class="explorer">explorer</span></a></li>
-        <li class="menuitem"><a href="http://my.amee.com/developers">Developer Center</a></li>
-      </ul>
-    </div>
-    <div class="clear"></div>
-  </div>
-  <div id="calculation_tabs">
-    <%= render 'tabs', :prototype_calculations => @prototype_calculations %>
-  </div>
+  <span id="logo">
+    <% logo = image_tag "AMEE-bug-ref_125x125.png", :alt => 'AMEE logo' %>
+    <%= link_to logo, root_path %>
+    Greenhouse Gas Protocol | Aluminium Sector Tools
+  </span>
+  <ul class="navigation">
+    <li><a href="http://www.amee.com">about AMEE</a></li>
+    <li><a href="http://explorer.amee.com">AMEE <span class="explorer">explorer</span></a></li>
+    <li><a href="http://my.amee.com/developers">developer Center</a></li>
+  </ul>
 </div>
 
 <div id="contentarea">

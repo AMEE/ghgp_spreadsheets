@@ -21,90 +21,36 @@ body {
 
 /* SITE HEADER STYLES */
 
-div#header {
-    width: 100%;
-    margin: auto 0;
-    background-color: #A1A4A6;
-    height: 70px;
+#header { height: 20px; background: Gainsboro; position: fixed; top: 0px; width: 100%; font-family: "Trebuchet MS", Helvetica, sans-serif; font-size: 160%; color: #0B7883; text-shadow: 2px 2px 2px LightGray; padding: 8px; font-weight: bold; border-bottom: solid thin White; vertical-align:middle; }
+
+#header.navigation { position: fixed; top: 0px; vertical-align: middle ; font-size: 130%; font-weight: normal }
+
+/* Links */
+a { color:White; text-decoration: none; font-family:"Trebuchet MS", Helvetica, sans-serif; }
+a:hover { color: #069;  }
+a:visited { color: #069; }
+
+/* Navigation */
+.navigation { color: White; float: right; font-size: 60%; font-family:"Trebuchet MS", Helvetica; vertical-align: middle; text-shadow: none;  }
+.navigation { padding: 0 ; white-space: nowrap; }
+ul.navigation { margin: 0; padding: 0px; margin-right: 12px }
+.navigation li { list-style-type: none; display: inline-block; padding: 0px }
+.navigation li a { color: #0B7883; padding-right: 5px; padding-top: 0px; }
+.navigation li a:visited { color: #0B7883; }
+.navigation li a:hover { color: White; }
+
+#logo {
     position: fixed;
-    top: 0px;
-    left: 0px;
+    top: 25px;
+    left: 15px;
 }
-
-div#header a {
-    text-decoration: none;
-}
-
-div#header a:hover {
-    background-color: transparent;
-    
-}
-
-div#multisitenav {
-    float: right;
-    background-color: #A1A4A6;
-    font-size: 12px;
-    margin-left: -20px;
-    width: 1000px;
-    margin-top: 0px;
-    min-height: 14px;
-    padding-top: 0.3em;
-}
-
-div#multisitenav a {
-    color: White;
-    margin: 0 10px;
-    border-color: #B4B4B4;
-    line-height: 12px;
-}
-
-div#menu {
-    float: right;
-    margin: 0px;
-    padding: 0px;
-}
-
-div#menu ul {
-    float: left;
-    margin: 0px;
-    padding: 0px;
-    list-style-type: none;
-}
-
-div#menu ul li {
-    float: left;
-    position: relative;
-}
-
-div#menu ul li.menuitem {
-    width: 120px;
-    text-align: center;
-}
-
-div#menu ul#submenu {
-    position: absolute;
-    top: 15px;
-    left: 0px;
-    background-color: white;
-    border-top: 1px solid #B4B4B4;
-}
-
-div#menu ul#submenu li {
-    border-bottom: 1px solid #B4B4B4;
-    width: 120px;
-    padding-top: 6px;
-    padding-bottom: 6px;
-    text-align: left;
-}
-
-
 
 .tabs {
   float: left;
-  position: absolute;
+  position: fixed;
   width: 100%;
   padding: 0;
-  top: 37px;
+  bottom: 55px;
   z-index:1
 }
 
@@ -137,13 +83,13 @@ div#menu ul#submenu li {
 div#contentarea {
     font-size: 0.8em;
     clear: both;
-    margin: 0px auto;
-    width: 100%;
+    left: auto;
+    right: auto;
+    width: 90%;
     padding: 20px;
     background-color: White;
     position: relative;
-    top: 75px
-    
+    top: 95px;
 }
 
 /* MAIN CONTENT STYLES */
@@ -186,25 +132,25 @@ img {
 }
 
 #calculation_page {
-    position: absolute;
+    position: relative;
     top: 0px;
-    left: 0px;
-    width: 100%;
+    margin-left: auto;
+    margin-right:auto;
+    width: 90%;
 }
 
 #calculation_page h2 {
-    position: absolute;
-    top: 5px;
-    margin-left: 5%;
+    position: relative;
+    margin-left: 0%;
 }
 
+
 #calculation_page .links {
-  float: left;
-  width: 100%;
+  width: auto;
   padding: 0;
-  margin-top: 70px;
+  margin-top: 0px;
   position: absolute;
-  margin-left: 5%;
+  top: 30px;
 }
 
 #calculation_page .links .link {
@@ -222,8 +168,10 @@ img {
   -webkit-border-top-left-radius: 10px;
   -webkit-border-top-right-radius: 10px;
 }
+
+
 #calculation_page .links .link:hover {
-  background: #c5df5e;
+  background: #C8C8C8;
 }
 #calculation_page .links .link a {
   color: #FFF;
@@ -235,14 +183,24 @@ img {
 
 /* TABLE STYLES */
 
-#calculation_page table {
+div.table_container {
+    overflow-x: auto;
+    width: 100%;
+    height: auto;
+    min-height: 150px;
+    position: relative;
+    top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table {
     width: auto;
     font-family:"Trebuchet MS", Helvetica, sans-serif;
     background: White;
     border-collapse: collapse;
-    position: absolute;
-    top: 100px;
-    margin-left: 5%;
+    float: left;
+    position: relative;
 }
 
 td {
@@ -250,23 +208,25 @@ td {
     padding: 3px;
     border-top: 2px solid LightGray;
     white-space: nowrap;
+    position: relative;
 }
 
 th {
-    text-align: left;
-    padding:7px 5px;
+    text-align: centre;
+    padding:10px 8px;
     background: Gainsboro;
     white-space: nowrap;
 }
 
 table tr:hover {
-    background-color: LightGoldenRodYellow;
+    color: Black;
 }
 
 /* SITE FOOTER STYLES */
 
 div#footer {
     position: fixed;
+    height: 50px;
     bottom: 0px;
     text-align: center;
     font-size: 75%; /*62.5 * 1.2 */

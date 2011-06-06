@@ -8,10 +8,21 @@
     <td><%= render 'edit_term', :term => term %></td>
   <% end %>
 <% end %>
-<% calculation.outputs.visible.each do |term|%>
-  <% style = "border: 1px solid White; background: White ; color: #202020 ; font-size: 1.5em; font-family: 'Trebuchet MS', Helvetica, sans-serif; color: Darkgray; vertical-align: middle; text-align:right; padding-right: 5px; width: auto; display: inherit;" %>
-    <td><span style="<%= style %>"><%= show_term_tag(term) %></span></td>
-<%end%>
-<td><%= link_to_remote 'Delete', :url => delete_path(:id => calculation.id, :row => row_id),
-                                 :before => visual_effect(:fade, row_id, :duration => 3) %> </td>
+<% style = "border: 1px solid White; background: White ; color: #202020 ; font-size: 1.5em; font-family: 'Trebuchet MS', Helvetica, sans-serif; color: Darkgray; vertical-align: middle; text-align: right; padding-right: 5px; width: 100%; display: inherit;" %>
+<% unless calculation.outputs.visible.empty? %>
+  <% calculation.outputs.visible.each do |term|%>
+    <td><span style="<%= style %>"><%= term.value.round(1) %></span></td>
+    <td><span style="<%= style %>"><%= term.unit.symbol %></span></td>
+    <td><span style="<%= style %>">/</span></td>
+    <td><span style="<%= style %>"><%= term.per_unit.symbol %></span></td>
+  <%end%>
+<% else %>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+<% end %>
+<% delete_symbol = image_tag "delete.png", :alt => 'Delete' %>
+<td><%= link_to_remote delete_symbol, :url => delete_path(:id => calculation.id, :row => row_id),
+                                 :before => visual_effect(:fade, row_id, :duration => 1) %></td>
 </tr>

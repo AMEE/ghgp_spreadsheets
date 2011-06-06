@@ -5,22 +5,32 @@ class CalculationController < ApplicationController
   def index
     @prototype_calculations = Calculations.calculations
     if params[:type]
-      type = params[:type].to_sym
-      unless defined?(session[type][:show_optional])
-        session[type] = { :show_optional => false }
+      if params[:type] == 'summary'
+        @all = {}
+        @prototype_calculations.each do |label, calc|
+          @all[calc.name] = find_all_by_type(label)
+        end
+        render 'totals.rjs'
+      else
+        type = params[:type].to_sym
+        unless defined?(session[type][:show_optional])
+          session[type] = { :show_optional => false }
+        end
+        @optional = session[type][:show_optional]
+        if params[:show_optional] == 'true'
+          session[type] = { :show_optional => true }
+          @optional = true
+        end
+        if params[:show_optional] == 'false'
+          session[type] = { :show_optional => false }
+          @optional = false
+        end
+        @prototype_calculation = @prototype_calculations[type]
+        @calculations = find_all_by_type(type)
+        render 'calculation.rjs'
       end
-      @optional = session[type][:show_optional]
-      if params[:show_optional] == 'true'
-        session[type] = { :show_optional => true}
-        @optional = true
-      end
-      if params[:show_optional] == 'false'
-        session[type] = { :show_optional => false }
-        @optional = false
-      end
-      @prototype_calculation = @prototype_calculations[type]
-      @calculations = find_all_by_type(type)
-      render 'index.rjs'
+    else
+      # home/introduction page
     end
   end
 
