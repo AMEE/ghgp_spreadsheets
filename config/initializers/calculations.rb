@@ -5,7 +5,7 @@ Calculations=
       name 'Reporting period'
       label :reporting_period
       interface :text_box
-      note "Specify a reference for the reporting period under consideration"
+      note "Provide a reference for the reporting period under consideration"
     }
 
     # Correct titles for outputs
@@ -86,6 +86,7 @@ Calculations=
       name 'Potline ID'
       label :potline_id
       interface :text_box
+      note "Provide a reference for the potline for which data is being entered"
     }
     correcting(:anode_quantity) { note "Specify the quantity of anode paste used per quantity of aluminium produced" }
     correcting(:aluminium_quantity) { note "Specify the quantity of aluminium produced for the process type and reporting period under consideration" }
@@ -107,6 +108,7 @@ Calculations=
       name 'Furnace ID'
       label :furnace_id
       interface :text_box
+      note "Provide a reference for the furnace for which data is being entered"
     }
     metadatum {
       label :note
@@ -139,6 +141,7 @@ Calculations=
       name 'Furnace ID'
       label :furnace_id
       interface :text_box
+      note "Provide a reference for the furnace for which data is being entered"
     }
     metadatum {
       label :note
@@ -168,6 +171,23 @@ Calculations=
       name 'Carbon Dioxide'
       path :default
     }
+    metadatum {
+      label :note
+      value "The methodology represents an alternative approach to calculating electrolysis process CO2 emissions based on the consumption of carbon containing materials. If quantities of purchased carbon containing materials are not known, use the 'default' methodology. Calculations are differentiated by the reporting period under consideration"
+      hide!
+    }
+    correcting(:byprod_quantity) { note "Specify the quantity of carbon contained within process by-products or waste" }
+    correcting(:coke_quantity) { note "Specify the total quantity of coke consumed during the process" }
+    correcting(:anode_quantity) { note "Specify the quantity of purchased anodes during the process" }
+    correcting(:sold_quantity) { note "Specify the quantity of anodes sold during the process" }
+    correcting(:packing_quantity) { note "Specify the quantity of packing coke consumed during the process" }
+    correcting(:pitch_quantity) { note "Specify the quantity of pitch consumed during the process" }
+    correcting(:carbon_coke) { note "Specify the carbon content of consumed coke, as a weight percentage (0-100). If no value is specified, an industry typical default value is used" }
+    correcting(:carbon_pitch) { note "Specify the carbon content of consumed pitch, as a weight percentage (0-100). If no value is specified, an industry typical default value is used" }
+    correcting(:carbon_packing) { note "Specify the carbon content of consumed packing coke, as a weight percentage (0-100). If no value is specified, an industry typical default value is used" }
+    correcting(:carbon_anode) { note "Specify the carbon content of purchased anodes, as a weight percentage (0-100). If no value is specified, an industry typical default value is used" }
+    correcting(:carbon_sold) { note "Specify the carbon content of sold anodes, as a weight percentage (0-100). If no value is specified, an industry typical default value is used" }
+    correcting(:co2) { note "CO2 emissions calculated based on data (facility-specific and default) entered for each Soderberg scenario" }
   }
   calculation {
     name 'Coke calcination'
