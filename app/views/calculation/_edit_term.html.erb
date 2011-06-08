@@ -10,7 +10,7 @@
 <%else%>
   <%= text_field_tag nil,
                  term.value,
-                 {:size => 8,
+                 {:size => 10,
                   :disabled => term.disabled?,
                   :onchange => "#{remote_function(:url => {:controller => 'calculation',:action => 'update'},
                                                   :loading=> "$('#ajaxloader').show()",

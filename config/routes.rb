@@ -6,8 +6,8 @@ ActionController::Routing::Routes.draw do |map|
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing or commenting them out if you're using named routes and resources.
 
-  map.index 'calculations/:type',:controller=>'calculation',:action=>'index'
   map.update 'calculations/update',:controller=>'calculation',:action=>'update'
+  map.index 'calculations/:type',:controller=>'calculation',:action=>'index'
   map.delete 'calculations/delete/:id/',:controller=>'calculation',:action=>'delete'
   map.add '/calculation/add/:type', :controller => 'calculation', :action=>'add'
   map.test '/test',:controller => 'calculation', :action => 'test'

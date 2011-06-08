@@ -25,8 +25,8 @@ class CalculationController < ApplicationController
           session[type] = { :show_optional => false }
           @optional = false
         end
-        @prototype_calculation = @prototype_calculations[type]
         @calculations = find_all_by_type(type)
+        @prototype_calculation = @prototype_calculations[type]
         render 'calculation.rjs'
       end
     else

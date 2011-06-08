@@ -1,8 +1,44 @@
-<h2><%= @prototype_calculation.name %></h2>
 <% optional = session[prototype_calc.label][:show_optional] %>
+<div id="help">
+  <% prototype_calc.metadata.visible.each do |term| %>
+     <div class="note">
+      <h3><%= term.name %></h3>
+      <p><%= term.note %></p>
+    </div>
+  <%end%>
+  <% prototype_calc.drills.visible.each do |term| %>
+    <div class="note">
+      <h3><%= term.name %></h3>
+      <p><%= term.note %></p>
+    </div>
+  <%end%>
+  <% prototype_calc.profiles.compulsory.visible.each do |term| %>
+    <div class="note">
+      <h3><%= term.name %></h3>
+      <p><%= term.note %></p>
+    </div>
+  <%end%>
+  <% if optional %>
+    <% prototype_calc.profiles.optional.visible.each do |term| %>
+      <div class="note">
+        <h3><%= term.name %></h3>
+        <p><%= term.note %></p>
+      </div>
+    <%end%>
+  <%end%>
+  <% prototype_calc.outputs.visible.each do |term| %>
+    <div class="note">
+      <h3><%= term.name %></h3>
+      <p><%= term.note %></p>
+    </div>
+  <%end%>
+
+</div>
+<h2><%= prototype_calc.name %></h2>
+<div class="calculation_note"><%= prototype_calc[:note] %></div>
 <div class="links">
   <div class="link">
-    <%= link_to_remote 'Add another calculation', :url => add_path(:type => prototype_calc.label) %>
+    <%= link_to_remote 'Add a calculation', :url => add_path(:type => prototype_calc.label) %>
   </div>
   <% if optional %>
     <div class="link">
@@ -21,16 +57,22 @@
 <div class="table_container">
   <table id="table">
     <tr>
-      <% style = "whitespace: no-wrap; color: #404040; font-size: 1.25em; font-family: 'Trebuchet MS', Helvetica, sans-serif; width: 100%; display: inherit;" %>
-      <% prototype_calc.inputs.compulsory.visible.each do |term| %>
+      <% style = "text-shadow: 2px 2px 2px White; whitespace: no-wrap; color: #404040; font-size: 1.25em; font-family: 'Trebuchet MS', Helvetica, sans-serif; width: 100%; display: inherit;" %>
+      <% prototype_calc.metadata.visible.each do |term| %>
+        <th><%=term.name%></th>
+      <%end%>
+      <% prototype_calc.drills.visible.each do |term| %>
+        <th><%=term.name%></th>
+      <%end%>
+      <% prototype_calc.profiles.compulsory.visible.each do |term| %>
         <th><%=term.name%></th>
       <%end%>
       <% if optional %>
-        <% prototype_calc.inputs.optional.visible.each do |term| %>
+        <% prototype_calc.profiles.optional.visible.each do |term| %>
           <th><%=term.name%></th>
         <%end%>
       <%end%>
-      <% prototype_calc.outputs.each do |term| %>
+      <% prototype_calc.outputs.visible.each do |term| %>
         <th><%=term.name%></th>
         <th></th>
         <th></th>
