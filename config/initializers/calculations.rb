@@ -9,10 +9,10 @@ Calculations=
     }
 
     # Correct titles for outputs
-    correcting(:co2) { name "CO2"}
-    correcting(:co2e) { name "CO2e"}
-    correcting(:c2_f6) { name "C2F6"}
-    correcting(:cf4) { name "CF4"}
+    correcting(:co2) { name "CO2 emissions"}
+    correcting(:co2e) { name "CO2e emissions"}
+    correcting(:c2_f6) { name "C2F6 emissions"}
+    correcting(:cf4) { name "CF4 emissions"}
   }
 
   calculation {
@@ -22,12 +22,11 @@ Calculations=
     terms_from_amee 'default'
     output {
       label :co2
-      name 'Carbon Dioxide'
       path :default
     }
     metadatum {
       label :note
-      value "This methodology should be used if quantities of carbon containing materials are not known. Calculations are differentiated by the type of process potline used and the reporting period under consideration"
+      value "This methodology enables the calculation of CO2 emissions associated with electrolysis processes. It should be used if quantities of carbon containing materials are not known. Calculations are differentiated by the type of process potline used and the reporting period under consideration."
       hide!
     }
     correcting(:process_type) { note "Select the type of process potline for which data is being entered" }
@@ -37,21 +36,20 @@ Calculations=
   }
 
   calculation {
-    name 'Soderberg electrolysis CO2'
+    name 'Søderberg electrolysis CO2'
     label :soderberg
     path '/business/processes/production/aluminium/soderberg'
     terms_from_amee 'default'
     output {
       label :co2
-      name 'Carbon Dioxide'
       path :default
     }
     metadatum {
       label :note
-      value "If quantities of Soderberg paste are unknown, use the 'alternative' methodology. Calculations are differentiated by the types of process potline and anode paste used and the reporting period under consideration"
+      value "The Søderberg process is one of two primary technologies employed in aluminium extraction and involves the use of a coke/pitch electrode paste which is baked during electrolysis (rather than prior to, as in the case of the prebake process). This methodology enables the calculation of Søderberg-associated CO2 emissions based on the carbon (C) contained within the Søderberg paste. If quantities of Søderberg paste are unknown, use the 'alternative' methodology. Calculations are differentiated by the types of process potline and anode paste used and the reporting period under consideration."
       hide!
     }
-    correcting(:soderberg_type) { note "Select the type of Soderberg potline for which data is being entered" }
+    correcting(:soderberg_type) { note "Select the type of Søderberg potline for which data is being entered" }
     correcting(:paste_type) { note "Select the type of paste used" }
     correcting(:aluminium_quantity) { note "Specify the quantity of aluminium produced for the process type and reporting period under consideration" }
     correcting(:anode_quantity) { note "Specify the quantity of anode paste used per quantity of aluminium produced" }
@@ -63,7 +61,7 @@ Calculations=
     correcting(:ash_pitch) { note "Specify the ash content of pitch used in anode formulation (0-100%). If no value is specified, an industry typical default value is used" }
     correcting(:hyd_pitch) { note "Specify the hydrogen content of pitch used in anode formulation (0-100%). If no value is specified, an industry typical default value is used" }
     correcting(:sulphur_pitch) { note "Specify the sulphur content of pitch used in anode formulation (0-100%). If no value is specified, an industry typical default value is used" }
-    correcting(:co2) { note "CO2 emissions calculated based on data (facility-specific and default) entered for each Soderberg scenario" }
+    correcting(:co2) { note "CO2 emissions calculated based on data (facility-specific and default) entered for each Søderberg scenario" }
   }
   
   calculation {
@@ -74,12 +72,11 @@ Calculations=
     correcting(:type) { hide! }
     output {
       label :co2
-      name 'Carbon Dioxide'
       path :default
     }
     metadatum {
       label :note
-      value "If net anode consumption (gross consumption minus anode butts) is unknown or not reliable, use the 'alternative' methodology. Calculations are differentiated by the reporting period under consideration"
+      value "The Prebake process is one of two primary technologies employed in aluminium extraction and involves the use of a coke/pitch electrode paste which is baked prior to electrolysis. This produces anodes with a higher current efficiency than in the case of the alternative Søderberg process which bakes the anode paste during electrolysis. This methodology enables the calculation of prebaked electrolysis-associated CO2 emissions based on the carbon (C) contained within the prebaked anodes. If net anode consumption (gross consumption minus anode butts) is unknown or not reliable, use the 'alternative' methodology. Calculations are differentiated by the reporting period under consideration. Emissions associated with the prebaking process can be calculated using the anode-baking methodologies."
       hide!
     }
     metadatum {
@@ -101,7 +98,6 @@ Calculations=
     terms_from_amee 'defaultWasteTarQuantity'
     output {
       label :co2
-      name 'Carbon Dioxide'
       path :default
     }
     metadatum {
@@ -112,7 +108,7 @@ Calculations=
     }
     metadatum {
       label :note
-      value "If net anode consumption (gross consumption minus anode butts) is unknown or not reliable, use the 'alternative' methodology. Calculations are differentiated by the types of furnace used and the reporting period under consideration"
+      value "In addition to emissions related to the combustion of fossil fuels, the anode baking process represents two other sources of CO2 emissions: (1) the combustion of pitch volatile matter released during the baking operation; and (2) the combustion of baking furnace packing material (coke). This methodology enables the calculation of CO2 emissions associated with pitch volatiles combustion and packing material in the anode baking furnace. If net anode consumption (gross consumption minus anode butts) is unknown or not reliable, use the 'alternative' methodology. Calculations are differentiated by the types of furnace used and the reporting period under consideration. Emissions associated with prebake electrolysis can be calculated using the 'prebake electrolysis' methodology."
       hide!
     }
     correcting(:type) { note "Select the type of furnace for which data is being entered" }
@@ -124,7 +120,7 @@ Calculations=
     correcting(:coke_quantity) { note "Specify the quantity of packing coke consumed per quantity of baked anode produced. If no value is specified, an industry typical default value is used" }
     correcting(:tar_quantity) { note "Specify the quantity of waste tar collected from the furnace. If no value is specified, an industry typical default value is used" }
     correcting(:sulphur_quantity) { note "Specify the sulphur content of packing coke used. If no value is specified, an industry typical default value is used" }
-    correcting(:co2) { note "CO2 emissions calculated based on data (facility-specific and default) entered for each Soderberg scenario" }
+    correcting(:co2) { note "CO2 emissions calculated based on data (facility-specific and default) entered for each scenario" }
   }
 
   calculation {
@@ -134,7 +130,6 @@ Calculations=
     terms_from_amee 'defaultAnodeWeight'
     output {
       label :co2
-      name 'Carbon Dioxide'
       path :default
     }
     metadatum {
@@ -157,18 +152,17 @@ Calculations=
     correcting(:coke_quantity) { note "Specify the quantity of packing coke consumed per quantity of baked anode produced. If no value is specified, an industry typical default value is used" }
     correcting(:tar_quantity) { note "Specify the quantity of waste tar collected from the furnace. If no value is specified, an industry typical default value is used" }
     correcting(:sulphur_quantity) { note "Specify the sulphur content of packing coke used. If no value is specified, an industry typical default value is used" }
-    correcting(:co2) { note "CO2 emissions calculated based on data (facility-specific and default) entered for each Soderberg scenario" }
+    correcting(:co2) { note "CO2 emissions calculated based on data (facility-specific and default) entered for each scenario" }
   }
 
   calculation {
-    name 'Alternative CO2'
+    name 'Alternative methodology for electrolysis CO2'
     label :alternative
     path '/business/processes/production/aluminium/alternative'
     terms_from_amee 'default'
     correcting (:type) { hide! }
     output {
       label :co2
-      name 'Carbon Dioxide'
       path :default
     }
     metadatum {
@@ -187,12 +181,43 @@ Calculations=
     correcting(:carbon_packing) { note "Specify the carbon content of consumed packing coke, as a weight percentage (0-100). If no value is specified, an industry typical default value is used" }
     correcting(:carbon_anode) { note "Specify the carbon content of purchased anodes, as a weight percentage (0-100). If no value is specified, an industry typical default value is used" }
     correcting(:carbon_sold) { note "Specify the carbon content of sold anodes, as a weight percentage (0-100). If no value is specified, an industry typical default value is used" }
-    correcting(:co2) { note "CO2 emissions calculated based on data (facility-specific and default) entered for each Soderberg scenario" }
+    correcting(:co2) { note "CO2 emissions calculated based on data (facility-specific and default) entered for each scenario" }
   }
+
   calculation {
-    name 'Coke calcination'
+    name 'Coke calcination CO2'
     label :coke
     path '/business/processes/production/aluminium/coke'
+    terms_from_amee 'default'
+    correcting(:type) { hide! }
+    output {
+      label :co2
+      path :default
+    }
+    metadatum {
+      label :note
+      value "This methodology can be used to calculate the CO2 emissions associated with the calcining of coke. Calculations are differentiated by the reporting period under consideration"
+      hide!
+    }
+    correcting(:mass_green_coke) { note "Specify the quantity of green coke calcined during the reporting period" }
+    correcting(:mass_calcined_coke_produced) { note "Specify the total quantity of calcined coke produced from green coke during the reporting period. If unknown, either a facility-specific or default value for the quantity of calcined coke produced per quantity of green coke can be used." }
+    correcting(:mass_calcined_coke_produced_per_mass) { note "Specify the quantity of calcined coke produced per quantity of green coke consumed. If this is unknown, an industry typical value is used. If the quantity of calcined coke is explicitly specified, this value is ignored." }
+    correcting(:mass_coke_dust) { note "Specify the quantity of coke dust emitted during the calcining process. If unknown, either a facility-specific or default value for the quantity of coke dust produced per quantity of green coke can be used." }
+    correcting(:mass_coke_dust_per_mass) { note "Specify the quantity of coke dust produced per quantity of green coke consumed. If this is unknown, an industry typical value is used. If the quantity of coke dust recovered is explicitly specified, this value is ignored." }
+    correcting(:green_coke_methane_content) { note "Specify the methane content of green coke consumed, as a weight percentage (0-100). If unknown, an industry typical default value is used." }
+    correcting(:green_coke_moisture_content) { note "Specify the moisture content of green coke consumed, as a weight percentage (0-100). If no value is specified, an industry typical default value is used" }
+    correcting(:green_coke_sulphur_content) { note "Specify the sulphur content of green coke consumed, as a weight percentage (0-100). If no value is specified, an industry typical default value is used" }
+    correcting(:green_coke_volatiles_content) { note "Specify the volatiles content of green coke consumed, as a weight percentage (0-100). If no value is specified, an industry typical default value is used" }
+    correcting(:green_coke_moisture_content) { note "Specify the moisture content of green coke consumed, as a weight percentage (0-100). If no value is specified, an industry typical default value is used" }
+    correcting(:under_calcined_coke_collected) { note "Specify the quantity of undercalcined coke recovered from the calcining process. If unspecified, this value is assumed to be 0." }
+    correcting(:calcined_coke_sulphur) { note "Specify the sulphur content of the calcined coke, as a weight percentage (0-100). If no value is specified, an industry typical default value is used" }
+    correcting(:co2) { note "CO2 emissions calculated based on data (facility-specific and default) entered for each scenario" }
+  }
+
+  calculation {
+    name 'Soda ash consumption CO2'
+    label :soda_ash
+    path '/business/processes/production/aluminium/sodaAsh'
     terms_from_amee 'default'
     correcting(:type) { hide! }
     output {
@@ -200,10 +225,20 @@ Calculations=
       name 'Carbon Dioxide'
       path :default
     }
+    metadatum {
+      label :note
+      value "This methodology can be used to calculate the CO2 emissions associated with the consumption of soda ash. Calculations are differentiated by the reporting period under consideration"
+      hide!
+    }
+    correcting(:soda_quantity) { note "Specify the quantity of soda ash consumed during the reporting period" }
+    correcting(:calc_frac) { note "Specify the fraction of calcination achieved, as a decimal fraction (0-1). If not specified, this value is assumed to be 1, i.e. that soda ash is completely calcined." }
+    correcting(:soda_frac) { note "Specify the purity of soda ash, as a decimal fraction (0-1). If not specified, an industry typical value is used" }
+    correcting(:co2) { note "CO2 emissions calculated based on data (facility-specific and default) entered for each scenario" }
   }
+  
   calculation {
-    name 'Soda Ash'
-    label :soda_ash
+    name 'Lime production CO2'
+    label :lime
     path '/business/processes/production/lime/production'
     terms_from_amee 'default'
     output {
@@ -211,9 +246,25 @@ Calculations=
       name 'Carbon Dioxide'
       path :default
     }
+    metadatum {
+      label :note
+      value "This methodology can be used to calculate the CO2 emissions associated with the production of lime. Calculations are differentiated by the reporting period under consideration"
+      hide!
+    }
+    correcting(:lime_type) { note "Select the type of lime produced during the reporting period" }
+    correcting(:lime_quantity) { note "Specify the quantity of lime produced during the reporting period" }
+    correcting(:calcination_lkd) { note "Specify the fraction of calcination achieved for the carbonates in lime kiln dust, as a decimal fraction (0-1). If not specified, an industry typical value is used." }
+    correcting(:cao_mgo_ratio) { note "Specify the CaO or CaO·MgO content of the lime, as a decimal fraction (0-1). If not specified, an industry typical value is used" }
+    correcting(:frac_lkd) { note "Specify the original carbonate content of lime kiln dust, as a decimal fraction (0-1). If not specified, an industry typical value is used" }
+    correcting(:hyd_lime) { note "Specify the proportion of the produced lime which is hydrated, as a decimal fraction (0-1). If not specified, an industry typical value is used" }
+    correcting(:stoic_ratio) { note "Specify the stoichiometric ratio (as a decimal fraction; 0-1) between the calcination products CaO or CaO·MgO and CO2. If not specified, an industry typical value is used" }
+    correcting(:water_lime) { note "Specify the water content of hydrated lime, as a decimal fraction (0-1). If not specified, an industry typical value is used" }
+    correcting(:lkd_weight) { note "Specify the quantity of lime kiln dust not return to the lime kiln. If not specified, an industry typical value is used" }
+    correcting(:co2) { note "CO2 emissions calculated based on data (facility-specific and default) entered for each scenario" }
   }
+
   calculation {
-    name 'Default PFCs'
+    name 'Default methodology for electrolysis PFCs'
     label :default_pfc
     path '/business/processes/production/aluminium/pfc/defaults'
     terms_from_amee 'default'
@@ -222,10 +273,24 @@ Calculations=
       name 'Potline ID'
       label :potline_id
       interface :text_box
+      note "Provide a reference for the potline for which data is being entered"
     }
+    metadatum {
+      label :note
+      value "This methodology enables the calculation of electrolysis-associated CF4 and C2F6 emissions on the basis of emissions factors. It should be used only when anode effect process data is unavailable. Calculations are differentiated by the type of process potline used and the reporting period under consideration"
+      hide!
+    }
+    correcting(:cell_type) { note "Select the type of electrolysis cell used during the reporting period." }
+    correcting(:al_quantity) { note "Specify the quantity of aluminium produced during the reporting period." }
+    correcting(:c2f6_emis_fact) { note "Specify the quantity of C2F6 emitted per quantity of aluminium produced. If not specified, an industry typical value is used." }
+    correcting(:cf4_emis_fact) { note "Specify the quantity of C2F6 emitted per quantity of aluminium produced. If not specified, an industry typical value is used." }
+    correcting(:c2_f6) { note "C2F6 emissions calculated based on data (facility-specific and default) entered for each scenario." }
+    correcting(:cf4) { note "CF4 emissions calculated based on data (facility-specific and default) entered for each scenario." }
+    correcting(:co2e) { note "CO2e emissions calculated based on data (facility-specific and default) entered for each scenario. These represent CF4 and C2F6 emissions expressed in terms of the quantity of CO2 which would exert the same atmospheric warming effect." }
   }
+
   calculation {
-    name 'Slope PFCs'
+    name 'Slope methodology for electrolysis PFCs'
     label :slope_pfc
     path '/business/processes/production/aluminium/pfc/slope'
     terms_from_amee 'default'
@@ -234,10 +299,26 @@ Calculations=
       name 'Potline ID'
       label :potline_id
       interface :text_box
+      note "Provide a reference for the potline for which data is being entered"
     }
+    metadatum {
+      label :note
+      value "This methodology enables the calculation of electrolysis-associated CF4 and C2F6 emissions on the basis of the 'slope' method. Calculations are differentiated by the type of process potline used and the reporting period under consideration"
+      hide!
+    }
+    correcting(:cell_type) { note "Select the type of electrolysis cell used during the reporting period." }
+    correcting(:al_quantity) { note "Specify the quantity of aluminium produced during the reporting period." }
+    correcting(:aem) { note "Specify the average duration of anode effect for the reporting period." }
+    correcting(:aef) { hide! }
+    correcting(:weight_frac) { note "Specify the ratio of weights for CF4 and C2F6. If not specified, an industry typical value is used." }
+    correcting(:cf4_coef) { note "Specify the slope coefficient for CF4. If not specified, an industry typical value is used." }
+    correcting(:c2_f6) { note "C2F6 emissions calculated based on data (facility-specific and default) entered for each scenario." }
+    correcting(:cf4) { note "CF4 emissions calculated based on data (facility-specific and default) entered for each scenario." }
+    correcting(:co2e) { note "CO2e emissions calculated based on data (facility-specific and default) entered for each scenario. These represent CF4 and C2F6 emissions expressed in terms of the quantity of CO2 which would exert the same atmospheric warming effect." }
   }
+
   calculation {
-    name 'Overvoltage PFCs'
+    name 'Overvoltage methodology for electrolysis PFCs'
     label :overvoltage_pfc
     path '/business/processes/production/aluminium/pfc/overvoltage'
     terms_from_amee 'default'
@@ -246,6 +327,21 @@ Calculations=
       name 'Potline ID'
       label :potline_id
       interface :text_box
+      note "Provide a reference for the potline for which data is being entered"
     }
+    metadatum {
+      label :note
+      value "This methodology enables the calculation of electrolysis-associated CF4 and C2F6 emissions on the basis of the 'overvoltage' method. Calculations are differentiated by the type of process potline used and the reporting period under consideration"
+      hide!
+    }
+    correcting(:cell_type) { note "Select the type of electrolysis cell used during the reporting period." }
+    correcting(:al_quantity) { note "Specify the quantity of aluminium produced during the reporting period." }
+    correcting(:aeo) { note "Specify the average anode effect overvoltage per cell for the reporting period." }
+    correcting(:cur_eff) { note "Specify the current efficiency, as a percentage (0-100)." }
+    correcting(:weight_frac) { note "Specify the ratio of weights for CF4 and C2F6. If not specified, an industry typical value is used." }
+    correcting(:ov_coef) { note "Specify the overvoltage coefficient for CF4. If not specified, an industry typical value is used." }
+    correcting(:c2_f6) { note "C2F6 emissions calculated based on data (facility-specific and default) entered for each scenario." }
+    correcting(:cf4) { note "CF4 emissions calculated based on data (facility-specific and default) entered for each scenario." }
+    correcting(:co2e) { note "CO2e emissions calculated based on data (facility-specific and default) entered for each scenario. These represent CF4 and C2F6 emissions expressed in terms of the quantity of CO2 which would exert the same atmospheric warming effect." }
   }
 }

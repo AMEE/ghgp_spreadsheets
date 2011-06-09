@@ -190,11 +190,12 @@ img {
 }
 
 .calculation_note {
-    width: 900px;
+    width: 1200px;
     float: left;
     position: relative;
     color: #0B7883;
     clear: both;
+    text-align: justify;
 }
 
 #calculation_page .links {

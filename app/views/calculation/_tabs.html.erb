@@ -3,9 +3,9 @@
   <div class="tab" id="summary_tab">
     <%= link_to_remote 'Summary', :url => index_path(:type => 'summary') %>
   </div>
-  <% prototype_calculations.each do |label,calc| %>
+  <% prototype_calculations.each do |calc| %>
     <div class="tab" id="<%= "#{calc.label}_tab" %>">
-      <%= link_to_remote calc.name, :url => index_path(:type => label)  %>
+      <%= link_to_remote calc.name, :url => index_path(:type => calc.label)  %>
     </div>
   <% end %>
 </div>

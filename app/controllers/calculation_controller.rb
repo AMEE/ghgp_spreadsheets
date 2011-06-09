@@ -2,13 +2,15 @@ class CalculationController < ApplicationController
 
   acts_as_amee_calculator
 
+  CALCULATION_ORDER = [:default_co2, :soderberg, :prebake, :pitchcook_default_tar, :pitchcook_default_anode,
+                       :alternative, :coke, :soda_ash, :lime, :default_pfc, :slope_pfc, :overvoltage_pfc ]
+
   def index
-    @prototype_calculations = Calculations.calculations
+    @prototype_calculations = ordered_prototype_calcs(Calculations)
     if params[:type]
       if params[:type] == 'summary'
-        @all = {}
-        @prototype_calculations.each do |label, calc|
-          @all[calc.name] = find_all_by_type(label)
+        @all = @prototype_calculations.map do |calc|
+          find_all_by_type(calc.label)
         end
         render 'totals.rjs'
       else
@@ -16,17 +18,19 @@ class CalculationController < ApplicationController
         unless defined?(session[type][:show_optional])
           session[type] = { :show_optional => false }
         end
-        @optional = session[type][:show_optional]
         if params[:show_optional] == 'true'
           session[type] = { :show_optional => true }
-          @optional = true
         end
         if params[:show_optional] == 'false'
           session[type] = { :show_optional => false }
-          @optional = false
         end
         @calculations = find_all_by_type(type)
-        @prototype_calculation = @prototype_calculations[type]
+        if @calculations.size < 5
+          (5 - @calculations.size).times do
+            @calculations << initialize_calculation(type)
+          end
+        end
+        @prototype_calculation = Calculations.calculations[type]
         render 'calculation.rjs'
       end
     else
@@ -57,6 +61,10 @@ class CalculationController < ApplicationController
     @calculation.calculate!
     @calculation.save
     redirect_to :action => 'index', :type => @calculation.label
+  end
+
+  def ordered_prototype_calcs(set)
+    CALCULATION_ORDER.map { |label| set.send(:calculations)[label] }
   end
 
 end
