@@ -9,10 +9,10 @@
     <th></th>
     <th></th>
   </tr>
-  <% all.each do |calcs| %>
+  <% all.each do |proto,calcs| %>
     <tr>
       <% style = "border: 1px solid White; background: White ; color: Darkgray; font-size: 1.5em; font-family: 'Trebuchet MS', Helvetica, sans-serif; vertical-align: middle; text-align: right; padding-right: 5px; width: 100%; display: inherit;" %>
-      <td><span style="<%= style %>"><%= calcs.first.name %></span></td>
+      <td><span style="<%= style %>"><%= proto.name %></span></td>
       <% unless calcs.empty? %>
         <% term = (calcs.first.outputs.labels.include?(:co2) ? calcs.co2.sum : calcs.co2e.sum) %>
         <td><span style="<%= style %>"><%= term.value.round(1) %></span></td>

@@ -1,5 +1,9 @@
 <% optional = session[prototype_calc.label][:show_optional] %>
-<div id="help">
+<div id="help_container">
+  <div id="help_title" style="clear:both;">
+    <%= "Guide to calculation inputs" %>
+  </div>
+  <div id="help">
   <% prototype_calc.metadata.visible.each do |term| %>
      <div class="note">
       <h3><%= term.name %></h3>
@@ -33,6 +37,7 @@
     </div>
   <%end%>
 
+  </div>
 </div>
 <h2><%= prototype_calc.name %></h2>
 <div class="calculation_note"><%= prototype_calc[:note] %></div>
@@ -57,23 +62,55 @@
 <div class="table_container">
   <table id="table">
     <tr>
+      <% up_image = image_tag "up-arrow.png", :alt => 'u' %>
+      <% down_image = image_tag "down-arrow.png", :alt => 'd' %>
       <% style = "text-shadow: 2px 2px 2px White; whitespace: no-wrap; color: #404040; font-size: 1.25em; font-family: 'Trebuchet MS', Helvetica, sans-serif; width: 100%; display: inherit;" %>
       <% prototype_calc.metadata.visible.each do |term| %>
-        <th><%=term.name%></th>
+        <th>
+          <%=term.name%>
+          <span><%=link_to_remote up_image, :url => index_path(:type => prototype_calc.label,
+                                                          :up => term.label)%></span>
+          <span><%=link_to_remote down_image, :url => index_path(:type => prototype_calc.label,
+                                                          :down => term.label)%></span>
+        </th>
       <%end%>
       <% prototype_calc.drills.visible.each do |term| %>
-        <th><%=term.name%></th>
+        <th>
+          <%=term.name%>
+          <span><%=link_to_remote up_image, :url => index_path(:type => prototype_calc.label,
+                                                          :up => term.label)%></span>
+          <span><%=link_to_remote down_image, :url => index_path(:type => prototype_calc.label,
+                                                          :down => term.label)%></span>
+        </th>
       <%end%>
       <% prototype_calc.profiles.compulsory.visible.each do |term| %>
-        <th><%=term.name%></th>
+        <th>
+          <%=term.name%>
+          <span><%=link_to_remote up_image, :url => index_path(:type => prototype_calc.label,
+                                                          :up => term.label)%></span>
+          <span><%=link_to_remote down_image, :url => index_path(:type => prototype_calc.label,
+                                                          :down => term.label)%></span>
+        </th>
       <%end%>
       <% if optional %>
         <% prototype_calc.profiles.optional.visible.each do |term| %>
-          <th><%=term.name%></th>
+          <th>
+            <%=term.name%>
+            <span><%=link_to_remote up_image, :url => index_path(:type => prototype_calc.label,
+                                                                 :up => term.label)%></span>
+            <span><%=link_to_remote down_image, :url => index_path(:type => prototype_calc.label,
+                                                                   :down => term.label)%></span>
+          </th>
         <%end%>
       <%end%>
       <% prototype_calc.outputs.visible.each do |term| %>
-        <th><%=term.name%></th>
+        <th>
+          <%=term.name%>
+          <span><%=link_to_remote up_image, :url => index_path(:type => prototype_calc.label,
+                                                          :up => term.label)%></span>
+          <span><%=link_to_remote down_image, :url => index_path(:type => prototype_calc.label,
+                                                          :down => term.label)%></span>
+        </th>
         <th></th>
         <th></th>
         <th></th>
@@ -88,4 +125,7 @@
     </tr>
   </table>
   <div style="clear:both;"></div>
+</div>
+<div class="explorer_link">
+  <%= link_to 'See this methodology in AMEE explorer', prototype_calc.explorer_url %>
 </div>

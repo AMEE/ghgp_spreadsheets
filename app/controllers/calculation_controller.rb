@@ -10,7 +10,7 @@ class CalculationController < ApplicationController
     if params[:type]
       if params[:type] == 'summary'
         @all = @prototype_calculations.map do |calc|
-          find_all_by_type(calc.label)
+          [calc, find_all_by_type(calc.label)]
         end
         render 'totals.rjs'
       else
@@ -25,6 +25,8 @@ class CalculationController < ApplicationController
           session[type] = { :show_optional => false }
         end
         @calculations = find_all_by_type(type)
+        @calculations.sort_by!(params[:up].to_sym) if params[:up]
+        @calculations.sort_by!(params[:down].to_sym).reverse! if params[:down]
         if @calculations.size < 5
           (5 - @calculations.size).times do
             @calculations << initialize_calculation(type)
