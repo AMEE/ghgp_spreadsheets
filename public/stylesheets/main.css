@@ -66,6 +66,12 @@ ul.navigation { margin: 0; padding: 0px; margin-right: 12px }
 .navigation li a:visited { color: #0B7883; }
 .navigation li a:hover { color: DarkGray; }
 
+div#totals_page {
+    width: 1000px;
+    left: 200px;
+    position: relative;
+}
+
 #logo {
     position: fixed;
     top: 25px;
@@ -112,39 +118,45 @@ ul.navigation { margin: 0; padding: 0px; margin-right: 12px }
     overflow-y: auto;
 }
 
-#help .note {
-    padding: 2px 10px;
+div.note h3, p {
+    text-align: left;
+    position: relative;
+    left: 0px;
+    padding: 0px 5px;
+    width: 95%;
 }
+
+
 
 div#calculation_tabs {
    position: fixed;
    width: 100%;
    bottom: 29px;
    overflow-x: auto;
-   white-space: nowrap;
+   overflow-y: hidden;
 }
 
 .tabs {
-  float: left;
   position: relative;
   bottom: 0px;
   width: auto;
   padding: 0;
-  border-bottom: 2px solid White
+  white-space: nowrap;
+  
 }
 
 .tabs .tab {
-  float: left;
+  display: inline-block;
   background: #3f9d9b;
   padding: 9px 15px;
   font-size: 13px;
-  margin-right: 2px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   -moz-border-radius-topleft: 10px;
   -moz-border-radius-topright: 10px;
   -webkit-border-top-left-radius: 10px;
   -webkit-border-top-right-radius: 10px;
+  white-space: nowrap;
 }
 .tabs .selected, .tab:hover {
   background: #c5df5e;
@@ -169,6 +181,68 @@ div#contentarea {
     background-color: White;
     position: relative;
     top: 100px;
+}
+
+div#welcome {
+    width: 100%;
+    position: relative;
+    top: 50px;
+}
+
+div#welcome h1, h3 {
+    width: 90%;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    clear: both;
+    text-align: center;
+}
+
+div#welcome h1 {
+    text-shadow: 2px 2px 2px LightGray;
+}
+
+div#welcome h3 a {
+    color: DarkGray;
+    font-style: italic;
+}
+
+div#welcome h3 a:hover {
+    color: #3f9d9b;
+}
+
+
+
+div#logos {
+    width: 800px;
+    position: relative;
+    top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    clear: both;
+}
+
+div#logos span.logo {
+    padding: 20px;
+}
+
+#instructions {
+    width: 700px;
+    position: relative;
+    left: 150px;
+    top: 50px;
+}
+
+h2#instructions {
+     position: relative;
+     left: 0px;
+     text-align: left;
+}
+
+h3#instructions {
+     position: relative;
+     left: 0px;
+     text-align: left;
 }
 
 /* MAIN CONTENT STYLES */
@@ -282,7 +356,6 @@ div.table_container {
 
 table {
     width: auto;
-    min-width: 1200px;
     font-family:"Trebuchet MS", Helvetica, sans-serif;
     background: White;
     border-collapse: collapse;
@@ -358,3 +431,4 @@ div.clear {
     float: left;
     clear:both;
 }
+

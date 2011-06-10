@@ -1,3 +1,1 @@
-page.replace params['update'], :partial => 'edit_row_form', :locals =>{:calculation=>@calculation}
-page.replace "totals", :partial => 'total_row',
-                   :locals =>{:calculations=>@all_calcs, :prototype_calc => Calculations[@calculation.label]}
+page.replace_html 'contentarea', :partial => 'calculation', :locals => @options

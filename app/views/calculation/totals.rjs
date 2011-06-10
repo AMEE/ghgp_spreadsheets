@@ -1,1 +1,0 @@
-page.replace_html 'calculation_page', :partial => 'totals_page', :locals => { :all => @all }

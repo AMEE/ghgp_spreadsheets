@@ -2,42 +2,31 @@ class CalculationController < ApplicationController
 
   acts_as_amee_calculator
 
-  CALCULATION_ORDER = [:default_co2, :soderberg, :prebake, :pitchcook_default_tar, :pitchcook_default_anode,
-                       :alternative, :coke, :soda_ash, :lime, :default_pfc, :slope_pfc, :overvoltage_pfc ]
+  def intro
+    @prototype_calculations = Calculations.calculations
+  end
 
-  def index
-    @prototype_calculations = ordered_prototype_calcs(Calculations)
-    if params[:type]
-      if params[:type] == 'summary'
-        @all = @prototype_calculations.map do |calc|
-          [calc, find_all_by_type(calc.label)]
-        end
-        render 'totals.rjs'
-      else
-        type = params[:type].to_sym
-        unless defined?(session[type][:show_optional])
-          session[type] = { :show_optional => false }
-        end
-        if params[:show_optional] == 'true'
-          session[type] = { :show_optional => true }
-        end
-        if params[:show_optional] == 'false'
-          session[type] = { :show_optional => false }
-        end
-        @calculations = find_all_by_type(type)
-        @calculations.sort_by!(params[:up].to_sym) if params[:up]
-        @calculations.sort_by!(params[:down].to_sym).reverse! if params[:down]
-        if @calculations.size < 5
-          (5 - @calculations.size).times do
-            @calculations << initialize_calculation(type)
-          end
-        end
-        @prototype_calculation = Calculations.calculations[type]
-        render 'calculation.rjs'
+  def totals
+    @prototype_calculations = Calculations.calculations
+    @sums = @prototype_calculations.map do |label,calc|
+      calcs = find_all_by_type(label)
+      unless calcs.empty?
+        sum = (calcs.first.outputs.labels.include?(:co2) ? calcs.co2.sum : calcs.co2e.sum)
       end
-    else
-      # home/introduction page
+      [calc,sum]
     end
+    all_sums = @sums.map(&:last).compact
+    @sum = ( all_sums.empty? ? nil : AMEE::DataAbstraction::TermsList.new(all_sums).sum )
+  end
+
+  def calculation
+    type = params[:type].to_sym
+    unless defined?(session[type][:show_optional])
+      session[type] = { :show_optional => false }
+    end
+    @prototype_calculations = Calculations.calculations
+    @options = options_for_calculation(type)
+    render :partial => 'calculation', :locals => @options, :layout=> 'application'
   end
 
   def add
@@ -48,7 +37,8 @@ class CalculationController < ApplicationController
     if @calculation = find_calculation_by_id(params[:id])
       @calculation.delete
     end
-    redirect_to :action => 'index', :type => @calculation.label
+    @options = options_for_calculation(@calculation)
+    render 'update.rjs'
   end
 
   def update
@@ -62,11 +52,37 @@ class CalculationController < ApplicationController
     end
     @calculation.calculate!
     @calculation.save
-    redirect_to :action => 'index', :type => @calculation.label
+    @options = options_for_calculation(@calculation)
+    render 'update.rjs'
   end
 
-  def ordered_prototype_calcs(set)
-    CALCULATION_ORDER.map { |label| set.send(:calculations)[label] }
+  def toggle_optional
+    type = params[:type].to_sym
+    if params[:show_optional] == 'true'
+      session[type] = { :show_optional => true }
+    end
+    if params[:show_optional] == 'false'
+      session[type] = { :show_optional => false }
+    end
+    @options = options_for_calculation(type)
+    render 'update.rjs'
+  end
+
+  def sort
+    @options = options_for_calculation(params[:type].to_sym)
+    @options[:calculations] = @options[:calculations].sort_by!(params[:ascending].to_sym) if params[:ascending]
+    @options[:calculations] = @options[:calculations].sort_by!(params[:descending].to_sym).reverse! if params[:descending]
+    render 'update.rjs'
+  end
+  
+  private
+
+  def options_for_calculation(type_or_calculation)
+    type_or_calculation = type_or_calculation.label if type_or_calculation.is_a? AMEE::DataAbstraction::OngoingCalculation
+    hash = {}
+    hash[:calculations] = find_all_by_type(type_or_calculation, :minimum => 5)
+    hash[:prototype_calculation] = Calculations.calculations[type_or_calculation]
+    return hash
   end
 
 end

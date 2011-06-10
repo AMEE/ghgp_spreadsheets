@@ -1,4 +1,5 @@
-<h2>Emissions Summary</h2>
+<div id="totals_page">
+  <h2>Emissions Summary</h2>
 <br />
 <br />
 <table>
@@ -9,16 +10,15 @@
     <th></th>
     <th></th>
   </tr>
-  <% all.each do |proto,calcs| %>
+  <% @sums.each do |proto,proto_sum| %>
     <tr>
       <% style = "border: 1px solid White; background: White ; color: Darkgray; font-size: 1.5em; font-family: 'Trebuchet MS', Helvetica, sans-serif; vertical-align: middle; text-align: right; padding-right: 5px; width: 100%; display: inherit;" %>
       <td><span style="<%= style %>"><%= proto.name %></span></td>
-      <% unless calcs.empty? %>
-        <% term = (calcs.first.outputs.labels.include?(:co2) ? calcs.co2.sum : calcs.co2e.sum) %>
-        <td><span style="<%= style %>"><%= term.value.round(1) %></span></td>
-        <td><span style="<%= style %>"><%= term.unit.symbol if term.unit %></span></td>
+      <% unless proto_sum.nil? %>
+        <td><span style="<%= style %>"><%= proto_sum.value.round(1) %></span></td>
+        <td><span style="<%= style %>"><%= proto_sum.unit.symbol if proto_sum.unit %></span></td>
         <td><span style="<%= style %>">/</span></td>
-        <td><span style="<%= style %>"><%= term.per_unit.symbol if term.per_unit %></span></td>
+        <td><span style="<%= style %>"><%= proto_sum.per_unit.symbol if proto_sum.per_unit %></span></td>
       <% else %>
         <td><span style="<%= style %>"></span></td>
         <td><span style="<%= style %>"></span></td>
@@ -27,13 +27,15 @@
       <% end %>
     </tr>
   <% end %>
+  <% unless @sum.nil? %>
   <tr>
     <% style = "border: 1px solid White; background: White ; color: Black; font-size: 1.5em; font-family: 'Trebuchet MS', Helvetica, sans-serif; vertical-align: middle; text-align: right; padding-right: 5px; width: 100%; display: inherit;" %>
     <td></td>
-    <% term = AMEE::DataAbstraction::CalculationCollection.new(all).flatten.co2.sum rescue nil %>
-    <td><span style="<%= style %>"><%= term.value.round(1) %></span></td>
-    <td><span style="<%= style %>"><%= term.unit.symbol %></span></td>
+    <td><span style="<%= style %>"><%= @sum.value.round(1) %></span></td>
+    <td><span style="<%= style %>"><%= @sum.unit.symbol %></span></td>
     <td><span style="<%= style %>">/</span></td>
-    <td><span style="<%= style %>"><%= term.per_unit.symbol %></span></td>
+    <td><span style="<%= style %>"><%= @sum.per_unit.symbol %></span></td>
   </tr>
+  <% end %>
 </table>
+</div>

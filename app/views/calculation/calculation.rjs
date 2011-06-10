@@ -1,3 +1,0 @@
-page.replace_html 'calculation_page', :partial => 'calculation_page',
-                  :locals => { :calculations => @calculations, 
-                               :prototype_calc => @prototype_calculation }

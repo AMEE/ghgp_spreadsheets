@@ -46,7 +46,7 @@ Calculations=
     }
     metadatum {
       label :note
-      value "The Søderberg process is one of two primary technologies employed in aluminium extraction and involves the use of a coke/pitch electrode paste which is baked during electrolysis (rather than prior to, as in the case of the prebake process). This methodology enables the calculation of Søderberg-associated CO2 emissions based on the carbon (C) contained within the Søderberg paste. If quantities of Søderberg paste are unknown, use the 'alternative' methodology. Calculations are differentiated by the types of process potline and anode paste used and the reporting period under consideration."
+      value "This methodology enables the calculation of Søderberg-associated CO2 emissions based on the carbon (C) contained within the Søderberg paste. If quantities of Søderberg paste are unknown, use the 'alternative' methodology. Calculations are differentiated by the types of process potline and anode paste used and the reporting period under consideration."
       hide!
     }
     correcting(:soderberg_type) { note "Select the type of Søderberg potline for which data is being entered" }
@@ -76,7 +76,7 @@ Calculations=
     }
     metadatum {
       label :note
-      value "The Prebake process is one of two primary technologies employed in aluminium extraction and involves the use of a coke/pitch electrode paste which is baked prior to electrolysis. This produces anodes with a higher current efficiency than in the case of the alternative Søderberg process which bakes the anode paste during electrolysis. This methodology enables the calculation of prebaked electrolysis-associated CO2 emissions based on the carbon (C) contained within the prebaked anodes. If net anode consumption (gross consumption minus anode butts) is unknown or not reliable, use the 'alternative' methodology. Calculations are differentiated by the reporting period under consideration. Emissions associated with the prebaking process can be calculated using the anode-baking methodologies."
+      value "This methodology enables the calculation of prebaked electrolysis-associated CO2 emissions based on the carbon (C) contained within the prebaked anodes. If net anode consumption (gross consumption minus anode butts) is unknown or not reliable, use the 'alternative' methodology. Calculations are differentiated by the reporting period under consideration. Emissions associated with the prebaking process can be calculated using the anode-baking methodologies."
       hide!
     }
     metadatum {
@@ -108,7 +108,7 @@ Calculations=
     }
     metadatum {
       label :note
-      value "In addition to emissions related to the combustion of fossil fuels, the anode baking process represents two other sources of CO2 emissions: (1) the combustion of pitch volatile matter released during the baking operation; and (2) the combustion of baking furnace packing material (coke). This methodology enables the calculation of CO2 emissions associated with pitch volatiles combustion and packing material in the anode baking furnace. If net anode consumption (gross consumption minus anode butts) is unknown or not reliable, use the 'alternative' methodology. Calculations are differentiated by the types of furnace used and the reporting period under consideration. Emissions associated with prebake electrolysis can be calculated using the 'prebake electrolysis' methodology."
+      value "This methodology enables the calculation of CO2 emissions associated with pitch volatiles combustion and packing material in the anode baking furnace. If net anode consumption (gross consumption minus anode butts) is unknown or not reliable, use the 'alternative' methodology. Calculations are differentiated by the types of furnace used and the reporting period under consideration. Emissions associated with prebake electrolysis can be calculated using the 'prebake electrolysis' methodology."
       hide!
     }
     correcting(:type) { note "Select the type of furnace for which data is being entered" }
@@ -140,7 +140,7 @@ Calculations=
     }
     metadatum {
       label :note
-      value "If net anode consumption (gross consumption minus anode butts) is unknown or not reliable, use the 'alternative' methodology. Calculations are differentiated by the types of furnace used and the reporting period under consideration"
+      value "This methodology enables the calculation of CO2 emissions associated with pitch volatiles combustion and packing material in the anode baking furnace. If net anode consumption (gross consumption minus anode butts) is unknown or not reliable, use the 'alternative' methodology. Calculations are differentiated by the types of furnace used and the reporting period under consideration. Emissions associated with prebake electrolysis can be calculated using the 'prebake electrolysis' methodology."
       hide!
     }
     correcting(:type) { note "Select the type of furnace for which data is being entered" }

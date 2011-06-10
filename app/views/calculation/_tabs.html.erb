@@ -1,11 +1,11 @@
 <div class="tabs">
   <% div_class = "tab" %>
   <div class="tab" id="summary_tab">
-    <%= link_to_remote 'Summary', :url => index_path(:type => 'summary') %>
+    <%= link_to 'Summary', totals_path %>
   </div>
-  <% prototype_calculations.each do |calc| %>
-    <div class="tab" id="<%= "#{calc.label}_tab" %>">
-      <%= link_to_remote calc.name, :url => index_path(:type => calc.label)  %>
+  <% prototype_calculations.each do |label,calc| %>
+    <div class="tab" id="<%= "#{label}_tab" %>">
+      <%= link_to calc.name, calculation_path(:type => label)  %>
     </div>
   <% end %>
 </div>

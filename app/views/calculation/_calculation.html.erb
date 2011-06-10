@@ -1,0 +1,133 @@
+<div id="calculation_page">
+<% optional = session[prototype_calculation.label][:show_optional] %>
+<div id="help_container">
+  <div id="help_title" style="clear:both;">
+    <%= "Guide to calculation inputs" %>
+  </div>
+  <div id="help">
+  <% prototype_calculation.metadata.visible.each do |term| %>
+     <div class="note">
+      <h3 class="note"><%= term.name %></h3>
+      <p class="note"><%= term.note %></p>
+    </div>
+  <%end%>
+  <% prototype_calculation.drills.visible.each do |term| %>
+    <div class="note">
+      <h3 class="note"><%= term.name %></h3>
+      <p class="note"><%= term.note %></p>
+    </div>
+  <%end%>
+  <% prototype_calculation.profiles.compulsory.visible.each do |term| %>
+    <div class="note">
+      <h3 class="note"><%= term.name %></h3>
+      <p class="note"><%= term.note %></p>
+    </div>
+  <%end%>
+  <% if optional %>
+    <% prototype_calculation.profiles.optional.visible.each do |term| %>
+      <div class="note">
+        <h3 class="note"><%= term.name %></h3>
+        <p><%= term.note %></p>
+      </div class="note">
+    <%end%>
+  <%end%>
+  <% prototype_calculation.outputs.visible.each do |term| %>
+    <div class="note">
+      <h3 class="note"><%= term.name %></h3>
+      <p class="note"><%= term.note %></p>
+    </div>
+  <%end%>
+
+  </div>
+</div>
+<h2><%= prototype_calculation.name %></h2>
+<div class="calculation_note"><%= prototype_calculation[:note] %></div>
+<div class="links">
+  <div class="link">
+    <%= link_to_remote 'Add a calculation', :url => add_path(:type => prototype_calculation.label) %>
+  </div>
+  <% if optional %>
+    <div class="link">
+      <%= link_to_remote 'Show compulsory inputs only', :url => toggle_optional_path(:type => prototype_calculation.label,
+                                                                           :show_optional => 'false') %>
+    </div>
+  <% else %>
+    <div class="link">
+    <%= link_to_remote 'Show optional inputs', :url => toggle_optional_path(:type => prototype_calculation.label,
+                                                                  :show_optional => 'true') %>
+    </div>
+  <% end %>
+  <div id="ajaxloader" class="link" style="display:none;"><%= image_tag 'loading.gif' %></div>
+</div>
+<br />
+<div class="table_container">
+  <table id="table">
+    <tr>
+      <% up_image = image_tag "up-arrow.png", :alt => 'u' %>
+      <% down_image = image_tag "down-arrow.png", :alt => 'd' %>
+      <% style = "text-shadow: 2px 2px 2px White; whitespace: no-wrap; color: #404040; font-size: 1.25em; font-family: 'Trebuchet MS', Helvetica, sans-serif; width: 100%; display: inherit;" %>
+      <% prototype_calculation.metadata.visible.each do |term| %>
+        <th>
+          <%=term.name%>
+          <span><%=link_to_remote up_image, :url => sort_path(:type => prototype_calculation.label,
+                                                          :ascending => term.label)%></span>
+          <span><%=link_to_remote down_image, :url => sort_path(:type => prototype_calculation.label,
+                                                          :descending => term.label)%></span>
+        </th>
+      <%end%>
+      <% prototype_calculation.drills.visible.each do |term| %>
+        <th>
+          <%=term.name%>
+          <span><%=link_to_remote up_image, :url => sort_path(:type => prototype_calculation.label,
+                                                          :ascending => term.label)%></span>
+          <span><%=link_to_remote down_image, :url => sort_path(:type => prototype_calculation.label,
+                                                          :descending => term.label)%></span>
+        </th>
+      <%end%>
+      <% prototype_calculation.profiles.compulsory.visible.each do |term| %>
+        <th>
+          <%=term.name%>
+          <span><%=link_to_remote up_image, :url => sort_path(:type => prototype_calculation.label,
+                                                          :ascending => term.label)%></span>
+          <span><%=link_to_remote down_image, :url => sort_path(:type => prototype_calculation.label,
+                                                          :descending => term.label)%></span>
+        </th>
+      <%end%>
+      <% if optional %>
+        <% prototype_calculation.profiles.optional.visible.each do |term| %>
+          <th>
+            <%=term.name%>
+            <span><%=link_to_remote up_image, :url => sort_path(:type => prototype_calculation.label,
+                                                          :ascending => term.label)%></span>
+          <span><%=link_to_remote down_image, :url => sort_path(:type => prototype_calculation.label,
+                                                          :descending => term.label)%></span>
+          </th>
+        <%end%>
+      <%end%>
+      <% prototype_calculation.outputs.visible.each do |term| %>
+        <th>
+          <%=term.name%>
+          <span><%=link_to_remote up_image, :url => sort_path(:type => prototype_calculation.label,
+                                                          :ascending => term.label)%></span>
+          <span><%=link_to_remote down_image, :url => sort_path(:type => prototype_calculation.label,
+                                                          :descending => term.label)%></span>
+        </th>
+        <th></th>
+        <th></th>
+        <th></th>
+      <%end%>
+      <th></th>
+    </tr>
+    <% calculations.each do |calc| %>
+      <tr><%= render 'edit_row', :calculation=>calc, :optional => optional %></tr>
+    <%end%>
+    <tr id="totals">
+      <%= render("total_row", :calculations => calculations, :prototype_calculation => prototype_calculation, :optional => optional) unless calculations.empty? %>
+    </tr>
+  </table>
+  <div style="clear:both;"></div>
+</div>
+<div class="explorer_link">
+  <%= link_to 'See this methodology in AMEE explorer', prototype_calculation.explorer_url %>
+</div>
+</div>
