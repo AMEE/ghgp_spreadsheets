@@ -25,8 +25,8 @@ module ActiveSupport
         end
       end
     end
-    #alias :old_load_missing_constant :load_missing_constant
-    #alias :load_missing_constant :forgiving_load_missing_constant
+    alias :old_load_missing_constant :load_missing_constant
+    alias :load_missing_constant :forgiving_load_missing_constant
   end
 end
 
@@ -43,15 +43,13 @@ Rails::Initializer.run do |config|
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
-  #config.gem "amee", :version => "~> 2.5.1"
-  #config.gem "amee-internal", :version => "~> 3.6.3"
+  
   config.gem "quantify"
   config.gem "amee-data-abstraction", :version => "~> 0.4.4"
   config.gem "amee-data-persistence", :version => "~> 0.2.2"
-  config.gem "amee-organisational-modelling", :version => "~> 0.1.0"
   config.gem "amee-reporting", :version => "~> 0.0.1"
   config.gem "amee-data-entry", :version => "~> 0.0.1"
-  #config.gem 'ultraviolet', :lib => 'uv', :version => '0.10.2'
+
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]

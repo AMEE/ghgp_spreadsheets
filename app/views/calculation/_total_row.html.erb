@@ -1,23 +1,9 @@
-  <% prototype_calculation.metadata.visible.each do |term| %>
+<% optional = session[prototype_calculation.label][:show_optional] %>
+<% calculation_terms_in_table_order(prototype_calculation,optional,false).each do |term|%>
   <td></td>
 <% end %>
-<% prototype_calculation.drills.visible.each do |term| %>
-  <td></td>
-<%end%>
-<% prototype_calculation.profiles.compulsory.visible.each do |term| %>
-  <td></td>
-<%end%>
-<% if optional %>
-  <% prototype_calculation.profiles.optional.visible.each do |term| %>
-    <td></td>
-  <%end%>
-<%end%>
 <% prototype_calculation.outputs.visible.each do |term| %>
   <% result = calculations.send(term.label).sum rescue nil %>
-  <% style = "border: 1px solid White; background: White ; color: #202020 ; font-size: 1.5em; font-family: 'Trebuchet MS', Helvetica, sans-serif; color: Black; vertical-align: middle; text-align: right; padding-right: 5px; width: 100%; display: inherit;" %>
-  <td><span style="<%= style %>"><%= result.value.round(1) %></span></td>
-  <td><span style="<%= style %>"><%= result.unit.symbol if result.unit %></span></td>
-  <td><span style="<%= style %>">/</span></td>
-  <td><span style="<%= style %>"><%= result.per_unit.symbol if result.per_unit %></span></td>
+  <%= show_term_tag(result,:tag => :td,:decimal_places => 2) %>
 <% end %>
 <td></td>

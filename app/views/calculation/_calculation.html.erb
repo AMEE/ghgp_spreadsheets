@@ -5,39 +5,12 @@
     <%= "Guide to calculation inputs" %>
   </div>
   <div id="help">
-  <% prototype_calculation.metadata.visible.each do |term| %>
+    <% calculation_terms_in_table_order(prototype_calculation,optional).each do |term| %>
      <div class="note">
       <h3 class="note"><%= term.name %></h3>
       <p class="note"><%= term.note %></p>
     </div>
-  <%end%>
-  <% prototype_calculation.drills.visible.each do |term| %>
-    <div class="note">
-      <h3 class="note"><%= term.name %></h3>
-      <p class="note"><%= term.note %></p>
-    </div>
-  <%end%>
-  <% prototype_calculation.profiles.compulsory.visible.each do |term| %>
-    <div class="note">
-      <h3 class="note"><%= term.name %></h3>
-      <p class="note"><%= term.note %></p>
-    </div>
-  <%end%>
-  <% if optional %>
-    <% prototype_calculation.profiles.optional.visible.each do |term| %>
-      <div class="note">
-        <h3 class="note"><%= term.name %></h3>
-        <p><%= term.note %></p>
-      </div class="note">
     <%end%>
-  <%end%>
-  <% prototype_calculation.outputs.visible.each do |term| %>
-    <div class="note">
-      <h3 class="note"><%= term.name %></h3>
-      <p class="note"><%= term.note %></p>
-    </div>
-  <%end%>
-
   </div>
 </div>
 <h2><%= prototype_calculation.name %></h2>
@@ -65,8 +38,7 @@
     <tr>
       <% up_image = image_tag "up-arrow.png", :alt => 'u' %>
       <% down_image = image_tag "down-arrow.png", :alt => 'd' %>
-      <% style = "text-shadow: 2px 2px 2px White; whitespace: no-wrap; color: #404040; font-size: 1.25em; font-family: 'Trebuchet MS', Helvetica, sans-serif; width: 100%; display: inherit;" %>
-      <% prototype_calculation.metadata.visible.each do |term| %>
+      <% calculation_terms_in_table_order(prototype_calculation,optional).each do |term| %>
         <th>
           <%=term.name%>
           <span><%=link_to_remote up_image, :url => sort_path(:type => prototype_calculation.label,
@@ -74,54 +46,18 @@
           <span><%=link_to_remote down_image, :url => sort_path(:type => prototype_calculation.label,
                                                           :descending => term.label)%></span>
         </th>
+        <% if term.is_a? AMEE::DataAbstraction::Output %>
+          <th></th>
+          <th></th>
+          <th></th>
+        <% end %>
       <%end%>
-      <% prototype_calculation.drills.visible.each do |term| %>
-        <th>
-          <%=term.name%>
-          <span><%=link_to_remote up_image, :url => sort_path(:type => prototype_calculation.label,
-                                                          :ascending => term.label)%></span>
-          <span><%=link_to_remote down_image, :url => sort_path(:type => prototype_calculation.label,
-                                                          :descending => term.label)%></span>
-        </th>
-      <%end%>
-      <% prototype_calculation.profiles.compulsory.visible.each do |term| %>
-        <th>
-          <%=term.name%>
-          <span><%=link_to_remote up_image, :url => sort_path(:type => prototype_calculation.label,
-                                                          :ascending => term.label)%></span>
-          <span><%=link_to_remote down_image, :url => sort_path(:type => prototype_calculation.label,
-                                                          :descending => term.label)%></span>
-        </th>
-      <%end%>
-      <% if optional %>
-        <% prototype_calculation.profiles.optional.visible.each do |term| %>
-          <th>
-            <%=term.name%>
-            <span><%=link_to_remote up_image, :url => sort_path(:type => prototype_calculation.label,
-                                                          :ascending => term.label)%></span>
-          <span><%=link_to_remote down_image, :url => sort_path(:type => prototype_calculation.label,
-                                                          :descending => term.label)%></span>
-          </th>
-        <%end%>
-      <%end%>
-      <% prototype_calculation.outputs.visible.each do |term| %>
-        <th>
-          <%=term.name%>
-          <span><%=link_to_remote up_image, :url => sort_path(:type => prototype_calculation.label,
-                                                          :ascending => term.label)%></span>
-          <span><%=link_to_remote down_image, :url => sort_path(:type => prototype_calculation.label,
-                                                          :descending => term.label)%></span>
-        </th>
-        <th></th>
-        <th></th>
-        <th></th>
-      <%end%>
-      <th></th>
+      <th class="delete_row"></th>
     </tr>
     <% calculations.each do |calc| %>
       <tr><%= render 'edit_row', :calculation=>calc, :optional => optional %></tr>
     <%end%>
-    <tr id="totals">
+    <tr class="total">
       <%= render("total_row", :calculations => calculations, :prototype_calculation => prototype_calculation, :optional => optional) unless calculations.empty? %>
     </tr>
   </table>

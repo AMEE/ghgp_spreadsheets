@@ -45,7 +45,7 @@ class CalculationController < ApplicationController
     if id = params['entry']['id']
       @calculation = find_calculation_by_id(id)
     else
-      @calculation = initialize_calculation(params['calculation'])
+      @calculation = initialize_calculation(params['type'])
     end
     unless @calculation.choose(params['entry'])
       @calculation.clear_invalid_terms!
@@ -77,10 +77,12 @@ class CalculationController < ApplicationController
   
   private
 
+  MINIMUM_TABLE_SIZE_IN_ROWS = 5
+
   def options_for_calculation(type_or_calculation)
     type_or_calculation = type_or_calculation.label if type_or_calculation.is_a? AMEE::DataAbstraction::OngoingCalculation
     hash = {}
-    hash[:calculations] = find_all_by_type(type_or_calculation, :minimum => 5)
+    hash[:calculations] = find_all_by_type(type_or_calculation, :minimum => MINIMUM_TABLE_SIZE_IN_ROWS)
     hash[:prototype_calculation] = Calculations.calculations[type_or_calculation]
     return hash
   end

@@ -1,22 +1,25 @@
-  <div id="welcome">
-    <h1 id="main_title">Welcome to the Greenhouse Gas Protocol Tool for the Aluminium industry</h1>
-    <h3> The methodologies represented are based upon the Greenhouse Gas Protocol spreadsheet tool <%= link_to 'GHG emissions from the production of aluminum, version 2.0', "http://www.ghgprotocol.org/calculation-tools/aluminum" %> </h3>
-    <div id="logos">
-      <span class="logo">
-        <% ghgp = image_tag 'ghgp_logo.gif', :alt => 'Greenhouse Gas Protocol' %>
-        <%= link_to ghgp, "http://www.ghgprotocol.org/about-ghgp" %>
-      </span>
-      <span class="logo">
-        <% amee = image_tag 'powered_by_amee.png', :alt => 'Powered by AMEE' %>
-        <%= link_to amee, "http://www.amee.com" %>
-      </span>
-    </div>
-    <div id="instructions">
-      <h2 id="instructions">Getting started...</h2>
-      <h3 id="instructions">1. Select a process from the tabs at the foot of the page</h3>
-      <h3 id="instructions">2. Make calculations by entering data into each table row</h3>
-      <h3 id="instructions">3. Add associated potline/furnace and/or reporting period references to calculations as appropriate</h3>
-      <h3 id="instructions">4. Expand to the table to enter optional data for more accurate calculations, if available</h3>
-      <h3 id="instructions">5. Repeat for processes under consideration and view the results in the 'Summary' tab</h3>
-    </div>
+<div id="welcome">
+  <h1 id="main_title">Welcome to the Greenhouse Gas Protocol Tool for the Aluminium industry</h1>
+  <h3> The methodologies represented are based upon the Greenhouse Gas Protocol spreadsheet tool <%= link_to 'GHG emissions from the production of aluminum, version 2.0', "http://www.ghgprotocol.org/calculation-tools/aluminum" %> </h3>
+  <div id="logos">
+    <span class="logo">
+      <% ghgp = image_tag 'ghgp_logo.gif', :alt => 'Greenhouse Gas Protocol' %>
+      <%= link_to ghgp, "http://www.ghgprotocol.org/about-ghgp" %>
+    </span>
+    <span class="logo">
+      <% amee = image_tag 'powered_by_amee.png', :alt => 'Powered by AMEE' %>
+      <%= link_to amee, "http://www.amee.com" %>
+    </span>  
   </div>
+  <span id="screenshot">
+    <%= image_tag 'screenshot.png', :alt => 'AMEE GHGP Tool' %>
+  </span>
+  <div id="instructions">
+    <h2 id="instructions">Getting started...</h2>
+    <h3 id="instructions">1. Select a process from the tabs at the foot of the page</h3>
+    <h3 id="instructions">2. Make calculations by entering data into each table row</h3>
+    <h3 id="instructions">3. Add associated potline/furnace and/or reporting period references to calculations as appropriate</h3>
+    <h3 id="instructions">4. Expand to the table to enter optional data for more accurate calculations, if available</h3>
+    <h3 id="instructions">5. Repeat for processes under consideration and view the results in the 'Summary' tab</h3>
+  </div>
+</div>
