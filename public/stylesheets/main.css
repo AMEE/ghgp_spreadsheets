@@ -367,7 +367,7 @@ table {
     position: relative;
 }
 
-tr.total td {
+tr.total td, tr#totals td {
     font-weight: bold;
     font-size: 170%;
     color:  #0B7883;

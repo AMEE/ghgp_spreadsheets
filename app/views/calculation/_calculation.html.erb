@@ -57,7 +57,7 @@
     <% calculations.each do |calc| %>
       <tr><%= render 'edit_row', :calculation=>calc, :optional => optional %></tr>
     <%end%>
-    <tr class="total">
+    <tr id="totals">
       <%= render("total_row", :calculations => calculations, :prototype_calculation => prototype_calculation, :optional => optional) unless calculations.empty? %>
     </tr>
   </table>
