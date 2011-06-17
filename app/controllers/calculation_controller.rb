@@ -1,6 +1,11 @@
 class CalculationController < ApplicationController
 
-  acts_as_amee_calculator :calculation_set => Calculations
+  def self.initialize_calculation_set
+    require "#{RAILS_ROOT}/config/calculations.rb"
+    return Calculations
+  end
+
+  acts_as_amee_calculator :calculation_set => initialize_calculation_set
   
   def intro
     @prototype_calculations = @@calculation_set.calculations
