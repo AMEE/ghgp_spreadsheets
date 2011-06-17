@@ -25,7 +25,7 @@ Rails::Initializer.run do |config|
   config.gem "amee-data-abstraction", :version => "1.0.0.rc1"
   config.gem "amee-data-persistence", :version => "1.0.0.rc1"
   config.gem "amee-reporting", :version => "1.0.0.rc1"
-  config.gem "amee-data-entry", :version => "1.0.0.rc1"
+  config.gem "amee-data-entry", :version => "1.0.0.rc2"
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
