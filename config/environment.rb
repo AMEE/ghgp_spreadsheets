@@ -20,6 +20,8 @@ Rails::Initializer.run do |config|
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
   
+  config.gem "amee", :version => "~> 2.6"
+  config.gem "amee-internal", :version => "~> 3.7"
   config.gem "amee-data-abstraction", :version => "1.0.0.rc1"
   config.gem "amee-data-persistence", :version => "1.0.0.rc1"
   config.gem "amee-reporting", :version => "1.0.0.rc1"
