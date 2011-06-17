@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110531022204) do
+ActiveRecord::Schema.define(:version => 20110616112202) do
 
   create_table "calculations", :force => true do |t|
     t.string   "profile_uid"
@@ -26,10 +26,10 @@ ActiveRecord::Schema.define(:version => 20110531022204) do
     t.integer  "calculation_id"
     t.string   "label"
     t.string   "value"
-    t.string   "unit"
-    t.string   "per_unit"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "unit"
+    t.string   "per_unit"
   end
 
   add_index "terms", ["calculation_id", "label"], :name => "calc_id_label_index"

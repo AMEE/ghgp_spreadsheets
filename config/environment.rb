@@ -6,30 +6,6 @@ RAILS_GEM_VERSION = '2.3.9' unless defined? RAILS_GEM_VERSION
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 
-#Patch https://rails.lighthouseapp.com/projects/8994/tickets/2283-unnecessary-exception-raised-in-asdependenciesload_missing_constant
-
-module ActiveSupport
-  module Dependencies
-    extend self
-
-    #def load_missing_constant(from_mod, const_name)
-
-    def forgiving_load_missing_constant( from_mod, const_name )
-      begin
-        old_load_missing_constant(from_mod, const_name)
-      rescue ArgumentError => arg_err
-        if arg_err.message == "#{from_mod} is not missing constant #{const_name}!"
-          return from_mod.const_get(const_name)
-        else
-          raise
-        end
-      end
-    end
-    alias :old_load_missing_constant :load_missing_constant
-    alias :load_missing_constant :forgiving_load_missing_constant
-  end
-end
-
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
@@ -44,11 +20,10 @@ Rails::Initializer.run do |config|
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
   
-  config.gem "quantify", :version => "~> 1.0.0"
-  config.gem "amee-data-abstraction", :version => "~> 1.0.0"
-  config.gem "amee-data-persistence", :version => "~> 1.0.0"
-  config.gem "amee-reporting", :version => "~> 1.0.0"
-  config.gem "amee-data-entry", :version => "~> 1.0.0"
+  config.gem "amee-data-abstraction", :version => "1.0.0.rc1"
+  config.gem "amee-data-persistence", :version => "1.0.0.rc1"
+  config.gem "amee-reporting", :version => "1.0.0.rc1"
+  config.gem "amee-data-entry", :version => "1.0.0.rc1"
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named

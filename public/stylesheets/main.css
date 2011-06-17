@@ -388,15 +388,15 @@ td {
     width: auto;
 }
 
-td.value, td.unit {
+td.term-value, td.term-unit {
     text-align: right;
 }
 
-td select.drill {
+td select.amee-drill {
     text-align: left;
 }
 
-td select.per_unit {
+td select.term-per_unit {
     text-align:left;
 }
 

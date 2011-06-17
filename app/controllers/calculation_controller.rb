@@ -1,13 +1,13 @@
 class CalculationController < ApplicationController
 
-  acts_as_amee_calculator
-
+  acts_as_amee_calculator :calculation_set => Calculations
+  
   def intro
-    @prototype_calculations = Calculations.calculations
+    @prototype_calculations = @@calculation_set.calculations
   end
 
   def totals
-    @prototype_calculations = Calculations.calculations
+    @prototype_calculations = @@calculation_set.calculations
     @sums = @prototype_calculations.map do |label,calc|
       calcs = find_all_by_type(label)
       unless calcs.empty?
@@ -24,7 +24,7 @@ class CalculationController < ApplicationController
     unless defined?(session[type][:show_optional])
       session[type] = { :show_optional => false }
     end
-    @prototype_calculations = Calculations.calculations
+    @prototype_calculations = @@calculation_set.calculations
     @options = options_for_calculation(type)
     render :partial => 'calculation', :locals => @options, :layout=> 'application'
   end
@@ -83,7 +83,7 @@ class CalculationController < ApplicationController
     type_or_calculation = type_or_calculation.label if type_or_calculation.is_a? AMEE::DataAbstraction::OngoingCalculation
     hash = {}
     hash[:calculations] = find_all_by_type(type_or_calculation, :minimum => MINIMUM_TABLE_SIZE_IN_ROWS)
-    hash[:prototype_calculation] = Calculations.calculations[type_or_calculation]
+    hash[:prototype_calculation] = @@calculation_set.calculations[type_or_calculation]
     return hash
   end
 
