@@ -10,6 +10,7 @@ Calculations=
 
     # Correct titles for outputs
     correcting(:co2) { name "CO2 emissions"}
+    correcting(:ch4) { name "CH4 emissions"}
     correcting(:co2e) { name "CO2e emissions"}
     correcting(:c2_f6) { name "C2F6 emissions"}
     correcting(:cf4) { name "CF4 emissions"}
@@ -23,6 +24,7 @@ Calculations=
     output {
       label :co2
       path :default
+      type :decimal
     }
     metadatum {
       label :note
@@ -43,6 +45,7 @@ Calculations=
     output {
       label :co2
       path :default
+      type :decimal
     }
     metadatum {
       label :note
@@ -73,6 +76,7 @@ Calculations=
     output {
       label :co2
       path :default
+      type :decimal
     }
     metadatum {
       label :note
@@ -99,6 +103,7 @@ Calculations=
     output {
       label :co2
       path :default
+      type :decimal
     }
     metadatum {
       name 'Furnace ID'
@@ -131,6 +136,7 @@ Calculations=
     output {
       label :co2
       path :default
+      type :decimal
     }
     metadatum {
       name 'Furnace ID'
@@ -164,6 +170,7 @@ Calculations=
     output {
       label :co2
       path :default
+      type :decimal
     }
     metadatum {
       label :note
@@ -193,6 +200,7 @@ Calculations=
     output {
       label :co2
       path :default
+      type :decimal
     }
     metadatum {
       label :note
@@ -224,6 +232,7 @@ Calculations=
       label :co2
       name 'Carbon Dioxide'
       path :default
+      type :decimal
     }
     metadatum {
       label :note
@@ -245,6 +254,7 @@ Calculations=
       label :co2
       name 'Carbon Dioxide'
       path :default
+      type :double
     }
     metadatum {
       label :note

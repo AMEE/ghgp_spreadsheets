@@ -77,7 +77,7 @@ class CalculationController < ApplicationController
     @options[:calculations] = @options[:calculations].sort_by!(params[:descending].to_sym).reverse! if params[:descending]
     render 'update.rjs'
   end
-  
+
   private
 
   MINIMUM_TABLE_SIZE_IN_ROWS = 5
