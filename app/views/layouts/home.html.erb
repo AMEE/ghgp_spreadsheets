@@ -1,0 +1,21 @@
+<div id="welcome">
+  <h1 id="main_title">Welcome to the Greenhouse Gas Protocol Tool for the Aluminium industry</h1>
+  <h3> The methodologies represented are based upon the Greenhouse Gas Protocol spreadsheet tool <%= link_to 'GHG emissions from the production of aluminum, version 2.0', "http://www.ghgprotocol.org/calculation-tools/aluminum" %> </h3>
+  <div id="logos">
+    <span class="logo">
+      <% ghgp = image_tag 'ghgp_logo.gif', :alt => 'Greenhouse Gas Protocol' %>
+      <%= link_to ghgp, "http://www.ghgprotocol.org/about-ghgp" %>
+    </span>
+    <span class="logo">
+      <% amee = image_tag 'powered_by_amee.png', :alt => 'Powered by AMEE' %>
+      <%= link_to amee, "http://www.amee.com" %>
+    </span>  
+  </div>
+  <span id="screenshot">
+    <%= image_tag 'screenshot.png', :alt => 'AMEE GHGP Tool' %>
+  </span>
+  <div id="instructions">
+    <h2><%= link_to 'sign in', new_user_session_path %></h2>
+    <h2><%= link_to 'sign up', new_user_path %></h2>
+  </div>
+</div>

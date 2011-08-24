@@ -1,69 +1,55 @@
-<div id="calculation_page">
-<% optional = session[prototype_calculation.label][:show_optional] %>
-<div id="help_container">
-  <div id="help_title" style="clear:both;">
-    <%= "Guide to calculation inputs" %>
-  </div>
-  <div id="help">
-    <% calculation_terms_in_table_order(prototype_calculation,optional).each do |term| %>
-     <div class="note">
-      <h3 class="note"><%= term.name %></h3>
-      <p class="note"><%= term.note %></p>
-    </div>
-    <%end%>
-  </div>
-</div>
-<h2><%= prototype_calculation.name %></h2>
-<div class="calculation_note"><%= prototype_calculation[:note] %></div>
-<div class="links">
-  <div class="link">
-    <%= link_to_remote 'Add a calculation', :url => add_path(:type => prototype_calculation.label) %>
-  </div>
-  <% if optional %>
+<%= render :partial => 'calculation_scripts' %>
+<span class="ajaxloader" style="display:none;"><%= image_tag 'loading.gif' %></span>
+<div id="calculation_page" class="content_pane">
+  <% optional = session[@prototype_calculation.label][:show_optional] %>
+  <%= render :partial => 'help' %>
+  <div class="links">
     <div class="link">
-      <%= link_to_remote 'Show compulsory inputs only', :url => toggle_optional_path(:type => prototype_calculation.label,
-                                                                           :show_optional => 'false') %>
+      <%= link_to_remote 'Add a calculation', :url => add_path(:type => @prototype_calculation.label) %>
     </div>
-  <% else %>
+    <% if optional %>
+      <div class="link">
+        <%= link_to_remote 'Show compulsory inputs only', :url => toggle_optional_path(:type => @prototype_calculation.label,
+                                                                                       :show_optional => 'false') %>
+      </div>
+    <% else %>
+      <div class="link">
+      <%= link_to_remote 'Show optional inputs', :url => toggle_optional_path(:type => @prototype_calculation.label,
+                                                                    :show_optional => 'true') %>
+      </div>
+    <% end %>
     <div class="link">
-    <%= link_to_remote 'Show optional inputs', :url => toggle_optional_path(:type => prototype_calculation.label,
-                                                                  :show_optional => 'true') %>
+      <%= link_to_function 'Guide', "$('#help_container').fadeToggle('slow','linear');" %>
     </div>
-  <% end %>
-  <div id="ajaxloader" class="link" style="display:none;"><%= image_tag 'loading.gif' %></div>
+  </div>
+  <br />
+  <div class="table_container">
+    <table id="calculation_table">
+      <tr>
+        <% up_image = image_tag "up-arrow.png", :alt => 'u' %>
+        <% down_image = image_tag "down-arrow.png", :alt => 'd' %>
+        <% calculation_terms_in_table_order(@prototype_calculation,optional).each do |term| %>
+          <th>
+            <%=term.name%>
+            <span><%=link_to_remote up_image, :url => sort_path(:type => @prototype_calculation.label,
+                                                            :ascending => term.label)%></span>
+            <span><%=link_to_remote down_image, :url => sort_path(:type => @prototype_calculation.label,
+                                                            :descending => term.label)%></span>
+          </th>
+        <%end%>
+        <th class="delete_row"></th>
+      </tr>
+      <% @calculations.each do |calc| %>
+        <tr><%= render 'edit_row', :calculation=>calc, :optional => optional %></tr>
+      <%end%>
+      <tr id="totals">
+        <%= render("total_row", :calculations => @calculations, :prototype_calculation => @prototype_calculation, :optional => optional) unless @calculations.empty? %>
+      </tr>
+    </table>
+    <div style="clear:both;"></div>
+  </div>
 </div>
 <br />
-<div class="table_container">
-  <table id="table">
-    <tr>
-      <% up_image = image_tag "up-arrow.png", :alt => 'u' %>
-      <% down_image = image_tag "down-arrow.png", :alt => 'd' %>
-      <% calculation_terms_in_table_order(prototype_calculation,optional).each do |term| %>
-        <th>
-          <%=term.name%>
-          <span><%=link_to_remote up_image, :url => sort_path(:type => prototype_calculation.label,
-                                                          :ascending => term.label)%></span>
-          <span><%=link_to_remote down_image, :url => sort_path(:type => prototype_calculation.label,
-                                                          :descending => term.label)%></span>
-        </th>
-        <% if term.is_a? AMEE::DataAbstraction::Output %>
-          <th></th>
-          <th></th>
-          <th></th>
-        <% end %>
-      <%end%>
-      <th class="delete_row"></th>
-    </tr>
-    <% calculations.each do |calc| %>
-      <tr><%= render 'edit_row', :calculation=>calc, :optional => optional %></tr>
-    <%end%>
-    <tr id="totals">
-      <%= render("total_row", :calculations => calculations, :prototype_calculation => prototype_calculation, :optional => optional) unless calculations.empty? %>
-    </tr>
-  </table>
-  <div style="clear:both;"></div>
-</div>
-<div class="explorer_link">
-  <%= link_to 'See this methodology in AMEE explorer', prototype_calculation.explorer_url %>
-</div>
-</div>
+<br />
+
+

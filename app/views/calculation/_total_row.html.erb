@@ -3,7 +3,11 @@
   <td></td>
 <% end %>
 <% prototype_calculation.outputs.visible.each do |term| %>
-  <% result = calculations.send(term.label).sum rescue nil %>
-  <%= show_term_tag(result,:tag => :td,:decimal_places => 2) %>
+  <% if calculations.respond_to?(term.label) %>
+    <% result = calculations.send(term.label).sum rescue nil %>
+    <td class="amee-result <%= "calc-#{term.label}" %>"><%= show_term_tag(result,:decimal_places => 2) %></td>
+  <% else %>
+    <td class="amee-result <%= "calc-#{term.label}" %>"><%= "0.0" %></td>
+  <% end %>
 <% end %>
 <td></td>

@@ -1,7 +1,7 @@
 # Be sure to restart your server when you modify this file
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.3.9' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.3.11' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -20,12 +20,13 @@ Rails::Initializer.run do |config|
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
   
-  config.gem "amee", :version => "~> 2.6"
-  config.gem "amee-internal", :version => "~> 3.7"
-  config.gem "amee-data-abstraction", :version => "1.1.1"
-  config.gem "amee-data-persistence", :version => "1.1.0"
-  config.gem "amee-reporting", :version => "1.0.0.rc1"
+  config.gem "amee", :version => "~> 3.0.0"
+  config.gem "amee-data-abstraction", :version => "1.0.1"
+  config.gem "amee-data-persistence", :version => "1.0.1"
+  config.gem "amee-analytics", :version => "1.0.0"
   config.gem "amee-data-entry", :version => "1.0.0.rc2"
+  config.gem "amee-auth", :version => "0.2.0"
+  config.gem "pdfkit"
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
@@ -45,4 +46,12 @@ Rails::Initializer.run do |config|
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
+
+  config.middleware.use "PDFKit::Middleware", :print_media_type => true
+
+  config_file = RAILS_ROOT + "/config/config.yml"
+  raise "#{config_file} not found" unless File.exist?(config_file)
+  config = YAML.load_file(config_file)
+
+  $tool_name = config['tool_name']
 end

@@ -9,11 +9,11 @@ Calculations=
     }
 
     # Correct titles for outputs
-    correcting(:co2) { name "CO2 emissions"}
-    correcting(:ch4) { name "CH4 emissions"}
-    correcting(:co2e) { name "CO2e emissions"}
-    correcting(:c2_f6) { name "C2F6 emissions"}
-    correcting(:cf4) { name "CF4 emissions"}
+    correcting(:co2) { name "CO2"}
+    correcting(:ch4) { name "CH4"}
+    correcting(:co2e) { name "CO2e"}
+    correcting(:c2_f6) { name "C2F6"}
+    correcting(:cf4) { name "CF4"}
   }
 
   calculation {
@@ -21,11 +21,8 @@ Calculations=
     label :default_co2
     path '/business/processes/production/aluminium/defaults'
     terms_from_amee 'default'
-    output {
-      label :co2
-      path :default
-      type :decimal
-    }
+    correcting(:comment) { hide! }
+ 
     metadatum {
       label :note
       value "This methodology enables the calculation of CO2 emissions associated with electrolysis processes. It should be used if quantities of carbon containing materials are not known. Calculations are differentiated by the type of process potline used and the reporting period under consideration."
@@ -42,11 +39,8 @@ Calculations=
     label :soderberg
     path '/business/processes/production/aluminium/soderberg'
     terms_from_amee 'default'
-    output {
-      label :co2
-      path :default
-      type :decimal
-    }
+    correcting(:comment) { hide! }
+    
     metadatum {
       label :note
       value "This methodology enables the calculation of Søderberg-associated CO2 emissions based on the carbon (C) contained within the Søderberg paste. If quantities of Søderberg paste are unknown, use the 'alternative' methodology. Calculations are differentiated by the types of process potline and anode paste used and the reporting period under consideration."
@@ -73,11 +67,8 @@ Calculations=
     path '/business/processes/production/aluminium/prebake/electrolysis'
     terms_from_amee 'default'
     correcting(:type) { hide! }
-    output {
-      label :co2
-      path :default
-      type :decimal
-    }
+    correcting(:comment) { hide! }
+    
     metadatum {
       label :note
       value "This methodology enables the calculation of prebaked electrolysis-associated CO2 emissions based on the carbon (C) contained within the prebaked anodes. If net anode consumption (gross consumption minus anode butts) is unknown or not reliable, use the 'alternative' methodology. Calculations are differentiated by the reporting period under consideration. Emissions associated with the prebaking process can be calculated using the anode-baking methodologies."
@@ -100,11 +91,8 @@ Calculations=
     label :pitchcook_default_tar
     path '/business/processes/production/aluminium/prebake/pitchcooking'
     terms_from_amee 'defaultWasteTarQuantity'
-    output {
-      label :co2
-      path :default
-      type :decimal
-    }
+    correcting(:comment) { hide! }
+    
     metadatum {
       name 'Furnace ID'
       label :furnace_id
@@ -133,11 +121,8 @@ Calculations=
     label :pitchcook_default_anode
     path '/business/processes/production/aluminium/prebake/pitchcooking'
     terms_from_amee 'defaultAnodeWeight'
-    output {
-      label :co2
-      path :default
-      type :decimal
-    }
+    correcting(:comment) { hide! }
+    
     metadatum {
       name 'Furnace ID'
       label :furnace_id
@@ -166,12 +151,9 @@ Calculations=
     label :alternative
     path '/business/processes/production/aluminium/alternative'
     terms_from_amee 'default'
-    correcting (:type) { hide! }
-    output {
-      label :co2
-      path :default
-      type :decimal
-    }
+    correcting(:type) { hide! }
+    correcting(:comment) { hide! }
+    
     metadatum {
       label :note
       value "The methodology represents an alternative approach to calculating electrolysis process CO2 emissions based on the consumption of carbon containing materials. If quantities of purchased carbon containing materials are not known, use the 'default' methodology. Calculations are differentiated by the reporting period under consideration"
@@ -197,11 +179,8 @@ Calculations=
     path '/business/processes/production/aluminium/coke'
     terms_from_amee 'default'
     correcting(:type) { hide! }
-    output {
-      label :co2
-      path :default
-      type :decimal
-    }
+    correcting(:comment) { hide! }
+    
     metadatum {
       label :note
       value "This methodology can be used to calculate the CO2 emissions associated with the calcining of coke. Calculations are differentiated by the reporting period under consideration"
@@ -228,12 +207,8 @@ Calculations=
     path '/business/processes/production/aluminium/sodaAsh'
     terms_from_amee 'default'
     correcting(:type) { hide! }
-    output {
-      label :co2
-      name 'Carbon Dioxide'
-      path :default
-      type :decimal
-    }
+    correcting(:comment) { hide! }
+
     metadatum {
       label :note
       value "This methodology can be used to calculate the CO2 emissions associated with the consumption of soda ash. Calculations are differentiated by the reporting period under consideration"
@@ -250,12 +225,8 @@ Calculations=
     label :lime
     path '/business/processes/production/lime/production'
     terms_from_amee 'default'
-    output {
-      label :co2
-      name 'Carbon Dioxide'
-      path :default
-      type :double
-    }
+    correcting(:comment) { hide! }
+    
     metadatum {
       label :note
       value "This methodology can be used to calculate the CO2 emissions associated with the production of lime. Calculations are differentiated by the reporting period under consideration"
@@ -279,6 +250,7 @@ Calculations=
     path '/business/processes/production/aluminium/pfc/defaults'
     terms_from_amee 'default'
     correcting (:comment) { hide! }
+    
     metadatum {
       name 'Potline ID'
       label :potline_id
@@ -305,6 +277,7 @@ Calculations=
     path '/business/processes/production/aluminium/pfc/slope'
     terms_from_amee 'default'
     correcting (:comment) { hide! }
+
     metadatum {
       name 'Potline ID'
       label :potline_id
@@ -333,6 +306,7 @@ Calculations=
     path '/business/processes/production/aluminium/pfc/overvoltage'
     terms_from_amee 'default'
     correcting (:comment) { hide! }
+
     metadatum {
       name 'Potline ID'
       label :potline_id
@@ -354,4 +328,82 @@ Calculations=
     correcting(:cf4) { note "CF4 emissions calculated based on data (facility-specific and default) entered for each scenario." }
     correcting(:co2e) { note "CO2e emissions calculated based on data (facility-specific and default) entered for each scenario. These represent CF4 and C2F6 emissions expressed in terms of the quantity of CO2 which would exert the same atmospheric warming effect." }
   }
+=begin
+  calculation {
+    name 'Onsite coke production'
+    label :onsite_coke_production
+    path '/business/processes/production/ironandsteel/coke'
+    terms_from_amee 'default'
+    correcting (:comment) { hide! }
+
+    metadatum {
+      label :note
+      value "This methodology enables the calculation of CO2, CH4 adn CO2e emissions associated with on-site coke production"
+      hide!
+    }
+  }
+
+  calculation {
+    name 'Sinter production'
+    label :sinter
+    path '/business/processes/production/ironandsteel/sinter'
+    terms_from_amee 'default'
+    correcting (:comment) { hide! }
+
+    metadatum {
+      label :note
+      value "This methodology enables the calculation of CO2, CH4 adn CO2e emissions associated with sinter production"
+      hide!
+    }
+  }
+
+  calculation {
+    name 'Direct reduced iron production'
+    label :dri
+    path '/business/processes/production/ironandsteel/dri'
+    terms_from_amee 'default'
+    correcting (:comment) { hide! }
+    correcting (:type) { hide! }
+
+    metadatum {
+      label :note
+      value "This methodology enables the calculation of CO2, CH4 adn CO2e emissions associated with Direct Reduced Iron production"
+      hide!
+    }
+  }
+
+  calculation {
+    name 'Iron and Steel production'
+    label :iron_and_steel
+    path '/business/processes/production/ironandsteel/ironAndSteel'
+    terms_from_amee 'default'
+    correcting (:comment) { hide! }
+
+    metadatum {
+      label :note
+      value "This methodology enables the calculation of CO2, CH4 and CO2e emissions associated with Iron and Steel production"
+      hide!
+    }
+  }
+
+  calculation {
+    name 'Onsite lime production'
+    label :onsite_lime_production
+    path '/business/processes/production/lime/carbonate'
+    terms_from_amee 'default'
+    correcting (:comment) { hide! }
+    output {
+      label :co2
+      name 'Carbon Dioxide'
+      path :default
+      type :decimal
+    }
+
+    metadatum {
+      label :note
+      value "This methodology enables the calculation of CO2, CH4 and CO2e emissions associated with onsite lime production"
+      hide!
+    }
+  }
+=end
 }
