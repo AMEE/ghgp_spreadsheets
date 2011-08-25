@@ -19,6 +19,8 @@
 
     unselectedTabs = $("#calculation_tabs .tab").filter(function(){
       return !$(this).hasClass('selected');
+    }).filter(function(){
+      return !$(this).hasClass('dummy');
     });
 
     unselectedTabs.bind('mouseenter',function() {

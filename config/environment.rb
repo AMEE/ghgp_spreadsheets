@@ -52,6 +52,5 @@ Rails::Initializer.run do |config|
   config_file = RAILS_ROOT + "/config/config.yml"
   raise "#{config_file} not found" unless File.exist?(config_file)
   config = YAML.load_file(config_file)
-
   $tool_name = config['tool_name']
 end

@@ -9,13 +9,12 @@ Calculations=
     }
 
     # Correct titles for outputs
-    correcting(:co2) { name "CO2"}
-    correcting(:ch4) { name "CH4"}
-    correcting(:co2e) { name "CO2e"}
-    correcting(:c2_f6) { name "C2F6"}
-    correcting(:cf4) { name "CF4"}
+    correcting(:co2)   { name "CO2" }
+    correcting(:co2e)  { name "CO2e" }
+    correcting(:c2_f6) { name "C2F6" }
+    correcting(:cf4)   { name "CF4" }
   }
-
+  
   calculation {
     name 'Default methodology for electrolysis CO2'
     label :default_co2
@@ -328,82 +327,5 @@ Calculations=
     correcting(:cf4) { note "CF4 emissions calculated based on data (facility-specific and default) entered for each scenario." }
     correcting(:co2e) { note "CO2e emissions calculated based on data (facility-specific and default) entered for each scenario. These represent CF4 and C2F6 emissions expressed in terms of the quantity of CO2 which would exert the same atmospheric warming effect." }
   }
-=begin
-  calculation {
-    name 'Onsite coke production'
-    label :onsite_coke_production
-    path '/business/processes/production/ironandsteel/coke'
-    terms_from_amee 'default'
-    correcting (:comment) { hide! }
 
-    metadatum {
-      label :note
-      value "This methodology enables the calculation of CO2, CH4 adn CO2e emissions associated with on-site coke production"
-      hide!
-    }
-  }
-
-  calculation {
-    name 'Sinter production'
-    label :sinter
-    path '/business/processes/production/ironandsteel/sinter'
-    terms_from_amee 'default'
-    correcting (:comment) { hide! }
-
-    metadatum {
-      label :note
-      value "This methodology enables the calculation of CO2, CH4 adn CO2e emissions associated with sinter production"
-      hide!
-    }
-  }
-
-  calculation {
-    name 'Direct reduced iron production'
-    label :dri
-    path '/business/processes/production/ironandsteel/dri'
-    terms_from_amee 'default'
-    correcting (:comment) { hide! }
-    correcting (:type) { hide! }
-
-    metadatum {
-      label :note
-      value "This methodology enables the calculation of CO2, CH4 adn CO2e emissions associated with Direct Reduced Iron production"
-      hide!
-    }
-  }
-
-  calculation {
-    name 'Iron and Steel production'
-    label :iron_and_steel
-    path '/business/processes/production/ironandsteel/ironAndSteel'
-    terms_from_amee 'default'
-    correcting (:comment) { hide! }
-
-    metadatum {
-      label :note
-      value "This methodology enables the calculation of CO2, CH4 and CO2e emissions associated with Iron and Steel production"
-      hide!
-    }
-  }
-
-  calculation {
-    name 'Onsite lime production'
-    label :onsite_lime_production
-    path '/business/processes/production/lime/carbonate'
-    terms_from_amee 'default'
-    correcting (:comment) { hide! }
-    output {
-      label :co2
-      name 'Carbon Dioxide'
-      path :default
-      type :decimal
-    }
-
-    metadatum {
-      label :note
-      value "This methodology enables the calculation of CO2, CH4 and CO2e emissions associated with onsite lime production"
-      hide!
-    }
-  }
-=end
 }

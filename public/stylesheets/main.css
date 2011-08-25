@@ -382,6 +382,15 @@ div#calculation_tabs {
   text-shadow: none;
 }
 
+#calculation_tabs div.dummy, #calculation_tabs div.dummy:hover {
+    background: transparent;
+    border: none;
+    color: transparent;
+    -moz-box-shadow: none;
+   -webkit-box-shadow: none;
+   box-shadow: none;
+}
+
 #calculation_tabs .tab:hover {
    background: #c8d828;
    border-top: 1px solid White;
@@ -400,9 +409,13 @@ div#calculation_tabs {
    box-shadow: 1px 1px 5px DarkGray;
 }
 
-.dummy {
-    background: transparent;
-    border: none;
+.dummy a {
+    color: transparent;
+}
+
+
+.dummy a:hover {
+    color: transparent;
 }
 
 #header_tabs .tab a {
@@ -696,7 +709,6 @@ td.amee-output:hover {
 
 td.term-value, td.term-unit {
     text-align: right;
-    min-width: 140px;
 }
 
 td select.amee-drill {

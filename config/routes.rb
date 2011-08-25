@@ -17,7 +17,7 @@ ActionController::Routing::Routes.draw do |map|
   map.sort '/calculation/:type/sort', :controller => 'calculation', :action=>'sort'
   map.toggle_optional '/calculation/:type/toggle_optional', :controller => 'calculation', :action=>'toggle_optional'
   map.summary '/summary',:controller => 'calculation', :action => 'summary'
-  map.totals_chart "totals/update",:controller => 'calculation', :action => 'update_totals'
+  map.update_summary "/summary/update",:controller => 'calculation', :action => 'update_summary'
   map.help "/help", :controller => 'application', :action=> 'help'
   map.root :controller => 'application', :action=> 'home'
 
