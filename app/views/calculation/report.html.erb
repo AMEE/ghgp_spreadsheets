@@ -40,12 +40,12 @@
 <h4>Calculation audit</h4>
 <% @all_calculations.each_with_index do |calc,index| %>
   <p><%= index + 1 %></p>
-  <table class="calculation_table">
+  <table id="calculation_table">
     <% calc.inputs.visible.each do |input| %>
-      <tr><td><%= input.name %></td><td><%= show_term_tag(input,:decimal_places => 2) %></td></tr>
+      <tr><td class="name"><%= input.name %></td><td class="value"><%= show_term_tag(input,:decimal_places => 2) %></td></tr>
     <% end %>
     <% calc.outputs.visible.each do |output| %>
-      <tr><td><%= output.name %></td><td><%= show_term_tag(output,:decimal_places => 2) %></td></tr>
+      <tr><td class="name"><%= output.name %></td><td class="value"><%= show_term_tag(output,:decimal_places => 2) %></td></tr>
     <% end %>
   </table>
   <br />

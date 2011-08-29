@@ -47,6 +47,22 @@ table#totals_table td {
     padding-left: 10px;
 }
 
+table#calculation_table tr, table#calculation_table td {
+    border: none
+}
+
+table#calculation_table td.name, table#calculation_table td.value {
+    width: 50%;
+}
+
+table#calculation_table td.name {
+    text-align: right
+}
+
+table#calculation_table td.value {
+    text-align: left;
+}
+
 .calculation_table {
     width: 100%;
 }
