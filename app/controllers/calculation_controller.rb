@@ -123,10 +123,10 @@ class CalculationController < ApplicationController
 
   def prototype_outputs_in_order
     prototype_outputs = AMEE::DataAbstraction::CalculationCollection.new(@prototype_calculations.values).terms.outputs.visible.first_of_each_type
-    co2e_output = prototype_outputs.find {|output| output.label == :co2e}
+    co2e_output = prototype_outputs.find {|output| output.label == :co2e} || AMEE::DataAbstraction::Output.new {label :co2e; name 'CO2e'}
     prototype_outputs.delete_if {|output| output.label == :co2e}
     prototype_outputs << co2e_output
-    return prototype_outputs
+    return prototype_outputs.compact
   end
 
   def ghg_totals_by_calculation(outputs)

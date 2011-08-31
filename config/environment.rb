@@ -23,9 +23,9 @@ Rails::Initializer.run do |config|
   config.gem "amee", :version => "~> 3.0.0"
   config.gem "amee-data-abstraction", :version => "~> 1.1"
   config.gem "amee-data-persistence", :version => "~> 1.1"
-  config.gem "amee-analytics", :version => "~> 1.0"
+  config.gem "amee-analytics", :version => "~> 1.0.1"
   config.gem "amee-data-entry", :version => "1.0.0.rc2"
-  config.gem "amee-auth", :version => "1.0"
+  config.gem "amee-auth", :version => "0.2.0"
   config.gem "pdfkit"
 
   # Only load the plugins named here, in the order given (default is alphabetical).
