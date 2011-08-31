@@ -1,22 +1,34 @@
-# Methods added to this helper will be available to all templates in the application.
 
 module ApplicationHelper
 
-  def calculation_terms_in_table_order(calculation,include_optional=false,include_outputs=true)
-    terms = []
-    terms = terms + calculation.metadata.visible
-    terms += calculation.drills.visible
-    terms += calculation.profiles.compulsory.visible
-    terms += calculation.profiles.optional.visible if include_optional
-    terms += calculation.outputs.visible if include_outputs
-    return terms
-  end
-
-  def js_for_calculation_update(term,attr)
-    id_string = ( term.parent.id ? "entry[id]=#{term.parent.id}" : "type=#{term.parent.label}" )
-    return "#{remote_function(:url => {:controller => 'calculation',:action => 'update'},
-                              :loading=> "$('#ajaxloader').show()",
-                              :with => "'#{id_string}&entry[#{term.label}][#{attr.to_s}]='+value")}"
+  def admin_login_required
+    unless current_user.admin
+      store_location
+      flash[:notice] = "You must be an admin user in to access this page"
+      redirect_to user_path(current_user)
+      return false
+    end
   end
   
+end
+
+class AMEE::DataAbstraction::CalculationSet
+
+  def all_ongoing_calculations
+    ongoing_calculations_by_type.values.inject(AMEE::DataAbstraction::CalculationCollection.new) do |coll,calcs|
+      coll += calcs
+    end
+  end
+
+  def ongoing_calculations_by_type
+    hash ={}
+    calculations.each do |label,proto|
+      hash[label] = AMEE::DataAbstraction::OngoingCalculation.find_by_type(:all, label.to_s, :include => 'terms')
+    end
+    return hash
+  end
+
+  def ongoing_calculations_for(type)
+    AMEE::DataAbstraction::OngoingCalculation.find_by_type(:all, type.to_s, :include => 'terms')
+  end
 end

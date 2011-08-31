@@ -1,33 +1,12 @@
   <div class="clear"></div>
 </div>
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<div id="calculation_tabs">
-  <%= render 'tabs', :prototype_calculations => @prototype_calculations %>
-</div>
-<div id="footer-wrap">
-  <div id="footer">
-    <div id="footer-logo"></div>
-    <%= link_to "About", "http://www.amee.com/about" %>
-    |
-    <%= link_to "Terms & Conditions", "http://www.amee.com/tcs" %>
-    |
-    <%= link_to "Contact", "http://www.amee.com/contact" %>
-    |
-    &copy; 2009-2010 AMEE UK Ltd.
-    <div class="clear"></div>
+<% if @prototype_calculations %>
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <div id="calculation_tabs">
+    <%= render 'calculation/tabs', :prototype_calculations => @prototype_calculations, :prototype_calculation => @prototype_calculation %>
   </div>
-</div>
+<% end %>

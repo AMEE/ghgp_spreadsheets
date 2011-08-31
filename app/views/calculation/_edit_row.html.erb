@@ -1,5 +1,6 @@
 <% row_id = "row-#{rand(1e8)}" %>
-<tr id="<%= row_id%>">
+<% ref = ( calculation.id ? "calc_db_id='#{calculation.id}'" : "calc_type='#{calculation.label}'" ) %>
+<tr id="<%= row_id%>" <%= ref %>>
 <% optional = session[calculation.label][:show_optional] %>
 <% calculation_terms_in_table_order(calculation,optional,false).each do |term|%>
   <td class="<%= html_class_for_term(term,:edit)%>">
@@ -8,7 +9,7 @@
 <% end %>
 <% unless calculation.outputs.visible.empty? %>
   <% calculation.outputs.visible.each do |term|%>
-    <%= show_term_tag(term,:tag => :td,:decimal_places => 2) %>
+  <td id="<%= "#{row_id}-#{term.label}" %>" class="<%= html_class_for_term(term,:show)%>"><%= show_term_tag(term,:decimal_places => 2) %></td>
   <%end%>
 <% else %>
   <td></td>
