@@ -16,11 +16,7 @@
         <%= link_to 'settings', edit_user_path(current_user.id) %>
       </div>
       <div class="tab">
-        <%= link_to 'logout', user_session_path(current_user_session), :method => 'delete' %>
-      </div>
-    <% else %>
-      <div class="tab">
-        <%= link_to 'sign in', new_user_session_path %>
+        <%= link_to 'logout', user_session_path(current_user_session.id), :method => 'delete' %>
       </div>
     <% end %>
   </div>

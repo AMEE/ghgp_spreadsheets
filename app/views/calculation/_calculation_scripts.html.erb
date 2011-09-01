@@ -4,6 +4,8 @@
 
     $(document).ready(function(){
 
+      setTableContainerWidths();
+
       $(".amee-drill, .amee-profile, .amee-metadatum").live('change',function() {
         data = rowParamString($(this))+"&"+termParamString($(this))
         row = $(this).closest('tr');
@@ -29,6 +31,12 @@
       });
       
     });
+
+    function setTableContainerWidths() {
+      var tableWidth = $('#calculation_table').width();
+      $('#table_container').width(tableWidth+25);
+      $('#calculation_page').width(tableWidth+25);
+    }
 
     function getAllCellsInRow(rowWrapper) {
       return $("td.amee-drill, td.amee-profile, td.amee-output", rowWrapper);

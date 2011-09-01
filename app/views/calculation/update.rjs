@@ -1,1 +1,2 @@
-  page.replace_html 'contentarea', :partial => 'calculation', :locals => @options
+page.replace_html 'contentarea', :partial => 'calculation', :locals => @options
+page << "setTableContainerWidths();"
