@@ -114,13 +114,14 @@ div.head, div.base {
 }
 
 #sign_in {
-  width: 540px;
+  width: 535px;
 }
 
 .form {
   margin-left: auto;
   margin-right: auto;
   padding: 30px;
+  padding-top: 10px;
   padding-bottom: 60px;
   width: auto;
   clear: right;
@@ -406,46 +407,24 @@ div#calculation_tabs {
 
 
 
-div#welcome {
-    width: 100%;
-    position: relative;
-    top: 50px;
+h1 {
+  width: 90%;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  clear: both;
+  text-align: center;
+  font-size: 10px;
+  color: #0B7883;
+  font-size: 1.8em;
 }
 
-div#welcome h1, h3 {
-    width: 90%;
-    position: relative;
-    margin-left: auto;
-    margin-right: auto;
-    clear: both;
-    text-align: center;
+h3 {
+  margin-left: auto;
+  margin-right: auto;
+  clear: both;
+  text-align: center;
 }
-
-div#welcome h1 {
-    text-shadow: 2px 2px 2px LightGray;
-}
-
-div#welcome h3 a {
-    color: DarkGray;
-    font-style: italic;
-}
-
-div#welcome h3 a:hover {
-    color: #3f9d9b;
-}
-
-div#logos {
-    width: 800px;
-    position: relative;
-    top: 40px;
-    margin-left: 10%;
-    clear: both;
-}
-
-div#logos span.logo {
-    padding: 20px;
-}
-
 
 
 #user {
@@ -468,16 +447,6 @@ h3.instructions {
 }
 
 /* MAIN CONTENT STYLES */
-
-h1 {
-    color: #0B7883;
-    font-size: 2.8em;
-    margin-top: 0px;
-}
-
-h1 a {
-    color: #0B7883;
-}
 
 h2 {
     color: #0B7883;
@@ -548,10 +517,18 @@ div#contentarea {
     padding-left: 40px;
     padding-top: 20px;
     padding-right: 30px;
-    padding-bottom: 40px;
     width: auto;
     max-width: 1500px;
     font-size: 11px;
+}
+
+#calculation_page {
+  padding-bottom: 50px;
+}
+
+#totals_page {
+  min-height: 535px;
+  padding-bottom: 15px;
 }
 
 #calculation_page h2 {
@@ -776,4 +753,17 @@ div.clear {
 
 #empty_chart_banner {
     position: relative;
+}
+
+#amee-strap {
+  position: absolute;
+  bottom: -60px;
+  right: 0;
+  padding-top:30px;
+}
+
+#amee-strap-big {
+  position: absolute;
+  bottom: -220px;
+  left: 40px;
 }

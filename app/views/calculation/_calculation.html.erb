@@ -2,6 +2,9 @@
 <%= render :partial => 'help' %>
 <span class="ajaxloader" style="display:none;"><%= image_tag 'loading.gif' %></span>
 <div id="calculation_page" class="content_pane">
+  <div id="amee-strap" class="calculation">
+    <%= image_tag 'AMEE-Logo2011-LINE_Green-small.png', :alt => 'AMEE: Environment Intelligence. Everywhere' %>
+  </div>
   <% optional = session[@prototype_calculation.label][:show_optional] %>
   <div class="links">
     <div class="link">
@@ -49,6 +52,9 @@
     <div style="clear:both;"></div>
   </div>
 </div>
+<br />
+<br />
+<br />
 <br />
 <br />
 <br />
