@@ -2,3 +2,4 @@ page.replace_html 'totals', :partial => 'total_row', :locals => { :calculations 
 @calculation.outputs.visible.each do |term|
   page.replace_html "#{@row_id}-#{term.label}", show_term_tag(term,:decimal_places => 2)
 end
+page << "setTableContainerWidths();"

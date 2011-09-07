@@ -12,6 +12,6 @@ namespace :setup do
     }
 
     # Create user
-    User.create!(user_opts)
+    User.create(user_opts)
   end
 end

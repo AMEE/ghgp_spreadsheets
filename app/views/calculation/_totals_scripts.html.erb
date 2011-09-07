@@ -4,6 +4,8 @@
 
     $(document).ready(function(){
 
+      setContainerWidth();
+
       tableCells$ = $('td.totals_table_cell');
 
       tableCells$.each(function() {
@@ -18,8 +20,21 @@
         url:      '/summary/update'
       });
 
-      
     });
+
+    function setContainerWidth() {
+      var tableWidth = $('#totals_table').width();
+      $('#table_tab_wrapper').width(tableWidth);
+
+      if (tableWidth < 1000) {
+        $('#table_chart_wrapper').width(tableWidth+460);
+        $('#totals_page').width(tableWidth+460);
+      } else {
+        $('#table_chart_wrapper').width(tableWidth);
+        $('#totals_page').width(tableWidth);
+        $('#chart_container').css('float', 'left').css('clear', 'left');
+      }
+    }
 
   <% end %>
 <% end %>

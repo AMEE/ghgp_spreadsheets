@@ -1,8 +1,11 @@
 <%= render :partial => 'calculation_scripts' %>
+<%= render :partial => 'help' %>
 <span class="ajaxloader" style="display:none;"><%= image_tag 'loading.gif' %></span>
 <div id="calculation_page" class="content_pane">
+  <div id="amee-strap" class="calculation">
+    <%= image_tag 'AMEE-Logo2011-LINE_Green-small.png', :alt => 'AMEE: Environment Intelligence. Everywhere' %>
+  </div>
   <% optional = session[@prototype_calculation.label][:show_optional] %>
-  <%= render :partial => 'help' %>
   <div class="links">
     <div class="link">
       <%= link_to_remote 'Add a calculation', :url => add_path(:type => @prototype_calculation.label) %>
@@ -23,7 +26,7 @@
     </div>
   </div>
   <br />
-  <div class="table_container">
+  <div id="table_container">
     <table id="calculation_table">
       <tr>
         <% up_image = image_tag "up-arrow.png", :alt => 'u' %>
@@ -49,6 +52,11 @@
     <div style="clear:both;"></div>
   </div>
 </div>
+<br />
+<br />
+<br />
+<br />
+<br />
 <br />
 <br />
 
