@@ -1,18 +1,6 @@
 
 module ApplicationHelper
 
-  def login_required
-    unless current_user
-      store_location
-      flash[:notice] = "You must be logged in to access this page"
-      respond_to do |format|
-        format.html {redirect_to new_user_session_path}
-        format.js {render(:update) {|page| page.redirect_to new_user_session_path}}
-      end
-      return false
-    end
-  end
-
   def admin_login_required
     unless current_user.admin
       store_location

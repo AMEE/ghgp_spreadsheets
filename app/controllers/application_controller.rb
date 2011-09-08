@@ -5,12 +5,11 @@ class ApplicationController < ActionController::Base
   
   protect_from_forgery
   
-  include AuthHelper
+  include AMEE::Authentication::AuthHelper
   include ApplicationHelper
   helper_method :current_user_session, :current_user, :logged_in?, :admin_login_required
   
   def home
-    @title = "Greenhouse Gas Protocol | Aluminium Sector Tools"
     if logged_in?
       redirect_to summary_path
     else
