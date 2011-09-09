@@ -26,7 +26,7 @@ Rails::Initializer.run do |config|
   config.gem "amee-analytics", :version => "~> 1.0.1"
   config.gem "amee-data-entry", :version => "1.0.0.rc2"
   config.gem "amee-auth", :version => ">= 0.3.1"
-  config.gem "wkhtmltopdf-binary"
+  config.gem "wkhtmltopdf-binary", :lib => false
   config.gem "pdfkit"
 
   # Only load the plugins named here, in the order given (default is alphabetical).
