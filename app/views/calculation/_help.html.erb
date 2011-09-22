@@ -1,5 +1,8 @@
 <% optional = session[@prototype_calculation.label][:show_optional] %>
-<div id="help_container" style="display:none">
+<div id="guide_container" style="display:none">
+    <%= image_tag "close_guide.png", :alt => 'Close guide', :id => "close-guide" %>
+
+<div id="help_container">
   
   <div id="help">
     <div class="note head">
@@ -15,7 +18,7 @@
     <%end%>
     <div class="note base">
       <h3 class="note"><%= link_to 'See this methodology in AMEEdiscover', @prototype_calculation.discover_url %></h3>
-      <h3 class="close"><%= link_to_function 'close', "$('#help_container').fadeOut();" %></h3>
     </div>
   </div>
+</div>
 </div>

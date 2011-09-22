@@ -18,9 +18,7 @@
         updateCalculation(data);
       });
 
-      helpNotes$ = $("div.note").live('filter', function(){
-        return !$(this).is('base');
-      });
+      helpNotes$ = helpNotes();
 
       helpNotes$.live('click', function() {
         $('p.note', $(this)).slideToggle();
@@ -29,8 +27,77 @@
       },function() {
         $(this).css('cursor','auto');
       });
-      
+
+      $('#guide-switch').live('click', function() {
+        toggleGuide();
+      }).live('mouseover', function() {
+        $(this).css('cursor','pointer');
+      },function() {
+        $(this).css('cursor','auto');
+      });
+
+      $('.column-header').live('mouseover', function() {
+        $(this).css('cursor','pointer');
+      },function() {
+        $(this).css('cursor','auto');
+      }).live('click', function(){
+        showGuideAndSpecificNote($(this).text())
+      });
+
+      $('#close-guide').live('click', function() {
+        hideGuide();
+      }).live('mouseover', function() {
+        $(this).css('cursor','pointer');
+      },function() {
+        $(this).css('cursor','auto');
+      });
     });
+
+    function toggleGuide() {
+      var helpContainerStatus = $('#guide_container').css('display');
+
+      if (helpContainerStatus == 'none') {
+        showGuide();
+      } else {
+        hideGuide();
+      }
+    }
+
+    function showGuideAndSpecificNote(name) {
+      if ($('#guide_container').css('display') == 'none') {
+        showGuide();
+      }
+
+      helpNotes().each(function(){
+        $(this).find('p').hide('slow');
+        if ($(this).find('h3').text() == name) {
+          $(this).find('p').slideDown('slow');
+          scrollToNote($(this));
+        }
+      });
+    }
+
+    function scrollToNote(note) {
+      var helpHeight = $('#help_container').height();
+      var position = note.position();
+      $('#help_container').animate({scrollTop: position.top-(helpHeight/2)}, 2000);
+    }
+
+    function showGuide() {
+      $('#guide_container').fadeIn('slow');
+      $('#guide-switch').text('Hide guide');
+    }
+
+    function hideGuide() {
+      $('#guide_container').fadeOut('slow');
+      $('#guide-switch').text('Show guide');
+    }
+    
+    function helpNotes() {
+      return $("div.note").bind('filter', function(){
+        return !$(this).is('base');
+      });
+    }
 
     function setTableContainerWidths() {
       var tableWidth = $('#calculation_table').width();

@@ -21,8 +21,8 @@
                                                                     :show_optional => 'true') %>
       </div>
     <% end %>
-    <div class="link">
-      <%= link_to_function 'Guide', "$('#help_container').fadeToggle('slow','linear');" %>
+    <div id="guide-switch" class="link">
+      <%= "Show guide" %>
     </div>
   </div>
   <br />
@@ -33,14 +33,16 @@
         <% down_image = image_tag "down-arrow.png", :alt => 'd' %>
         <% calculation_terms_in_table_order(@prototype_calculation,optional).each do |term| %>
           <th>
-            <%=term.name%>
-            <span><%=link_to_remote up_image, :url => sort_path(:type => @prototype_calculation.label,
-                                                            :ascending => term.label)%></span>
-            <span><%=link_to_remote down_image, :url => sort_path(:type => @prototype_calculation.label,
-                                                            :descending => term.label)%></span>
+            <span class="column-header"><%=  term.name %></span>
+            <span class="sort-buttons">
+              <%=link_to_remote up_image, :url => sort_path(:type => @prototype_calculation.label,
+                                                            :ascending => term.label)%>
+              <%=link_to_remote down_image, :url => sort_path(:type => @prototype_calculation.label,
+                                                              :descending => term.label)%>
+            </span>
           </th>
         <%end%>
-        <th class="delete_row"></th>
+        <th class="delete"></th>
       </tr>
       <% @calculations.each do |calc| %>
         <tr><%= render 'edit_row', :calculation=>calc, :optional => optional %></tr>

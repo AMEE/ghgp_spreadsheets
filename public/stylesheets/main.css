@@ -33,15 +33,30 @@ a {
 
 /*CALCULATION HELP*/
 
-#help_container {
+#guide_container {
   position: fixed;
   right: 0px;
-  top: 75px;
+  top: 50px;
   z-index: 1;
-  width: 280px;
+  width: 300px;
   height: 80%;
   background: transparent;
+  padding-top: 0;
+}
+
+#help_container {
+  position: absolute;
+  top: 5;
+  right: 0;
+  width: 280px;
+  background: transparent;
+  height: 100%;
   overflow-y: auto;
+}
+
+
+div#close-guide {
+  postion: relative;
 }
 
 #help {
@@ -107,29 +122,36 @@ div.head, div.base {
   margin-right: auto;
   height: auto;
   padding: 30px;
-}
-
-#sign_up {
   width: 600px;
 }
 
-#sign_in {
-  width: 535px;
-}
 
 .form {
   margin-left: auto;
   margin-right: auto;
-  padding: 30px;
   padding-top: 10px;
   padding-bottom: 60px;
-  width: auto;
+  width: 550px;
   clear: right;
 }
 
 .form table {
   float: none;
-  width: auto;
+  width: 550px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+.form table td {
+  text-align: left;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.form input[type='text'], .form input[type='password'] {
+    text-align: left;
+    width: 300px;
 }
 
 .form input[type='submit'] {
@@ -180,16 +202,19 @@ div.head, div.base {
 #admin #user_table {
   padding: 30px;
   position: relative;
-
+  width: 550px;
 }
 
 #admin #user_table table {
     position: relative;
     clear: both;
+    width: 400px;
 }
 
 #user_table table tr td {
     text-align: left;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 #user_table table a {
@@ -633,12 +658,16 @@ td {
     background: White;
     font-size: 150%;
     color: Darkgray;
-    font-family: 'Trebuchet MS', Helvetica, sans-serif;
     vertical-align: middle;
     padding-right: 5px;
     width: auto;
     border: 1px solid White;
     border: 1px dashed #F0F0F0;
+}
+
+td.calc-name {
+  text-align: left;
+  padding-left: 10px;
 }
 
 td.amee-drill:hover, td.amee-drill:focus, td.amee-profile:hover, td.amee-drill:focus, td.amee-metadatum:hover, td.amee-metadatum:focus {
@@ -685,6 +714,10 @@ td select, input {
     display: inherit;
 }
 
+td input {
+    min-width: 130px;
+}
+
 td select:focus, input:focus {
     background: inherit;
     color: DarkGray;
@@ -708,19 +741,27 @@ td select:hover, input:hover {
 }
 
 th {
-    text-align: centre;
-    padding:10px 8px;
-    padding-right:15px;
-    padding-left:15px;
+    text-align: center;
+    vertical-align: bottom;
+    padding: 10px 8px;
+    padding-right: 15px;
+    padding-left: 15px;
     background: Gainsboro;
-    white-space: nowrap;
     text-shadow: 2px 2px 2px White;
+    font-size: 130%;
+    font-weight: normal;
+    /*white-space: nowrap;*/
 }
 
-td.delete_row, th.delete_row {
+span.sort-buttons {
+    white-space: nowrap;  
+}
+
+td.delete, th.delete {
     border: 1px solid White;
     background: White;
-    padding-left: 10px;
+    padding-left: 5px;
+    width: 10px;
 }
 
 table tr:hover {

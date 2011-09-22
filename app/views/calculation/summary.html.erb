@@ -24,7 +24,7 @@
         </tr>
         <% @table.each do |row| %>
           <tr>
-            <td><%= row.first.name %></td>
+            <td class="calc-name"><%= row.first.name %></td>
             <% row[1,row.size-1].each do |column| %>
               <td class="totals_table_cell"></td>
             <% end %>
