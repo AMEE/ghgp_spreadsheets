@@ -51,6 +51,10 @@
       },function() {
         $(this).css('cursor','auto');
       });
+
+      $('div.base').live('click',function () {
+        window.open($(this).find('h3').attr('data'));
+      });
     });
 
     function toggleGuide() {
@@ -101,8 +105,13 @@
 
     function setTableContainerWidths() {
       var tableWidth = $('#calculation_table').width();
-      $('#table_container').width(tableWidth+25);
+      if (tableWidth > 1480) {
+        tableWidth = 1480;
+      }
+      $('#table_container').width(tableWidth);
       $('#calculation_page').width(tableWidth+25);
+      $('#table-base-nav').width(tableWidth);
+      $('#summary-link').css({float: 'right'});
     }
 
     function getAllCellsInRow(rowWrapper) {

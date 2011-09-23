@@ -38,15 +38,19 @@ a {
   right: 0px;
   top: 50px;
   z-index: 1;
-  width: 300px;
+  width: 290px;
   height: 80%;
   background: transparent;
   padding-top: 0;
 }
 
+#guide_container img {
+
+}
+
 #help_container {
   position: absolute;
-  top: 5;
+  top: 2;
   right: 0;
   width: 280px;
   background: transparent;
@@ -56,7 +60,6 @@ a {
 
 
 div#close-guide {
-  postion: relative;
 }
 
 #help {
@@ -67,6 +70,7 @@ div#close-guide {
 
 div.note {
   margin: 10px;
+  margin-top: 0;
   margin-right: 0;
   padding-bottom: 10px;
   padding-right: 10px;
@@ -111,6 +115,12 @@ div.note p {
 div.head, div.base {
   text-shadow: 2px 2px 2px White;
   background: #F0F0F0;
+}
+
+div.base span {
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 
 /*AUTHENTICATION FORMS*/
@@ -182,6 +192,10 @@ div.head, div.base {
   -webkit-border-bottom-left-radius: 5px;
   -webkit-border-bottom-right-radius: 5px;
   white-space: nowrap;  
+}
+
+.button {
+
 }
 
 .form input[type='submit']:hover {
@@ -541,19 +555,20 @@ div#contentarea {
     height: auto;
     padding-left: 40px;
     padding-top: 20px;
-    padding-right: 30px;
+    padding-right: 10px;
     width: auto;
     max-width: 1500px;
     font-size: 11px;
 }
 
 #calculation_page {
-  padding-bottom: 50px;
+  padding-bottom: 60px;
 }
 
 #totals_page {
   min-height: 535px;
   padding-bottom: 15px;
+  padding-right: 20px;
 }
 
 #calculation_page h2 {
@@ -632,7 +647,51 @@ div#table_container {
     position: relative;
     top: 22px;
     padding-bottom: 15px;
+    margin-bottom: 40px;
     clear: both;
+}
+
+#table-base-nav {
+    position: absolute;
+    bottom: 30px;
+}
+
+div#table-base-nav span#add-calc {
+    float: left;
+}
+
+div#table-base-nav span img {
+    padding-left: 6px;
+}
+
+div#table-base-nav span {
+  padding: 7px 10px;
+  background: #E0E0E0;
+
+  /*font*/
+  font-size: 13px;
+  color: Black;
+  text-shadow: 2px 2px 2px White;
+  text-decoration: none;
+
+  /*borders*/
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  white-space: nowrap;
+}
+
+div#table-base-nav span:hover {
+     background: #c8d828;
 }
 
 table {
@@ -738,6 +797,7 @@ td select:hover, input:hover {
 
 #totals_table td {
     min-width: 120px;
+    height: 30px;
 }
 
 th {
@@ -760,14 +820,14 @@ span.sort-buttons {
 td.delete, th.delete {
     border: 1px solid White;
     background: White;
-    padding-left: 5px;
+    padding-left: 4px;
+    padding-right: 4px;
     width: 10px;
 }
 
 table tr:hover {
     color: Black;
     background: LightGray;
-
 }
 
 /* CLEARING DIV STYLES */
@@ -799,7 +859,7 @@ div.clear {
 #amee-strap {
   position: absolute;
   bottom: -60px;
-  right: 0;
+  left: 10px;
   padding-top:30px;
 }
 
