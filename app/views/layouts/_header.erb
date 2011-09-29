@@ -16,6 +16,9 @@
         <%= link_to 'Settings', edit_user_path(current_user.id) %>
       </div>
       <div class="tab">
+        <%= link_to 'Send feedback', feedback_path %>
+      </div>
+      <div class="tab">
         <%= link_to 'Logout', user_session_path(current_user_session.id), :method => 'delete' %>
       </div>
     <% end %>

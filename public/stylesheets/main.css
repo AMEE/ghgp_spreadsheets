@@ -866,5 +866,18 @@ div.clear {
 #amee-strap-big {
   position: absolute;
   bottom: -220px;
-  left: 40px;
+  left: 75px;
+}
+
+#feedback {
+    width: 800px;
+    padding: 50px;
+}
+
+#feedback-form-wrapper {
+    position: relative;
+    top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 95%;
 }
