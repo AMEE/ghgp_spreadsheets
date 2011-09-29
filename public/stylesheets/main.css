@@ -468,9 +468,10 @@ h3 {
 
 #user {
     width: 700px;
-    top: 100px;
+    top: 40px;
     position: relative;
     padding: 30px;
+    margin-bottom: 200px;
 }
 
 h2.instructions {
