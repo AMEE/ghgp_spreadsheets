@@ -7,9 +7,6 @@
   </div>
   <% optional = session[@prototype_calculation.label][:show_optional] %>
   <div class="links">
-    <div class="link">
-      <%= link_to_remote 'Add a calculation', :url => add_path(:type => @prototype_calculation.label) %>
-    </div>
     <% if optional %>
       <div class="link">
         <%= link_to_remote 'Show compulsory inputs only', :url => toggle_optional_path(:type => @prototype_calculation.label,
@@ -21,8 +18,8 @@
                                                                     :show_optional => 'true') %>
       </div>
     <% end %>
-    <div class="link">
-      <%= link_to_function 'Guide', "$('#help_container').fadeToggle('slow','linear');" %>
+    <div id="guide-switch" class="link">
+      <%= "Show guide" %>
     </div>
   </div>
   <br />
@@ -33,14 +30,16 @@
         <% down_image = image_tag "down-arrow.png", :alt => 'd' %>
         <% calculation_terms_in_table_order(@prototype_calculation,optional).each do |term| %>
           <th>
-            <%=term.name%>
-            <span><%=link_to_remote up_image, :url => sort_path(:type => @prototype_calculation.label,
-                                                            :ascending => term.label)%></span>
-            <span><%=link_to_remote down_image, :url => sort_path(:type => @prototype_calculation.label,
-                                                            :descending => term.label)%></span>
+            <span class="column-header"><%=  term.name %></span>
+            <span class="sort-buttons">
+              <%=link_to_remote up_image, :url => sort_path(:type => @prototype_calculation.label,
+                                                            :ascending => term.label)%>
+              <%=link_to_remote down_image, :url => sort_path(:type => @prototype_calculation.label,
+                                                              :descending => term.label)%>
+            </span>
           </th>
         <%end%>
-        <th class="delete_row"></th>
+        <th class="delete"></th>
       </tr>
       <% @calculations.each do |calc| %>
         <tr><%= render 'edit_row', :calculation=>calc, :optional => optional %></tr>
@@ -49,7 +48,17 @@
         <%= render("total_row", :calculations => @calculations, :prototype_calculation => @prototype_calculation, :optional => optional) unless @calculations.empty? %>
       </tr>
     </table>
-    <div style="clear:both;"></div>
+    <div style="clear: both;"></div>
+  </div>
+  <div id="table-base-nav">
+    <span id="add-calc">
+      <% image = image_tag "add_calc.png", :alt => 'Add a calculation' %>
+      <%= link_to_remote 'Add a calculation'+image, :url => add_path(:type => @prototype_calculation.label) %>
+    </span>
+    <span id="summary-link">
+      <% image = image_tag "go_to_summary.png", :alt => 'Go to summary' %>
+      <%= link_to 'Go to summary page'+image, summary_path %>
+    </span>
   </div>
 </div>
 <br />

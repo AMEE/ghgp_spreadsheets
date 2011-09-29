@@ -5,7 +5,7 @@
 </tr>
 <% @table.each do |row| %>
   <tr>
-    <td class="calc_name"><%= link_to row.first.name, calculation_path(:type => row.first.label) %></td>
+    <td class="calc-name"><%= link_to row.first.name, calculation_path(:type => row.first.label) %></td>
     <% row[1,row.size-1].each do |column| %>
       <% unless column.nil? %>
         <td><%= show_term_tag(column,:decimal_places => 2) %></td>

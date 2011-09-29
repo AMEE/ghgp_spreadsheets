@@ -8,7 +8,7 @@ class CalculationController < ApplicationController
   before_filter :login_required
   before_filter :initialize_prototype_calculations
 
-  MINIMUM_TABLE_SIZE_IN_ROWS = 10
+  MINIMUM_TABLE_SIZE_IN_ROWS = 8
 
   def summary
     @title = 'Emissions summary'
@@ -106,11 +106,16 @@ class CalculationController < ApplicationController
 
   def sort
     type = params[:type].to_sym
-    @calculations = find_all_by_type(type, :minimum => MINIMUM_TABLE_SIZE_IN_ROWS)
+    @calculations = find_all_by_type(type)
     @prototype_calculation = @prototype_calculations[type]
     @title = @prototype_calculation.name
     @calculations = @calculations.sort_by!(params[:ascending].to_sym) if params[:ascending]
     @calculations = @calculations.sort_by!(params[:descending].to_sym).reverse! if params[:descending]
+    if @calculations.size < MINIMUM_TABLE_SIZE_IN_ROWS
+      (MINIMUM_TABLE_SIZE_IN_ROWS - @calculations.size).times do
+        @calculations << initialize_calculation(type)
+      end
+    end
     render 'update.rjs'
   end
 
@@ -161,4 +166,45 @@ class CalculationController < ApplicationController
     return totals
   end
 
+end
+
+module AMEE
+  module DataAbstraction
+
+    # Mixin module for the <i>AMEE::DataAbstraction::Term</i> class, providing
+    # methods for handling collections of calculations.
+    #
+    class TermsList
+
+      def sort_by(attr)
+
+        # 1. Remove unset terms before sort and append at end
+        #
+        # 2. Establish set terms
+        #
+        # 3. Zip together with corresponding standardized units list creating a
+        # list of Term pairs
+        #
+        # 4. Sort list according to standardized Terms
+        #
+        # 5. Return map of original (now sorted) Terms
+
+        unset_terms, set_terms = self.partition { |term| term.unset? || term.value.nil? }
+        standardized_set_terms = TermsList.new(set_terms).standardize_units
+        ordered_set_terms = set_terms.zip(standardized_set_terms).sort! do |term,other_term|
+          term[1].send(attr) <=> other_term[1].send(attr)
+        end.map {|term_array| term_array[0]}
+        TermsList.new(ordered_set_terms + unset_terms)
+      end
+
+      def standardize_units(unit=nil,per_unit=nil)
+        return self if homogeneous? and ((unit.nil? or (first.unit and first.unit.label == unit)) and
+           (per_unit.nil? or (first.per_unit and first.per_unit.label == per_unit)))
+        unit = predominant_unit if unit.nil?
+        per_unit = predominant_per_unit if per_unit.nil?
+        new_terms = map { |term| term.convert_unit(:unit => unit, :per_unit => per_unit) }
+        TermsList.new new_terms
+      end
+    end
+  end
 end

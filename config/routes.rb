@@ -9,6 +9,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users
   map.resource :user_session
 
+  map.feedback "/feedback", :controller=>'application',:action=>'feedback'
   map.report "/report", :controller=>'calculation',:action=>'report'
   map.update 'calculations/update/:id',:controller=>'calculation',:action=>'update'
   map.calculation 'calculations/:type',:controller=>'calculation',:action=>'calculation'

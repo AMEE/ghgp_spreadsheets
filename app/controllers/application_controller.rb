@@ -26,4 +26,8 @@ class ApplicationController < ActionController::Base
 
   end
 
+  def feedback
+    render 'layouts/feedback'
+  end
+
 end
