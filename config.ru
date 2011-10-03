@@ -1,3 +1,5 @@
+# Changed to work on heroku
+
 require "config/environment"
 
 use Rails::Rack::LogTailer
