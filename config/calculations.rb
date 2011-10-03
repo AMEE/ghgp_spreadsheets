@@ -24,7 +24,7 @@ Calculations=
  
     metadatum {
       label :note
-      value "This approach enables the calculation of CO2 emissions associated with electrolysis processes. It should be used if quantities of carbon containing materials are not known. Calculations are differentiated by the type of process potline used and the reporting period under consideration."
+      value "This approach enables the calculation of CO2 emissions associated with electrolysis processes. It should be used if quantities of carbon containing materials are not known."
       hide!
     }
     correcting(:process_type) { note "Select the type of process potline for which data is being entered" }
@@ -42,7 +42,7 @@ Calculations=
     
     metadatum {
       label :note
-      value "This approach enables the calculation of Søderberg-associated CO2 emissions based on the carbon (C) contained within the Søderberg paste. If quantities of Søderberg paste are unknown, use the 'alternative' methodology. Calculations are differentiated by the types of process potline and anode paste used and the reporting period under consideration."
+      value "This approach enables the calculation of Søderberg-associated CO2 emissions based on the carbon (C) contained within the Søderberg paste. If quantities of Søderberg paste are unknown, use the 'alternative' methodology."
       hide!
     }
     correcting(:soderberg_type) { note "Select the type of Søderberg potline for which data is being entered" }
@@ -70,7 +70,7 @@ Calculations=
     
     metadatum {
       label :note
-      value "This approach enables the calculation of prebaked electrolysis-associated CO2 emissions based on the carbon (C) contained within the prebaked anodes. If net anode consumption (gross consumption minus anode butts) is unknown or not reliable, use the 'alternative' methodology. Calculations are differentiated by the reporting period under consideration. Emissions associated with the prebaking process can be calculated using the anode-baking methodologies."
+      value "This approach enables the calculation of prebaked electrolysis-associated CO2 emissions based on the carbon (C) contained within the prebaked anodes. If net anode consumption is unknown or not reliable, use the 'alternative' methodology."
       hide!
     }
     metadatum {
@@ -100,7 +100,7 @@ Calculations=
     }
     metadatum {
       label :note
-      value "This methodology enables the calculation of CO2 emissions associated with pitch volatiles combustion and packing material in the anode baking furnace. If net anode consumption (gross consumption minus anode butts) is unknown or not reliable, use the 'alternative' methodology. Calculations are differentiated by the types of furnace used and the reporting period under consideration. Emissions associated with prebake electrolysis can be calculated using the 'prebake electrolysis' methodology."
+      value "This methodology enables the calculation of CO2 emissions associated with pitch volatiles combustion and packing material in the anode baking furnace. If net anode consumption is unknown or not reliable, use the 'alternative' methodology."
       hide!
     }
     correcting(:type) { note "Select the type of furnace for which data is being entered" }
@@ -130,7 +130,7 @@ Calculations=
     }
     metadatum {
       label :note
-      value "This methodology enables the calculation of CO2 emissions associated with pitch volatiles combustion and packing material in the anode baking furnace. If net anode consumption (gross consumption minus anode butts) is unknown or not reliable, use the 'alternative' methodology. Calculations are differentiated by the types of furnace used and the reporting period under consideration. Emissions associated with prebake electrolysis can be calculated using the 'prebake electrolysis' methodology."
+      value "This methodology enables the calculation of CO2 emissions associated with pitch volatiles combustion and packing material in the anode baking furnace. If net anode consumption is unknown or not reliable, use the 'alternative' methodology."
       hide!
     }
     correcting(:type) { note "Select the type of furnace for which data is being entered" }
@@ -155,7 +155,7 @@ Calculations=
     
     metadatum {
       label :note
-      value "The methodology represents an alternative approach to calculating electrolysis process CO2 emissions based on the consumption of carbon containing materials. If quantities of purchased carbon containing materials are not known, use the 'default' methodology. Calculations are differentiated by the reporting period under consideration"
+      value "The methodology represents an alternative approach to calculating electrolysis process CO2 emissions based on the consumption of carbon containing materials. If quantities of purchased carbon containing materials aren't known, use the 'default' method."
       hide!
     }
     correcting(:byprod_quantity) { note "Specify the quantity of carbon contained within process by-products or waste" }
@@ -182,7 +182,7 @@ Calculations=
     
     metadatum {
       label :note
-      value "This methodology can be used to calculate the CO2 emissions associated with the calcining of coke. Calculations are differentiated by the reporting period under consideration"
+      value "This methodology can be used to calculate the CO2 emissions associated with the calcining of coke."
       hide!
     }
     correcting(:mass_green_coke) { note "Specify the quantity of green coke calcined during the reporting period" }
@@ -210,7 +210,7 @@ Calculations=
 
     metadatum {
       label :note
-      value "This methodology can be used to calculate the CO2 emissions associated with the consumption of soda ash. Calculations are differentiated by the reporting period under consideration"
+      value "This methodology can be used to calculate the CO2 emissions associated with the consumption of soda ash."
       hide!
     }
     correcting(:soda_quantity) { note "Specify the quantity of soda ash consumed during the reporting period" }
@@ -228,7 +228,7 @@ Calculations=
     
     metadatum {
       label :note
-      value "This methodology can be used to calculate the CO2 emissions associated with the production of lime. Calculations are differentiated by the reporting period under consideration"
+      value "This methodology can be used to calculate the CO2 emissions associated with the production of lime."
       hide!
     }
     correcting(:lime_type) { note "Select the type of lime produced during the reporting period" }
@@ -258,7 +258,7 @@ Calculations=
     }
     metadatum {
       label :note
-      value "This methodology enables the calculation of electrolysis-associated CF4 and C2F6 emissions on the basis of emissions factors. It should be used only when anode effect process data is unavailable. Calculations are differentiated by the type of process potline used and the reporting period under consideration"
+      value "This methodology enables the calculation of electrolysis-associated CF4 and C2F6 emissions on the basis of emissions factors. It should be used only when anode effect process data is unavailable."
       hide!
     }
     correcting(:cell_type) { note "Select the type of electrolysis cell used during the reporting period." }
@@ -285,7 +285,7 @@ Calculations=
     }
     metadatum {
       label :note
-      value "This methodology enables the calculation of electrolysis-associated CF4 and C2F6 emissions on the basis of the 'slope' method. Calculations are differentiated by the type of process potline used and the reporting period under consideration"
+      value "This methodology enables the calculation of electrolysis-associated CF4 and C2F6 emissions on the basis of the 'slope' method."
       hide!
     }
     correcting(:cell_type) { note "Select the type of electrolysis cell used during the reporting period." }
@@ -314,7 +314,7 @@ Calculations=
     }
     metadatum {
       label :note
-      value "This methodology enables the calculation of electrolysis-associated CF4 and C2F6 emissions on the basis of the 'overvoltage' method. Calculations are differentiated by the type of process potline used and the reporting period under consideration"
+      value "This methodology enables the calculation of electrolysis-associated CF4 and C2F6 emissions on the basis of the 'overvoltage' method."
       hide!
     }
     correcting(:cell_type) { note "Select the type of electrolysis cell used during the reporting period." }
