@@ -47,7 +47,8 @@ Rails::Initializer.run do |config|
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
 
-  config.middleware.use "PDFKit::Middleware", :print_media_type => true
+  require 'pdfkit'
+  config.middleware.use PDFKit::Middleware, :print_media_type => true
 
   config_file = RAILS_ROOT + "/config/config.yml"
   raise "#{config_file} not found" unless File.exist?(config_file)
