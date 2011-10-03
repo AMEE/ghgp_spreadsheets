@@ -10,7 +10,6 @@ gem "amee-data-persistence", "~> 1.1"
 gem "amee-analytics", "~> 1.0"
 gem "amee-data-entry", "1.0.0.rc2"
 gem "amee-auth", ">= 0.3.1"
-gem "wkhtmltopdf-binary"
 gem "pdfkit"
 
 group :development, :test do

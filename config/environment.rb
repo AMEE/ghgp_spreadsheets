@@ -20,14 +20,12 @@ Rails::Initializer.run do |config|
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
   
-  config.gem "quantify", :version => "1.2.2"
-  config.gem "amee", :version => "~> 3.0.0"
+  config.gem "amee", :version => "~> 3.1"
   config.gem "amee-data-abstraction", :version => "~> 1.1"
   config.gem "amee-data-persistence", :version => "~> 1.1"
   config.gem "amee-analytics", :version => "~> 1.0.1"
   config.gem "amee-data-entry", :version => "1.0.0.rc2"
   config.gem "amee-auth", :version => ">= 0.3.1"
-  config.gem "wkhtmltopdf-binary", :lib => false
   config.gem "pdfkit"
 
   # Only load the plugins named here, in the order given (default is alphabetical).
