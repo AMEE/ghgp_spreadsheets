@@ -38,7 +38,7 @@ Calculations=
 
     metadatum {
       label :note
-      value "This approach enables the calculation of HFC-23 emissions associated with HCFC-22 production based on quantities of HCFC-22 production. Calculations are differentiated by plant age and the facility/unit under consideration"
+      value "This approach enables the calculation of HFC-23 emissions associated with HCFC-22 production based on quantities of HCFC-22 production."
       hide!
     }
   }
@@ -63,7 +63,7 @@ Calculations=
 
     metadatum {
       label :note
-      value "This approach enables the calculation of HFC-23 emissions associated with HCFC-22 production based on carbon and fluorine balance efficiencies. Calculations are differentiated by the facility/unit under consideration"
+      value "This approach enables the calculation of HFC-23 emissions associated with HCFC-22 production based on carbon and fluorine balance efficiencies."
       hide!
     }
   }
@@ -92,7 +92,7 @@ Calculations=
 
     metadatum {
       label :note
-      value "This approach enables the calculation of HFC-23 emissions associated with HCFC-22 production based properties of plant gas streams. Calculations are differentiated by the facility/unit under consideration"
+      value "This approach enables the calculation of HFC-23 emissions associated with HCFC-22 production based properties of plant gas streams."
       hide!
     }
   }

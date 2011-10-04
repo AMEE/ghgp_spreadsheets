@@ -27,7 +27,7 @@ Calculations=
 
     metadatum {
       label :note
-      value "This approach can be used to calculate the CO2 emissions associated with the production of lime based on production data. Calculations are differentiated by the type of lime and the facility/unit under consideration"
+      value "This approach can be used to calculate the CO2 emissions associated with the production of lime based on production data."
       hide!
     }
 
@@ -61,7 +61,7 @@ Calculations=
 
     metadatum {
       label :note
-      value "This approach enables the calculation of CO2 emissions associated with lime production based on the consumption of carbonate materials. Calculations are differentiated by the type of carbonate and the facility/unit under consideration"
+      value "This approach enables the calculation of CO2 emissions associated with lime production based on the consumption of carbonate materials."
       hide!
     }
   }

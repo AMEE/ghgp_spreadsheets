@@ -33,7 +33,7 @@ Calculations=
 
     metadatum {
       label :note
-      value "This methodology enables the calculation of CO2, CH4 and N2O associated with the stationary combustion of fuels on the basis of quantities of energy yielded. Calculations are differentiated by the type of fuel, the combustion context, and the reporting period under consideration"
+      value "This methodology enables the calculation of CO2, CH4 and N2O associated with the stationary combustion of fuels on the basis of quantities of energy yielded."
       hide!
     }
   }
@@ -55,7 +55,7 @@ Calculations=
 
     metadatum {
       label :note
-      value "This methodology enables the calculation of CO2, CH4 and N2O associated with the stationary combustion of fuels on the basis of masses consumed. Calculations are differentiated by the type of fuel, the combustion context, and the reporting period under consideration"
+      value "This methodology enables the calculation of CO2, CH4 and N2O associated with the stationary combustion of fuels on the basis of masses consumed."
       hide!
     }
   }
@@ -77,7 +77,7 @@ Calculations=
 
     metadatum {
       label :note
-      value "This methodology enables the calculation of CO2, CH4 and N2O associated with the stationary combustion of fuels on the basis of volumes consumed. Calculations are differentiated by the type of fuel, the combustion context, and the reporting period under consideration"
+      value "This methodology enables the calculation of CO2, CH4 and N2O associated with the stationary combustion of fuels on the basis of volumes consumed."
       hide!
     }
   }
@@ -240,7 +240,7 @@ Calculations=
 
     metadatum {
       label :note
-      value "This methodology can be used to calculate the CO2 emissions associated with the offsite production of lime. Calculations are differentiated by the type of lime and the reporting period under consideration"
+      value "This methodology can be used to calculate the CO2 emissions associated with the offsite production of lime."
       hide!
     }
     correcting(:lime_type) { note "Select the type of lime produced during the reporting period" }
