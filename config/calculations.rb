@@ -1,13 +1,5 @@
-[
-  'adipic',
-  'aluminium',
-  'ammonia',
-  'hcfc22',
-  'iron_and_steel',
-  'lime',
-  'nitric'
-].each do |x|
-  if ENV['GHGP_TYPE'] == x
+$sheet_types.each_pair do |key, title|
+  if ENV['SHEET_TYPE'] == key
     require "calculations/#{x}.rb"
   end
 end

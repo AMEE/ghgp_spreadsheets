@@ -50,8 +50,14 @@ Rails::Initializer.run do |config|
   require 'pdfkit'
   config.middleware.use PDFKit::Middleware, :print_media_type => true
 
-  config_file = RAILS_ROOT + "/config/config.yml"
-  raise "#{config_file} not found" unless File.exist?(config_file)
-  config = YAML.load_file(config_file)
-  $tool_name = config['tool_name']
+  $sheet_types = {
+    'adipic' => 'Adipic Acid Sector',
+    'aluminium' => 'Aluminium Sector',
+    'ammonia' => 'Ammonia Sector',
+    'hcfc22' => 'HCFC-22 Sector',
+    'iron_and_steel' => 'Iron and Steel Sector',
+    'lime' => 'Lime Sector',
+    'nitric' => 'Nitric Acid Sector',
+  ]
+  $tool_name = $sheet_types[ENV['SHEET_TYPE']]
 end
