@@ -58,6 +58,6 @@ Rails::Initializer.run do |config|
     'iron_and_steel' => 'Iron and Steel Sector',
     'lime' => 'Lime Sector',
     'nitric' => 'Nitric Acid Sector',
-  ]
+  }
   $tool_name = $sheet_types[ENV['SHEET_TYPE']]
 end
