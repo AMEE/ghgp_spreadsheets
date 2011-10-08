@@ -32,3 +32,24 @@ class AMEE::DataAbstraction::CalculationSet
     AMEE::DataAbstraction::OngoingCalculation.find_by_type(:all, type.to_s, :include => 'terms')
   end
 end
+
+module AMEE
+  module DataAbstraction
+    class Drill
+
+      def choices(*args)
+        if args.empty?
+          if @choices.blank?
+            c=parent.amee_drill(:before=>label).choices
+            c.length==1 ? [value] : c
+          else
+            @choices
+          end
+        else
+          @choices = [args].flatten
+        end
+      end
+      
+    end
+  end
+end

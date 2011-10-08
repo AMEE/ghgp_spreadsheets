@@ -20,14 +20,12 @@ Rails::Initializer.run do |config|
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
   
-  config.gem "quantify", :version => "1.2.2"
-  config.gem "amee", :version => "~> 3.0.0"
+  config.gem "amee", :version => "~> 3.1"
   config.gem "amee-data-abstraction", :version => "~> 1.1"
   config.gem "amee-data-persistence", :version => "~> 1.1"
   config.gem "amee-analytics", :version => "~> 1.0.1"
   config.gem "amee-data-entry", :version => "1.0.0.rc2"
   config.gem "amee-auth", :version => ">= 0.3.1"
-  config.gem "wkhtmltopdf-binary", :lib => false
   config.gem "pdfkit"
 
   # Only load the plugins named here, in the order given (default is alphabetical).
@@ -49,10 +47,17 @@ Rails::Initializer.run do |config|
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
 
-  config.middleware.use "PDFKit::Middleware", :print_media_type => true
+  require 'pdfkit'
+  config.middleware.use PDFKit::Middleware, :print_media_type => true
 
-  config_file = RAILS_ROOT + "/config/config.yml"
-  raise "#{config_file} not found" unless File.exist?(config_file)
-  config = YAML.load_file(config_file)
-  $tool_name = config['tool_name']
+  $sheet_types = {
+    'adipic' => 'Adipic Acid Sector',
+    'aluminium' => 'Aluminium Sector',
+    'ammonia' => 'Ammonia Sector',
+    'hcfc22' => 'HCFC-22 Sector',
+    'iron_and_steel' => 'Iron and Steel Sector',
+    'lime' => 'Lime Sector',
+    'nitric' => 'Nitric Acid Sector',
+  }
+  $tool_name = $sheet_types[ENV['SHEET_TYPE']]
 end

@@ -3,7 +3,7 @@ class UsersController < AmeeAuthUsersController
 
   include ApplicationHelper
   before_filter :login_required
-  before_filter :admin_login_required, :only => [:new,:index,:create]
+  before_filter :admin_login_required
 
   layout 'layouts/application'
 

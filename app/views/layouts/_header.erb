@@ -5,15 +5,15 @@
         <div class="tab">
           <%= link_to 'Admin', users_path %>
         </div>
+        <div class="tab">
+          <%= link_to 'Settings', edit_user_path(current_user.id) %>
+        </div>
       <% end %>
       <div class="tab">
         <%= link_to "Summary", summary_path %>
       </div>
       <div class="tab">
         <%= link_to "Help", help_path %>
-      </div>
-      <div class="tab">
-        <%= link_to 'Settings', edit_user_path(current_user.id) %>
       </div>
       <div class="tab">
         <%= link_to 'Send feedback', feedback_path %>
