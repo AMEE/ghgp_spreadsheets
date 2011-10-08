@@ -46,7 +46,6 @@ Calculations=
     terms_from_amee 'byMass'
     correcting (:comment) { hide! }
     correcting (:fuel) {
-      # some fuels have heating values but not on every item:
       choices "Anthracite", "Aviation gasoline", "Biodiesels", "Biogasoline", "Bitumen", "Blast furnace gas", "Brown coal briquettes", "Butane", "Coal tar", "Coke oven coke", "Coke oven gas", "Coking coal", "Crude oil", "Distillate fuel oil No.1", "Distillate fuel oil No.2", "Ethane", "Gas coke", "Gas works gas", "Gas/Diesel oil", "Jet gasoline", "Jet kerosene", "Landfill gas", "Lignite", "Lignite coke", "Liquified Petroleum Gases", "Lubricants", "Motor gasoline", "Municipal waste (Non biomass fraction)", "Municipal wastes (Biomass fraction)", "Naphtha", "Natural gas", "Natural Gas Liquids", "Oil shale and tar sands", "Orimulsion", "Other biogas", "Other bituminous coal", "Other kerosene", "Other liquid biofuels", "Other petroleum products", "Other primary solid biomass fuels", "Oxygen steel furnace gas", "Paraffin waxes", "Patent fuel", "Peat", "Petroleum coke", "Propane", "Refinery feedstocks", "Refinery gas", "Residual fuel oil", "Residual fuel oil No.4", "Residual fuel oil No.5", "Residual fuel oil No.6", "Shale oil", "Sludge gas", "Sub bituminous coal", "Sulphite lyes (Black liqour)", "Waste oils", "White Spirit/SBP", "Wood or Wood waste"
     }
 
