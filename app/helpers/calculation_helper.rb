@@ -12,5 +12,5 @@ module CalculationHelper
     terms += calculation.outputs.visible if include_outputs
     return terms
   end
-    
+  
 end

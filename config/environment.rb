@@ -21,7 +21,7 @@ Rails::Initializer.run do |config|
   # config.gem "aws-s3", :lib => "aws/s3"
   
   config.gem "amee", :version => "~> 3.1"
-  config.gem "amee-data-abstraction", :version => "~> 1.1"
+  config.gem "amee-data-abstraction", :version => "~> 1.3"
   config.gem "amee-data-persistence", :version => "~> 1.1"
   config.gem "amee-analytics", :version => "~> 1.0.1"
   config.gem "amee-data-entry", :version => "1.0.0.rc2"
