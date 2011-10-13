@@ -1,23 +1,28 @@
-<div id="feedback" class="content_pane">
-  <h1>We are always trying to find ways to improve our products</h1>
-  <h3>Please enter your idea, question or comment below</h3>
-  <div id="feedback-form-wrapper">
-    <script type="text/javascript" charset="utf-8">
-      var is_ssl = ("https:" == document.location.protocol);
-      var asset_host = is_ssl ? "https://s3.amazonaws.com/getsatisfaction.com/" : "http://s3.amazonaws.com/getsatisfaction.com/";
-      document.write(unescape("%3Cscript src='" + asset_host + "javascripts/feedback-v2.js' type='text/javascript'%3E%3C/script%3E"));
-    </script>
+<div id="feedback">
+  <div class="content_pane">
+    <h1>We are always trying to find ways to improve our products</h1>
+    <h3>Please enter your idea, question or comment below</h3>
+    <div id="feedback-form-wrapper">
+      <script type="text/javascript" charset="utf-8">
+        var is_ssl = ("https:" == document.location.protocol);
+        var asset_host = is_ssl ? "https://s3.amazonaws.com/getsatisfaction.com/" : "http://s3.amazonaws.com/getsatisfaction.com/";
+        document.write(unescape("%3Cscript src='" + asset_host + "javascripts/feedback-v2.js' type='text/javascript'%3E%3C/script%3E"));
+      </script>
 
-    <script type="text/javascript" charset="utf-8">
-      var feedback_widget_options = {};
-      feedback_widget_options.display = "inline";
-      feedback_widget_options.company = "amee";
-      feedback_widget_options.style = "question";
-      var feedback_widget = new GSFN.feedback_widget(feedback_widget_options);
-    </script>
+      <script type="text/javascript" charset="utf-8">
+        var feedback_widget_options = {};
+        feedback_widget_options.display = "inline";
+        feedback_widget_options.company = "amee";
+        feedback_widget_options.style = "question";
+        var feedback_widget = new GSFN.feedback_widget(feedback_widget_options);
+      </script>
 
-    <script type="text/javascript" charset="utf-8">
-      $('iframe').height(400);
-    </script>
+      <script type="text/javascript" charset="utf-8">
+        $('iframe').height(400);
+      </script>
+    </div>
+  </div>
+  <div id="amee-strap-big">
+    <%= image_tag 'AMEE-Logo2011-LINE_Green.png', :alt => 'AMEE: Environment Intelligence. Everywhere' %>
   </div>
 </div>

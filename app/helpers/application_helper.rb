@@ -31,5 +31,5 @@ class AMEE::DataAbstraction::CalculationSet
   def ongoing_calculations_for(type)
     AMEE::DataAbstraction::OngoingCalculation.find_by_type(:all, type.to_s, :include => 'terms')
   end
-  
+
 end

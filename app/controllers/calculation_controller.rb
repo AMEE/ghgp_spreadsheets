@@ -7,41 +7,34 @@ class CalculationController < ApplicationController
 
   before_filter :login_required
   before_filter :initialize_prototype_calculations
+  helper_method :output_terms_in_order, :calculation_terms_in_table_order
 
   MINIMUM_TABLE_SIZE_IN_ROWS = 8
 
   def summary
     @title = 'Emissions summary'
     @prototype_outputs = prototype_outputs_in_order
-    @headers = ["Calculation methodology"]
-    @prototype_outputs.each { |output| @headers << output.name }
+    @headers = @prototype_outputs.map { |output| output.name }.unshift("Calculation methodology")
     @table = @prototype_calculations.map do |label,calc|
-      array = [calc]
-      @prototype_outputs.each do |ghg|
-        array << nil
-      end
-      array
+      @prototype_outputs.map { |ghg| nil }.unshift(calc)
     end
   end
 
   def update_summary
-    @prototype_outputs = prototype_outputs_in_order
-    @headers = ["Calculation methodology"]
-    @prototype_outputs.each { |output| @headers << output.name }
-    @table = ghg_totals_by_calculation(@prototype_outputs)
-    @all_calculations = @calculation_set.all_ongoing_calculations
-    @totals = ghg_totals(@all_calculations,@prototype_outputs)
-    render 'update_totals.rjs'
+    generate_summary_data
   end
 
   def report
+    generate_summary_data
+    render 'report', :layout => 'report'
+  end
+
+  def generate_summary_data
     @prototype_outputs = prototype_outputs_in_order
-    @headers = ["Calculation methodology"]
-    @prototype_outputs.each { |output| @headers << output.name }
+    @headers = @prototype_outputs.map { |output| output.name }.unshift("Calculation methodology")
     @table = ghg_totals_by_calculation(@prototype_outputs)
     @all_calculations = @calculation_set.all_ongoing_calculations
     @totals = ghg_totals(@all_calculations,@prototype_outputs)
-    render 'report', :layout => 'report'
   end
   
   def calculation
@@ -129,10 +122,25 @@ class CalculationController < ApplicationController
 
   def prototype_outputs_in_order
     prototype_outputs = AMEE::DataAbstraction::CalculationCollection.new(@prototype_calculations.values).terms.outputs.visible.first_of_each_type
-    co2e_output = prototype_outputs.find {|output| output.label == :co2e} || AMEE::DataAbstraction::Output.new {label :co2e; name 'CO2e'}
-    prototype_outputs.delete_if {|output| output.label == :co2e}
-    prototype_outputs << co2e_output
-    return prototype_outputs.compact
+    prototype_outputs << AMEE::DataAbstraction::Output.new {label :co2e; name 'CO2e'} unless prototype_outputs.any? {|output| output.label == :co2e}
+    output_terms_in_order(prototype_outputs)
+  end
+
+  def calculation_terms_in_table_order(calculation,include_optional=false,include_outputs=true)
+    terms = []
+    terms = terms + calculation.metadata.visible
+    terms += calculation.drills.visible
+    terms += calculation.profiles.compulsory.visible
+    terms += calculation.profiles.optional.visible if include_optional
+    terms += output_terms_in_order(calculation.outputs.visible) if include_outputs
+    return terms
+  end
+
+  def output_terms_in_order(outputs)
+    outputs.sort! {|output,next_output| output.label.to_s <=> next_output.label.to_s}
+    outputs.move_by(:label,:co2,0)
+    outputs.move_by(:label,:co2e,0) and outputs.rotate
+    return outputs
   end
 
   def ghg_totals_by_calculation(outputs)
@@ -143,10 +151,12 @@ class CalculationController < ApplicationController
         (outputs.size).times { array << nil }
       else
         outputs.each do |ghg|
-          next if ghg.label == :co2e
-          array << ( calc[ghg.label] ? calcs.send(ghg.label).sum : nil)
+          if ghg.label == :co2e
+            array << calcs.co2_or_co2e_outputs.sum
+          else
+            array << ( calc[ghg.label] ? calcs.send(ghg.label).sum : nil)
+          end
         end
-        array << calcs.co2_or_co2e_outputs.sum
       end
       array
     end

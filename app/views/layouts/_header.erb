@@ -1,4 +1,7 @@
 <div id="header">
+  <% if @demo %>
+    <%= render :partial => "layouts/demo_banner" %>
+  <% end %>
   <div id="header_tabs">
     <% if logged_in? %>
       <% if current_user.is_admin? %>

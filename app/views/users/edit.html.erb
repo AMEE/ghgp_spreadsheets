@@ -1,17 +1,22 @@
-<div id="sign_up" class="content_pane">
-  <h3>Update credentials</h3>
-  <div class="form">
-  <% form_for @user do |f| %>
-    <%= f.error_messages %>
-    <table>
-      <tr><td class="label">Email</td><td><%= @user.email %></td></tr>
-      <tr><td class="label">Old or new password</td><td><%= f.password_field :password %></td></tr>
-      <tr><td class="label">Confirm password</td><td><%= f.password_field :password_confirmation %></td></tr>
-      <% if current_user.is_admin? %>
-        <tr><td class="label">Admin user?</td><td><%= f.check_box(:admin) %></td></tr>
+<div id="sign_up">
+  <div class="content_pane">
+    <h3>Update credentials</h3>
+    <div class="form">
+      <% form_for @user do |f| %>
+        <%= f.error_messages %>
+        <table>
+          <tr><td class="label">Email</td><td><%= @user.email %></td></tr>
+          <tr><td class="label">Old or new password</td><td><%= f.password_field :password %></td></tr>
+          <tr><td class="label">Confirm password</td><td><%= f.password_field :password_confirmation %></td></tr>
+          <% if current_user.is_admin? %>
+            <tr><td class="label">Admin user?</td><td><%= f.check_box(:admin) %></td></tr>
+          <% end %>
+        </table>
+        <%= f.submit 'Update' %>
       <% end %>
-    </table>
-    <%= f.submit 'Update' %>
-  <% end %>
+    </div>
+  </div>
+  <div id="amee-strap-big">
+    <%= image_tag 'AMEE-Logo2011-LINE_Green.png', :alt => 'AMEE: Environment Intelligence. Everywhere' %>
   </div>
 </div>

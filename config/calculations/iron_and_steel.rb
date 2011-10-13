@@ -201,6 +201,8 @@ Calculations=
     }
   }
 
+=begin
+  # NOT ON LIVE SERVER YET
   calculation {
     name 'Flaring'
     label :flaring
@@ -215,7 +217,8 @@ Calculations=
       hide!
     }
   }
-
+=end
+  
   calculation {
     name 'Onsite lime production'
     label :onsite_lime

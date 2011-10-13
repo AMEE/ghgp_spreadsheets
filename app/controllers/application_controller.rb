@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   include AMEE::Authentication::AuthHelper
   include ApplicationHelper
   helper_method :current_user_session, :current_user, :logged_in?, :admin_login_required
+  before_filter :is_demo_instance?
   
   def home
     if logged_in?
@@ -28,6 +29,10 @@ class ApplicationController < ActionController::Base
 
   def feedback
     render 'layouts/feedback'
+  end
+
+  def is_demo_instance?
+    @demo = request.host =~ /(-demo)/ ? true : false
   end
 
 end

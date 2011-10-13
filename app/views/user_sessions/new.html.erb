@@ -1,15 +1,17 @@
-<div id="sign_in" class="content_pane">
-  <h1>Greenhouse gas calculation tool for the <%= $tool_name %></h1>
-  <br />
-  <h3>Please sign in</h3>
-  <div class="form">
-    <% form_for @user_session, :url => user_session_path do |f| %>
-      <table>
-        <tr><td class="label">Email</td><td><%= f.text_field :email %></td></tr>
-        <tr><td class="label">Password</td><td><%= f.password_field :password %></td></tr>
-      </table>
-      <%= f.submit "Sign in" %>
-    <%  end %>
+<div id="sign_in">
+  <div class="content_pane">
+    <h1>Greenhouse gas calculation tool for the <%= $tool_name %></h1>
+    <br />
+    <h3>Please sign in</h3>
+    <div class="form">
+      <% form_for @user_session, :url => user_session_path do |f| %>
+        <table>
+          <tr><td class="label">Email</td><td><%= f.text_field :email %></td></tr>
+          <tr><td class="label">Password</td><td><%= f.password_field :password %></td></tr>
+        </table>
+        <%= f.submit "Sign in" %>
+      <%  end %>
+    </div>
   </div>
   <div id="amee-strap-big">
     <%= image_tag 'AMEE-Logo2011-LINE_Green.png', :alt => 'AMEE: Environment Intelligence. Everywhere' %>

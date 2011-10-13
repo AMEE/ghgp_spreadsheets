@@ -8,7 +8,7 @@
   </td>
 <% end %>
 <% unless calculation.outputs.visible.empty? %>
-  <% calculation.outputs.visible.each do |term|%>
+  <% output_terms_in_order(calculation.outputs.visible).each do |term|%>
   <td id="<%= "#{row_id}-#{term.label}" %>" class="<%= html_class_for_term(term,:show)%>"><%= show_term_tag(term,:decimal_places => 2) %></td>
   <%end%>
 <% else %>

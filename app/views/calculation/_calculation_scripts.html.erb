@@ -103,7 +103,14 @@
       });
     }
 
+    function setDrillWidths() {
+      $(".amee-drill select").each(function(){
+        $(this).width($(this).closest('td').width());
+      });
+    }
+
     function setTableContainerWidths() {
+      setDrillWidths();
       var tableWidth = $('#calculation_table').width();
       if (tableWidth > 1480) {
         tableWidth = 1480;
