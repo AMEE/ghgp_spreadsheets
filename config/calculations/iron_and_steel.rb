@@ -1,5 +1,6 @@
 Calculations=
   AMEE::DataAbstraction::CalculationSet.new {
+
   all_calculations {
     metadatum {
       name 'Reporting period'
@@ -218,7 +219,7 @@ Calculations=
     }
   }
 =end
-  
+
   calculation {
     name 'Onsite lime production'
     label :onsite_lime
@@ -265,6 +266,5 @@ Calculations=
     correcting(:lkd_weight) { note "Specify the quantity of lime kiln dust not return to the lime kiln. If not specified, an industry typical value is used" }
     correcting(:co2) { note "CO2 emissions calculated based on data (facility-specific and default) entered for each scenario" }
   }
-
 }
 

@@ -24,7 +24,7 @@ Rails::Initializer.run do |config|
   config.gem "amee-data-abstraction", :version => "~> 1.3"
   config.gem "amee-data-persistence", :version => "~> 1.1"
   config.gem "amee-analytics", :version => "~> 1.0.1"
-  config.gem "amee-data-entry", :version => "1.0.0.rc2"
+  config.gem "amee-data-entry", :version => "1.0.0.rc3"
   config.gem "amee-auth", :version => ">= 0.3.1"
   config.gem "pdfkit"
 

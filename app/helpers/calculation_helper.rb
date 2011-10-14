@@ -3,6 +3,7 @@
 
 module CalculationHelper
 
+  
 end
 
 module AMEE
