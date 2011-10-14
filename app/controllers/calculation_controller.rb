@@ -1,9 +1,6 @@
 class CalculationController < ApplicationController
 
-  acts_as_amee_calculator :calculation_set => Proc.new {
-    require "#{RAILS_ROOT}/config/calculations.rb"
-    Calculations
-  }
+  acts_as_amee_calculator :calculation_set => AMEE::DataAbstraction::CalculationSet.find($sheet)
 
   before_filter :login_required
   before_filter :initialize_prototype_calculations

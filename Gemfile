@@ -5,7 +5,7 @@ source "http://amee:aeC5ahx4@gems.amee.com"
 
 gem "rails", "2.3.11"
 gem "amee", "~> 3.1"
-gem "amee-data-abstraction", "~> 1.1"
+gem "amee-data-abstraction", "~> 1.3"
 gem "amee-data-persistence", "~> 1.1"
 gem "amee-analytics", "~> 1.0"
 gem "amee-data-entry", "1.0.0.rc2"

@@ -50,14 +50,4 @@ Rails::Initializer.run do |config|
   require 'pdfkit'
   config.middleware.use PDFKit::Middleware, :print_media_type => true
 
-  $sheet_types = {
-    'adipic' => 'Adipic Acid Sector',
-    'aluminium' => 'Aluminium Sector',
-    'ammonia' => 'Ammonia Sector',
-    'hcfc22' => 'HCFC-22 Sector',
-    'iron_and_steel' => 'Iron and Steel Sector',
-    'lime' => 'Lime Sector',
-    'nitric' => 'Nitric Acid Sector',
-  }
-  $tool_name = $sheet_types[ENV['SHEET_TYPE']]
 end
