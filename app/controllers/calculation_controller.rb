@@ -1,66 +1,20 @@
 class CalculationController < ApplicationController
 
-  acts_as_amee_calculator :calculation_set => Proc.new {
-    require "#{RAILS_ROOT}/config/calculations.rb"
-    Calculations
-  }
+  acts_as_amee_calculator :calculation_set => AMEE::DataAbstraction::CalculationSet.find($sheet)
 
   before_filter :login_required
-  before_filter :initialize_prototype_calculations, :dump_calc_config
+  before_filter :initialize_prototype_calculations
   helper_method :output_terms_in_order, :calculation_terms_in_table_order
 
   MINIMUM_TABLE_SIZE_IN_ROWS = 8
 
   def summary
+    puts Rails.root
     @title = 'Emissions summary'
     @prototype_outputs = prototype_outputs_in_order
     @headers = @prototype_outputs.map { |output| output.name }.unshift("Calculation methodology")
     @table = @prototype_calculations.map do |label,calc|
       @prototype_outputs.map { |ghg| nil }.unshift(calc)
-    end
-  end
-
-  def dump_calc_config
-    string = "Calculations = AMEE::DataAbstraction::CalculationSet.new {\n\n"
-    calcs = @prototype_calculations.map {|pc| pc[1]}
-    calcs.each do |pc|
-      string += "  calculation {\n\n"
-      string += "    name '#{pc.name}'\n"
-      string += "    label :#{pc.label}\n"
-      string += "    path '#{pc.path}'\n\n"
-      pc.terms.each do |term|
-        string += "    #{term.class.to_s.split("::").last.downcase} {\n"
-        string += "      name '#{term.name}'\n" unless term.name.blank?
-        string += "      label :#{term.label}\n" unless term.label.blank?
-        string += "      path '#{term.path}'\n" unless term.path.blank?
-        string += "      value '#{term.value}'\n" unless term.value.blank?
-        if term.is_a?(AMEE::DataAbstraction::Input)
-          string += "      fixed :#{term.value}\n" if term.fixed? && !term.value.blank?
-          if term.is_a?(AMEE::DataAbstraction::Drill)
-            string += "      choices '#{term.choices.join('\',\'')}'\n" if term.instance_variable_defined?("@choices")  && !term.choices.blank?
-          elsif term.is_a?(AMEE::DataAbstraction::Profile)
-            string += "      choices ['#{term.choices.join('\',\'')}']\n" if term.instance_variable_defined?("@choices")  && !term.choices.blank?
-          end
-          string += "      optional!\n" if term.optional?
-        end
-        string += "      default_unit :#{term.default_unit.label}\n" unless term.default_unit.blank?
-        string += "      default_per_unit :#{term.default_per_unit.label}\n" unless term.default_per_unit.blank?
-        string += "      alternative_units :#{term.alternative_units.map(&:label).join(', :')}\n" unless term.alternative_units.blank?
-        string += "      alternative_per_units :#{term.alternative_per_units.map(&:label).join(', :')}\n" unless term.alternative_per_units.blank?
-        string += "      unit :#{term.unit.label}\n" unless term.unit.blank?
-        string += "      per_unit :#{term.per_unit.label}\n" unless term.per_unit.blank?
-        string += "      type :#{term.type}\n" unless term.type.blank?
-        string += "      interface :#{term.interface}\n" unless term.interface.blank?
-        string += "      note '#{term.note}'\n" unless term.note.blank?
-        string += "      disable!\n" if term.disabled?
-        string += "      hide!\n" if term.hidden?
-        string += "    }\n\n"
-      end
-      string += "  }\n\n"
-    end
-    string += "}"
-    File.open("#{RAILS_ROOT}/config/calculations/#{ENV['SHEET_TYPE']}.lock.rb",'w') do |file|
-      file.write string
     end
   end
 
@@ -72,21 +26,13 @@ class CalculationController < ApplicationController
     generate_summary_data
     render 'report', :layout => 'report'
   end
-
-  def generate_summary_data
-    @prototype_outputs = prototype_outputs_in_order
-    @headers = @prototype_outputs.map { |output| output.name }.unshift("Calculation methodology")
-    @table = ghg_totals_by_calculation(@prototype_outputs)
-    @all_calculations = @calculation_set.all_ongoing_calculations
-    @totals = ghg_totals(@all_calculations,@prototype_outputs)
-  end
   
   def calculation
     type = params[:type].to_sym
     unless defined?(session[type][:show_optional])
       session[type] = { :show_optional => false }
     end
-    @calculations = find_all_by_type(type, :minimum => MINIMUM_TABLE_SIZE_IN_ROWS)
+    @calculations = find_calculations_by_type(type, :minimum => MINIMUM_TABLE_SIZE_IN_ROWS)
     @prototype_calculation = CalculationController.calculation_set.calculations[type]
     @title = @prototype_calculation.name
     render :partial => 'calculation', :layout=> 'application'
@@ -101,7 +47,7 @@ class CalculationController < ApplicationController
       @calculation.delete
     end
     @row_id = params[:row]
-    @calculations = find_all_by_type(@calculation.label)
+    @calculations = find_calculations_by_type(@calculation.label)
     @prototype_calculation = @prototype_calculations[@calculation.label]
     render 'delete.rjs'
   end
@@ -118,7 +64,7 @@ class CalculationController < ApplicationController
     end
     @calculation.calculate! 
     @calculation.save
-    @calculations = find_all_by_type(@calculation.label)
+    @calculations = find_calculations_by_type(@calculation.label)
     @prototype_calculation = @prototype_calculations[@calculation.label]
     @row_id = params['row']
     if params['id'].nil? || (@calculation[params['path'].to_sym].is_a? AMEE::DataAbstraction::Drill)
@@ -136,7 +82,7 @@ class CalculationController < ApplicationController
     if params[:show_optional] == 'false'
       session[type] = { :show_optional => false }
     end
-    @calculations = find_all_by_type(type, :minimum => MINIMUM_TABLE_SIZE_IN_ROWS)
+    @calculations = find_calculations_by_type(type, :minimum => MINIMUM_TABLE_SIZE_IN_ROWS)
     @prototype_calculation = @prototype_calculations[type]
     @title = @prototype_calculation.name
     render 'update.rjs'
@@ -144,7 +90,7 @@ class CalculationController < ApplicationController
 
   def sort
     type = params[:type].to_sym
-    @calculations = find_all_by_type(type)
+    @calculations = find_calculations_by_type(type)
     @prototype_calculation = @prototype_calculations[type]
     @title = @prototype_calculation.name
     @calculations = @calculations.sort_by!(params[:ascending].to_sym) if params[:ascending]
@@ -185,6 +131,14 @@ class CalculationController < ApplicationController
     outputs.move_by(:label,:co2,0)
     outputs.move_by(:label,:co2e,0) and outputs.rotate
     return outputs
+  end
+
+  def generate_summary_data
+    @prototype_outputs = prototype_outputs_in_order
+    @headers = @prototype_outputs.map { |output| output.name }.unshift("Calculation methodology")
+    @table = ghg_totals_by_calculation(@prototype_outputs)
+    @all_calculations = @calculation_set.all_ongoing_calculations
+    @totals = ghg_totals(@all_calculations,@prototype_outputs)
   end
 
   def ghg_totals_by_calculation(outputs)

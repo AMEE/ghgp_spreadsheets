@@ -21,10 +21,10 @@ Rails::Initializer.run do |config|
   # config.gem "aws-s3", :lib => "aws/s3"
   
   config.gem "amee", :version => "~> 3.1"
-  config.gem "amee-data-abstraction", :version => "~> 1.3"
-  config.gem "amee-data-persistence", :version => "~> 1.1"
-  config.gem "amee-analytics", :version => "~> 1.0.1"
-  config.gem "amee-data-entry", :version => "1.0.0.rc3"
+  config.gem "amee-data-abstraction", :version => "~> 1.3.1"
+  config.gem "amee-data-persistence", :version => "~> 1.2"
+  config.gem "amee-analytics", :version => "~> 1.1.0"
+  config.gem "amee-data-entry", :version => "1.0.0"
   config.gem "amee-auth", :version => ">= 0.3.1"
   config.gem "pdfkit"
 
@@ -50,14 +50,4 @@ Rails::Initializer.run do |config|
   require 'pdfkit'
   config.middleware.use PDFKit::Middleware, :print_media_type => true
 
-  $sheet_types = {
-    'adipic' => 'Adipic Acid Sector',
-    'aluminium' => 'Aluminium Sector',
-    'ammonia' => 'Ammonia Sector',
-    'hcfc22' => 'HCFC-22 Sector',
-    'iron_and_steel' => 'Iron and Steel Sector',
-    'lime' => 'Lime Sector',
-    'nitric' => 'Nitric Acid Sector',
-  }
-  $tool_name = $sheet_types[ENV['SHEET_TYPE']]
 end

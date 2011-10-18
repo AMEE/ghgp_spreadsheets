@@ -18,9 +18,9 @@ GEM
       json
       log4r
       nokogiri (~> 1.4.3.1)
-    amee-analytics (1.0.1)
-      amee-data-abstraction (~> 1.1)
-      amee-data-persistence (~> 1.1)
+    amee-analytics (1.1.0)
+      amee-data-abstraction (~> 1.3)
+      amee-data-persistence (~> 1.2)
     amee-auth (0.3.1)
       acl9 (~> 0.12.0)
       actionpack (~> 2.3.11)
@@ -28,14 +28,14 @@ GEM
       activesupport (~> 2.3.11)
       authlogic (~> 2.1.6)
       rake (>= 0.8.7)
-    amee-data-abstraction (1.1.0)
-      amee (~> 3.0)
-      quantify (= 1.2.0)
+    amee-data-abstraction (1.3.1)
+      amee (~> 3.1)
+      quantify (= 1.2.2)
       uuidtools (= 2.1.2)
-    amee-data-entry (1.0.0.rc2)
-      amee-data-abstraction
-    amee-data-persistence (1.1.0)
-      amee-data-abstraction (~> 1.1)
+    amee-data-entry (1.0.0)
+      amee-data-abstraction (~> 1.3)
+    amee-data-persistence (1.2.0)
+      amee-data-abstraction (~> 1.3)
     authlogic (2.1.6)
       activesupport
     i18n (0.6.0)
@@ -43,7 +43,7 @@ GEM
     log4r (1.1.9)
     nokogiri (1.4.3.1)
     pdfkit (0.5.2)
-    quantify (1.2.0)
+    quantify (1.2.2)
       activesupport
       i18n
     rack (1.1.2)
@@ -66,11 +66,11 @@ PLATFORMS
 
 DEPENDENCIES
   amee (~> 3.1)
-  amee-analytics (~> 1.0)
+  amee-analytics (~> 1.1.0)
   amee-auth (>= 0.3.1)
-  amee-data-abstraction (~> 1.1)
-  amee-data-entry (= 1.0.0.rc2)
-  amee-data-persistence (~> 1.1)
+  amee-data-abstraction (~> 1.3.1)
+  amee-data-entry (= 1.0.0)
+  amee-data-persistence (~> 1.2)
   pdfkit
   rails (= 2.3.11)
   rspec (~> 1.3)

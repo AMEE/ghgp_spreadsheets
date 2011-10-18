@@ -839,7 +839,6 @@ td input {
 td select:focus, input:focus {
     background: inherit;
     color: DarkGray;
-    font-weight: bolder;
 }
 
 td select:hover, input:hover {
