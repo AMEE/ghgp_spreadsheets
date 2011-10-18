@@ -13,10 +13,20 @@ a {
 
 /*HEADER*/
 
+#demo-banner a {
+    color: White;
+    text-shadow: none;
+}
+
+#demo-banner a:hover {
+    text-decoration:underline;
+}
+
 #header {
   position: absolute;
   top: 0px;
   width: 100%;
+  min-width: 1600px;
   height: 0px;
   background: #F8F8F8;
   color: #0B7883;
@@ -30,6 +40,48 @@ a {
   right: 10px;
   font-size: 130%;
 }
+
+
+
+#demo-banner {
+  position: absolute;
+  top: 0px;
+  left: 10px;
+  font-size: 115%;
+  font-weight: bold;
+  background: #c8d828;
+  padding: 7px 13px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  -moz-border-radius-bottomleft: 10px;
+  -moz-border-radius-bottomright: 10px;
+  -webkit-border-bottom-left-radius: 10px;
+  -webkit-border-bottom-right-radius: 10px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  -moz-border-radius-topleft: 0px;
+  -moz-border-radius-topright: 0px;
+  -webkit-border-top-left-radius: 0px;
+  -webkit-border-top-right-radius: 0px;
+  vertical-align: top;
+  border-bottom: 1px solid DarkGray;
+  border-right: 1px solid DarkGray;
+  -moz-box-shadow: 0px 3px 7px DarkGray;
+  -webkit-box-shadow: 0px 3px 7px DarkGray;
+  box-shadow: 0px 3px 7px DarkGray;
+}
+
+div#contentarea {
+    font-size: 0.8em;
+    clear: both;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1620px;
+    position: relative;
+    top: 60px;
+
+}
+
 
 /*CALCULATION HELP*/
 
@@ -123,6 +175,10 @@ div.base span {
     right: 0;
 }
 
+div.base h3:hover {
+  text-decoration:underline;
+}
+
 /*AUTHENTICATION FORMS*/
 
 #sign_up, #sign_in {
@@ -131,8 +187,12 @@ div.base span {
   margin-left: auto;
   margin-right: auto;
   height: auto;
-  padding: 30px;
-  width: 600px;
+  width: 660px;
+}
+
+#sign_up .content_pane, #sign_in .content_pane {
+    padding: 30px;
+    width: 600px;
 }
 
 
@@ -194,10 +254,6 @@ div.base span {
   white-space: nowrap;  
 }
 
-.button {
-
-}
-
 .form input[type='submit']:hover {
   background: #c8d828;
 }
@@ -207,19 +263,26 @@ div.base span {
   top: 100px;
   margin-left: auto;
   margin-right: auto;
-  padding: 30px;
-  padding-bottom: 60px;
   width: 600px;
-  overflow: auto;
+  
 }
 
-#admin #user_table {
-  padding: 30px;
+#admin .content_pane {
+    padding: 30px;
+    padding-bottom: 20px;
+    width: 440px;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+.content_pane #user_table {
+  padding: 20px;
   position: relative;
-  width: 550px;
+  width: 400px;
 }
 
-#admin #user_table table {
+.content_pane #user_table table {
     position: relative;
     clear: both;
     width: 400px;
@@ -241,7 +304,6 @@ div.base span {
 
 #add_user {
     position: relative;
-    float: right;
     background: #E0E0E0;
     padding: 7px 10px;
     font-size: 13px;
@@ -257,12 +319,13 @@ div.base span {
     -moz-border-radius-bottomright: 5px;
     -webkit-border-bottom-left-radius: 5px;
     -webkit-border-bottom-right-radius: 5px;
-    white-space: nowrap;
     color: Black;
     text-shadow: 2px 2px 2px White;
     text-decoration: none;
-    margin-top: 10px;
-    margin-right: 0px;
+    margin-top: 20px;
+    display:inline-block;
+    text-align:center;
+
 }
 
 #add_user:hover {
@@ -466,12 +529,19 @@ h3 {
 }
 
 
-#user {
-    width: 700px;
+#help-page {
+    width: 800px;
     top: 40px;
     position: relative;
+    margin-left: auto;
+    margin-right: auto;
     padding: 30px;
     margin-bottom: 200px;
+}
+
+#help-page .content_pane {
+    width: 800px;
+    padding: 40px;
 }
 
 h2.instructions {
@@ -513,17 +583,6 @@ a {
 
 img {
     vertical-align: middle;
-}
-
-div#contentarea {
-    font-size: 0.8em;
-    clear: both;
-    margin-left: auto;
-    margin-right: auto;
-    width: 1620px;
-    position: relative;
-    top: 60px;
-
 }
 
 .content_pane {
@@ -733,7 +792,6 @@ td.calc-name {
 td.amee-drill:hover, td.amee-drill:focus, td.amee-profile:hover, td.amee-drill:focus, td.amee-metadatum:hover, td.amee-metadatum:focus {
     background: #F8F8F8;
     border: 1px solid LightGray;
-
 }
 
 td.amee-output {
@@ -767,8 +825,8 @@ td select, input {
     font-family: 'Trebuchet MS', Helvetica, sans-serif;
     color: Darkgray;
     vertical-align: middle;
-    text-align:right;
-    padding-right: 5px;
+    text-align: right;
+    padding-right: 10px;
     font-size: 100%;
     width: auto;
     display: inherit;
@@ -781,7 +839,6 @@ td input {
 td select:focus, input:focus {
     background: inherit;
     color: DarkGray;
-    font-weight: bolder;
 }
 
 td select:hover, input:hover {
@@ -865,13 +922,20 @@ div.clear {
 }
 
 #amee-strap-big {
-  position: absolute;
-  bottom: -220px;
-  left: 75px;
+  position: relative;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 
 #feedback {
     width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#feedback .content_pane {
     padding: 50px;
 }
 
