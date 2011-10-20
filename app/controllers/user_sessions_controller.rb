@@ -1,4 +1,4 @@
-class UserSessionsController < ApplicationController
+class UserSessionsController < AMEE::Auth::UserSessionsController
 
   before_filter :is_demo_instance?
 

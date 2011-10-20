@@ -9,13 +9,15 @@
   <div class="links">
     <% if optional %>
       <div class="link">
-        <%= link_to_remote 'Show compulsory inputs only', :url => toggle_optional_path(:type => @prototype_calculation.label,
-                                                                                       :show_optional => 'false') %>
+        <%= link_to 'Show compulsory inputs only', :url => toggle_optional_path(:type => @prototype_calculation.label,
+                                                                                :show_optional => 'false'),
+                                                   :remote => true %>
       </div>
     <% else %>
       <div class="link">
-      <%= link_to_remote 'Show optional inputs', :url => toggle_optional_path(:type => @prototype_calculation.label,
-                                                                    :show_optional => 'true') %>
+      <%= link_to 'Show optional inputs', :url => toggle_optional_path(:type => @prototype_calculation.label,
+                                                                       :show_optional => 'true'),
+                                          :remote => true %>
       </div>
     <% end %>
     <div id="guide-switch" class="link">
@@ -32,10 +34,12 @@
           <th>
             <span class="column-header"><%=  term.name %></span>
             <span class="sort-buttons">
-              <%=link_to_remote up_image, :url => sort_path(:type => @prototype_calculation.label,
-                                                            :ascending => term.label)%>
-              <%=link_to_remote down_image, :url => sort_path(:type => @prototype_calculation.label,
-                                                              :descending => term.label)%>
+              <%=link_to up_image, :url => sort_path(:type => @prototype_calculation.label,
+                                                     :ascending => term.label),
+                                   :remote => true %>
+              <%=link_to down_image, :url => sort_path(:type => @prototype_calculation.label,
+                                                       :descending => term.label),
+                                     :remote => true %>
             </span>
           </th>
         <%end%>
@@ -53,11 +57,12 @@
   <div id="table-base-nav">
     <span id="add-calc">
       <% image = image_tag "add_calc.png", :alt => 'Add a calculation' %>
-      <%= link_to_remote 'Add a calculation'+image, :url => add_path(:type => @prototype_calculation.label) %>
+      <%= link_to raw("Add a calculation"+image), :url => add_path(:type => @prototype_calculation.label),
+                                             :remote => true %>
     </span>
     <span id="summary-link">
       <% image = image_tag "go_to_summary.png", :alt => 'Go to summary' %>
-      <%= link_to 'Go to summary page'+image, summary_path %>
+      <%= link_to raw("Go to summary page"+image), summary_path %>
     </span>
   </div>
 </div>

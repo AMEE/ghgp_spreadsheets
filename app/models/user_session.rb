@@ -1,5 +1,5 @@
 
-class UserSession < AMEE::Authentication::UserSession
+class UserSession < AMEE::Auth::UserSession
 
 
 end

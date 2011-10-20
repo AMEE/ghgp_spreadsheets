@@ -35,7 +35,7 @@ class CalculationController < ApplicationController
     @calculations = find_calculations_by_type(type, :minimum => MINIMUM_TABLE_SIZE_IN_ROWS)
     @prototype_calculation = CalculationController.calculation_set.calculations[type]
     @title = @prototype_calculation.name
-    render :partial => 'calculation', :layout=> 'application'
+    render '_calculation'
   end
 
   def add
@@ -53,6 +53,7 @@ class CalculationController < ApplicationController
   end
 
   def update
+    pp params
     if id = params['id']
       @calculation = find_calculation_by_id(id)
     else

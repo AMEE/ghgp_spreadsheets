@@ -1,5 +1,5 @@
 
-class UsersController < AmeeAuthUsersController
+class UsersController < Amee::Auth::UsersController
 
   include ApplicationHelper
   before_filter :login_required

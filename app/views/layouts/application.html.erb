@@ -5,7 +5,11 @@
   <head>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <title><%= $tool_name %> GHG calculation tool</title>
-    <%= javascript_include_tag :defaults %>
+    <%= javascript_include_tag 'rails' %>
+    <%= javascript_include_tag 'application' %>
+    <%= javascript_include_tag 'jquery.ba-bbq' %>
+    <%= javascript_include_tag 'jquery' %>
+    <%= javascript_include_tag 'jquery-ui' %>
     <%= render :partial => "calculation/tab_scripts" %>
     <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
     <%= stylesheet_link_tag 'main' %>
