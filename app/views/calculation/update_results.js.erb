@@ -1,0 +1,5 @@
+$('#totals').html('<%= escape_javascript(render :partial => 'total_row', :locals => { :calculations => @calculations, :prototype_calculation => @prototype_calculation }) %>');
+<% @calculation.outputs.visible.each do |term| %>
+  $('#<%=@row_id %>-<%= term.label %>').html('<%= escape_javascript(show_term_tag(term,:decimal_places => 2)) %>');
+<% end %>
+setTableContainerWidths();

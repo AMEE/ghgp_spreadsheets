@@ -1,11 +1,14 @@
-
-class UsersController < Amee::Auth::UsersController
+class UsersController < ApplicationController
 
   include ApplicationHelper
   before_filter :login_required
   before_filter :admin_login_required
 
   layout 'layouts/application'
+
+  def new
+    @user = User.new
+  end
 
   def create
     @user = User.new(params[:user])

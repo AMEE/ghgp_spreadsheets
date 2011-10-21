@@ -55,12 +55,11 @@
       $(this).toggleClass('scroll_tab_click');
     });
 
-    $('#scroll_left, #scroll_right').mouseenter(function() {
-      $(this).css('cursor','pointer');
-      }, function() {
-      $(this).css('cursor','auto');
+    $('#scroll_left, #scroll_right').live('mouseover', function() {
+        $(this).css('cursor','pointer');
+      },function() {
+        $(this).css('cursor','auto');
     });
-
 
   });
 

@@ -1,6 +1,6 @@
 <%= render :partial => 'calculation_scripts' %>
 <%= render :partial => 'help' %>
-<span class="ajaxloader" style="display:none;"><%= image_tag 'loading.gif' %></span>
+<span class="ajaxloader" style="display:none;"><%= image_tag 'loading_small.gif' %></span>
 <div id="calculation_page" class="content_pane">
   <div id="amee-strap" class="calculation">
     <%= image_tag 'AMEE-Logo2011-LINE_Green-small.png', :alt => 'AMEE: Environment Intelligence. Everywhere' %>
@@ -8,21 +8,22 @@
   <% optional = session[@prototype_calculation.label][:show_optional] %>
   <div class="links">
     <% if optional %>
-      <div class="link">
-        <%= link_to 'Show compulsory inputs only', :url => toggle_optional_path(:type => @prototype_calculation.label,
-                                                                                :show_optional => 'false'),
+      <div class="link" id="toggle-optional">
+        <%= link_to 'Show compulsory inputs only', toggle_optional_path(:type => @prototype_calculation.label,
+                                                                        :show_optional => 'false'),
                                                    :remote => true %>
       </div>
     <% else %>
-      <div class="link">
-      <%= link_to 'Show optional inputs', :url => toggle_optional_path(:type => @prototype_calculation.label,
-                                                                       :show_optional => 'true'),
+      <div class="link" id="toggle-optional">
+      <%= link_to 'Show optional inputs', toggle_optional_path(:type => @prototype_calculation.label,
+                                                               :show_optional => 'true'),
                                           :remote => true %>
       </div>
     <% end %>
     <div id="guide-switch" class="link">
       <%= "Show guide" %>
     </div>
+    <div id="empty-tab"></div>
   </div>
   <br />
   <div id="table_container">
@@ -34,11 +35,11 @@
           <th>
             <span class="column-header"><%=  term.name %></span>
             <span class="sort-buttons">
-              <%=link_to up_image, :url => sort_path(:type => @prototype_calculation.label,
-                                                     :ascending => term.label),
+              <%=link_to up_image, sort_path(:type => @prototype_calculation.label,
+                                             :ascending => term.label),
                                    :remote => true %>
-              <%=link_to down_image, :url => sort_path(:type => @prototype_calculation.label,
-                                                       :descending => term.label),
+              <%=link_to down_image, sort_path(:type => @prototype_calculation.label,
+                                               :descending => term.label),
                                      :remote => true %>
             </span>
           </th>
@@ -57,8 +58,8 @@
   <div id="table-base-nav">
     <span id="add-calc">
       <% image = image_tag "add_calc.png", :alt => 'Add a calculation' %>
-      <%= link_to raw("Add a calculation"+image), :url => add_path(:type => @prototype_calculation.label),
-                                             :remote => true %>
+      <%= link_to raw("Add a calculation"+image), add_path(:type => @prototype_calculation.label),
+                                                  :remote => true %>
     </span>
     <span id="summary-link">
       <% image = image_tag "go_to_summary.png", :alt => 'Go to summary' %>

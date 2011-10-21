@@ -1,0 +1,4 @@
+$('#totals_table').html('<%= escape_javascript( render(:partial => 'totals_table')) %>');
+$('#chart_container').html('<%= escape_javascript( render(:partial => 'totals_chart')) %>');
+$('#chart_container img').fadeIn(2000);
+setContainerWidth();

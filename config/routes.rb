@@ -16,12 +16,12 @@ GHGSuite::Application.routes.draw do
 
   match "feedback" => 'application#feedback', :as => :feedback
   match "report" => 'calculation#report', :as => :report
-  match "calculations/update" => 'calculation#update', :as => :update
-  match "calculations/:type" => 'calculation#calculation', :as => :calculation
-  match "calculations/delete/:row" => 'calculation#delete', :as => :delete
-  match "calculation/add/:type" => 'calculation#add', :as => :add
+  match "calculation/update" => 'calculation#update', :as => :update
+  match "calculation/:row/delete" => 'calculation#delete', :as => :delete
+  match "calculation/:type/add" => 'calculation#add', :as => :add
   match "calculation/:type/sort" => 'calculation#sort', :as => :sort
   match "calculation/:type/toggle_optional" => 'calculation#toggle_optional', :as => :toggle_optional
+  match "calculation/:type" => 'calculation#calculation', :as => :calculation
   match "summary" => 'calculation#summary', :as => :summary
   match "summary/update" => 'calculation#update_summary', :as => :update_summary
   match "help" => 'application#help', :as => :help

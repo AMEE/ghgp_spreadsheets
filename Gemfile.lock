@@ -35,9 +35,9 @@ GEM
       json
       log4r
       nokogiri (~> 1.4.4)
-    amee-analytics (2.1.0)
+    amee-analytics (2.1.1)
       amee-data-abstraction (~> 2.2)
-      amee-data-persistence (~> 2.1)
+      amee-data-persistence (~> 2.2)
     amee-auth (1.0.0)
       acl9 (~> 0.12.0)
       actionpack (~> 3.0.10)
@@ -51,7 +51,7 @@ GEM
       uuidtools (= 2.1.2)
     amee-data-entry (2.0.0)
       amee-data-abstraction (~> 2.2.0)
-    amee-data-persistence (2.1.0)
+    amee-data-persistence (2.2.0)
       activerecord (~> 3.0.10)
       amee-data-abstraction (~> 2.2.0)
     arel (2.0.10)
@@ -115,11 +115,11 @@ PLATFORMS
 
 DEPENDENCIES
   amee (~> 4.0)
-  amee-analytics (~> 2.1.0)
+  amee-analytics (~> 2.1.1)
   amee-auth (>= 1.0.0)
   amee-data-abstraction (~> 2.2.0)
   amee-data-entry (~> 2.0.0)
-  amee-data-persistence (~> 2.1.0)
+  amee-data-persistence (~> 2.2.0)
   pdfkit
   rails (~> 3.0.0)
   rspec (~> 1.3)

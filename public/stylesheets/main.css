@@ -645,6 +645,10 @@ img {
   clear: both;
 }
 
+#calculation_page .link, #totals_page .link {
+  display: inline;
+}
+
 #table_chart_wrapper {
   position: relative;
   display: inline-block;
@@ -695,6 +699,15 @@ img {
 }
 #calculation_page .links .link a, #totals_page .links .link a:hover {
   color: #000;
+}
+
+#empty-tab {
+    background-color: White;
+    padding: 0px;
+    width: 20px;
+    height: 17px;
+    display:inline;
+    text-align: center;
 }
 
 /* TABLE STYLES */

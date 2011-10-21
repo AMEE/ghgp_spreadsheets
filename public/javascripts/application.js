@@ -18,9 +18,9 @@ function renderLoadingGif(wrappedSet) {
 $(document).ready(function(){
   $('#contentarea').hide().fadeIn('slow');
 
-  $("input[type='submit']").mouseenter(function() {
+  $("input[type='submit']").live('mouseover', function() {
     $(this).css('cursor','pointer');
-    }, function() {
+   },function() {
     $(this).css('cursor','auto');
   });
 });

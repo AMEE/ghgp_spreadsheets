@@ -9,7 +9,6 @@ class CalculationController < ApplicationController
   MINIMUM_TABLE_SIZE_IN_ROWS = 8
 
   def summary
-    puts Rails.root
     @title = 'Emissions summary'
     @prototype_outputs = prototype_outputs_in_order
     @headers = @prototype_outputs.map { |output| output.name }.unshift("Calculation methodology")
@@ -33,7 +32,7 @@ class CalculationController < ApplicationController
       session[type] = { :show_optional => false }
     end
     @calculations = find_calculations_by_type(type, :minimum => MINIMUM_TABLE_SIZE_IN_ROWS)
-    @prototype_calculation = CalculationController.calculation_set.calculations[type]
+    @prototype_calculation = @prototype_calculations[type]
     @title = @prototype_calculation.name
     render '_calculation'
   end
@@ -49,11 +48,9 @@ class CalculationController < ApplicationController
     @row_id = params[:row]
     @calculations = find_calculations_by_type(@calculation.label)
     @prototype_calculation = @prototype_calculations[@calculation.label]
-    render 'delete.rjs'
   end
 
   def update
-    pp params
     if id = params['id']
       @calculation = find_calculation_by_id(id)
     else
@@ -63,15 +60,16 @@ class CalculationController < ApplicationController
       @calculation.clear_invalid_terms!
       @calculation.autodrill
     end
-    @calculation.calculate! 
+    @calculation.calculate!
+    @calculation.dirty!
     @calculation.save
     @calculations = find_calculations_by_type(@calculation.label)
     @prototype_calculation = @prototype_calculations[@calculation.label]
     @row_id = params['row']
     if params['id'].nil? || (@calculation[params['path'].to_sym].is_a? AMEE::DataAbstraction::Drill)
-      render 'update_row.rjs'
+      render 'update_row.js'
     else
-      render 'update_results.rjs'
+      render 'update_results.js'
     end
   end
 
@@ -86,7 +84,7 @@ class CalculationController < ApplicationController
     @calculations = find_calculations_by_type(type, :minimum => MINIMUM_TABLE_SIZE_IN_ROWS)
     @prototype_calculation = @prototype_calculations[type]
     @title = @prototype_calculation.name
-    render 'update.rjs'
+    render 'update.js'
   end
 
   def sort
@@ -101,7 +99,7 @@ class CalculationController < ApplicationController
         @calculations << initialize_calculation(type)
       end
     end
-    render 'update.rjs'
+    render 'update.js'
   end
 
   protected
@@ -169,7 +167,7 @@ class CalculationController < ApplicationController
       if calculations.respond_to?(output.label)
         totals << calculations.send(output.label).sum
       else
-        totals << AMEE::DataAbstraction::Result.new { name output.name; label output.label; value 0.0}
+        totals << AMEE::Analytics::Result.new { name output.name; label output.label; value 0.0}
       end
     end
     totals << co2e_sum = calculations.co2_or_co2e_outputs.sum and co2e_sum.label(:co2e) and co2e_sum.name('CO2e')

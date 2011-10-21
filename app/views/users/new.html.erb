@@ -1,15 +1,19 @@
-<div id="sign_up" class="content_pane">
-  <h3>Add a new user</h3>
-  <div class="form">
-  <% form_for @user do |f| %>
-    <%= f.error_messages %>
-    <table>
-      <tr><td class="label">Email</td><td><%= f.text_field :email %></td></tr>
-      <tr><td class="label">Password</td><td><%= f.password_field :password %></td></tr>
-      <tr><td class="label">Confirm password</td><td><%= f.password_field :password_confirmation %></td></tr>
-      <tr><td class="label">Admin user?</td><td><%= f.check_box(:admin) %></td></tr>
-    </table>
-    <%= f.submit 'Add' %>
-  <% end %>
+<div id="sign_up">
+  <div class="content_pane">
+    <h3>Add a new user</h3>
+    <div class="form">
+      <%= form_for @user do |f| %>
+        <table>
+          <tr><td class="label">Email</td><td><%= f.text_field :email %></td></tr>
+          <tr><td class="label">Password</td><td><%= f.password_field :password %></td></tr>
+          <tr><td class="label">Confirm password</td><td><%= f.password_field :password_confirmation %></td></tr>
+          <tr><td class="label">Admin user?</td><td><%= f.check_box(:admin) %></td></tr>
+        </table>
+        <%= f.submit 'Add' %>
+      <% end %>
+    </div>
+  </div>
+  <div id="amee-strap-big">
+    <%= image_tag 'AMEE-Logo2011-LINE_Green.png', :alt => 'AMEE: Environment Intelligence. Everywhere' %>
   </div>
 </div>

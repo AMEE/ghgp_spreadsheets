@@ -1,23 +1,21 @@
 <div id="admin">
   <div class="content_pane">
-  <h3> Registered users</h3>
-  <div id="user_table">
-    <table>
-      <% @users.each do |user| %>
-        <tr>
-          <% delete_symbol = image_tag "delete.png", :alt => 'Delete' %>
-          <td><%= link_to user.email, edit_user_path(user) %></td><td class="delete"><%=link_to delete_symbol, user_path(user), :method => 'delete', :confirm => "Are you sure you want to remove the user #{user.email}?" %></td>
-        </tr>
-      <% end %>
-    </table>
-    <div id="add_user">
-    <%= link_to 'Add a new user', new_user_path %>
+    <h3> Registered users</h3>
+    <div id="user_table">
+      <table>
+        <% @users.each do |user| %>
+          <tr>
+            <% delete_symbol = image_tag "delete.png", :alt => 'Delete' %>
+            <td><%= link_to user.email, edit_user_path(user) %></td><td class="delete"><%=link_to delete_symbol, user_path(user), :method => 'delete', :confirm => "Are you sure you want to remove the user #{user.email}?" %></td>
+          </tr>
+        <% end %>
+      </table>
+      <div id="add_user">
+        <%= link_to 'Add a new user', new_user_path %>
+      </div>
+    </div>
   </div>
-    
+  <div id="amee-strap-big">
+    <%= image_tag 'AMEE-Logo2011-LINE_Green.png', :alt => 'AMEE: Environment Intelligence. Everywhere' %>
   </div>
-  
-</div>
-<div id="amee-strap-big">
-  <%= image_tag 'AMEE-Logo2011-LINE_Green.png', :alt => 'AMEE: Environment Intelligence. Everywhere' %>
-</div>
 </div>

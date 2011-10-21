@@ -1,4 +1,4 @@
-<% content_for :head do %>
+<% content_for :js do %>
 
   <%= javascript_tag do %>
 
@@ -6,7 +6,7 @@
 
       setTableContainerWidths();
 
-      $("select.amee-drill, .amee-profile, .amee-metadatum").live('change',function() {
+      $(".amee-drill:not(td), .amee-profile:not(td), .amee-metadatum:not(td)").live('change',function() {
         data = rowParamString($(this))+"&"+termParamString($(this))
         row = $(this).closest('tr');
         if (!hasDbRecord($(this)) || $(this).is('.amee-drill')) {
@@ -55,6 +55,15 @@
       $('div.base').live('click',function () {
         window.open($(this).find('h3').attr('data'));
       });
+
+      $('.delete-link').live('ajax:before', function() {
+        $(this).closest('tr').fadeOut('slow');
+      });
+
+      $('#toggle-optional').live('ajax:before', function() {
+        renderLoadingGif($('#empty-tab'));
+      });
+
     });
 
     function toggleGuide() {
@@ -166,7 +175,7 @@
         data:     string,
         dataType: 'script',
         type:     'post',
-        url:      '/calculations/update'
+        url:      '/calculation/update'
       });
 
     }
