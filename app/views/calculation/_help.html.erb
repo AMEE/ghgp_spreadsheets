@@ -1,28 +1,29 @@
 <% optional = session[@prototype_calculation.label][:show_optional] %>
 <div id="guide_container" style="display:none">
-<%= image_tag "close_guide.png", :alt => 'Close guide', :id => "close-guide" %>
-<div id="help_container">
-  
-  <div id="help">
-    <div class="note head">
-      <h3 class="note"><%= @prototype_calculation.name %></h3>
-      <p class="note"><%= @prototype_calculation[:note] %></p>
-      <p class="note">See below for information on each methodology component...</p>
-    </div>
-    <% calculation_terms_in_table_order(@prototype_calculation,optional).each do |term| %>
-      <div class="note">
-        <h3 class="note"><%= term.name %></h3>
-        <p class="note"><%= term.note %></p>
+  <%= image_tag "close_guide.png", :alt => 'Close guide', :id => "close-guide" %>
+  <div id="help_container">
+    <div id="help">
+      <div class="note head">
+        <h3 class="note"><%= @prototype_calculation.name %></h3>
+        <p class="note"><%= @prototype_calculation[:note] %></p>
+        <p class="note">See below for information on each methodology component...</p>
       </div>
-    <%end%>
-    <div class="note base">
-      <h3 class="note" data="<%= @prototype_calculation.discover_url %>">
-        See this methodology in AMEEdiscover >>
-        <span>
+      <% calculation_terms_in_table_order(@prototype_calculation,optional).each do |term| %>
+        <div class="note">
+          <h3 class="note"><%= term.name %></h3>
+          <p class="note"><%= term.note %></p>
+        </div>
+      <%end%>
+      <div class="note base">
+        <span id="discover-link">
+          <h3 class="note" data="<%= @prototype_calculation.discover_url %>">
+            See this methodology in AMEEdiscover >>
+          </h3>
+        </span>
+        <span id="discover-logo">
           <%= image_tag "AMEE_bug_34x36.png", :alt => 'AMEEdiscover' %>
         </span>
-      </h3>
+      </div>
     </div>
   </div>
-</div>
 </div>

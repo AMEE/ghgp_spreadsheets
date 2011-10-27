@@ -61,7 +61,6 @@ class CalculationController < ApplicationController
       @calculation.autodrill
     end
     @calculation.calculate!
-    @calculation.dirty!
     @calculation.save
     @calculations = find_calculations_by_type(@calculation.label)
     @prototype_calculation = @prototype_calculations[@calculation.label]

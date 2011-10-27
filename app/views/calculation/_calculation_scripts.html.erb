@@ -6,6 +6,12 @@
 
       setTableContainerWidths();
 
+      /* This is supposed to aid the use of the 'change' event handler in IE
+       * This seems to be working now!
+       *
+       * $('select').bind('onChange',function(){$(this).blur()});
+       */
+       
       $(".amee-drill:not(td), .amee-profile:not(td), .amee-metadatum:not(td)").live('change',function() {
         data = rowParamString($(this))+"&"+termParamString($(this))
         row = $(this).closest('tr');
@@ -121,11 +127,11 @@
     function setTableContainerWidths() {
       setDrillWidths();
       var tableWidth = $('#calculation_table').width();
-      if (tableWidth > 1480) {
-        tableWidth = 1480;
+      if (tableWidth > 940) {
+        tableWidth = 940;
       }
       $('#table_container').width(tableWidth);
-      $('#calculation_page').width(tableWidth+25);
+      $('#calculation_page').width(tableWidth);
       $('#table-base-nav').width(tableWidth);
       $('#summary-link').css({float: 'right'});
     }

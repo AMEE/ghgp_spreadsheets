@@ -7,18 +7,19 @@
     <% labels = totals.map(&:name).join('|') %>
     <% y_scale = totals.map(&:value).max.to_f %>
     <% values = totals.map(&:value).join(',') %>
-    <% width = 400 %>
+    <% width = 300 %>
     <% bar_width = (width-100)/(totals.size)%>
     <%- url = "http://chart.apis.google.com/chart?"
       url += "chf=a,s,000000CD"
       url += "&chxl=0:|#{labels}"
       url += "&chxr=1,0,#{y_scale}"
-      url += "&chxs=0,676767,18|1,676767,15"
+      url += "&chxs=0,676767,12|1,676767,12"
       url += "&chxt=x,y"
       url += "&chbh=#{bar_width}"
-      url += "&chs=#{width}x450"
+      url += "&chs=#{width}x350"
       url += "&cht=bvg"
       url += "&chco=3F9D9B"
+      url += "&chma=60"
       url += "&chds=0,#{y_scale}"
       url += "&chd=t:#{values}" -%>
   <img src="<%= url %>" />

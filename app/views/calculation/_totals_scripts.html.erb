@@ -9,7 +9,7 @@
       tableCells$ = $('td.totals_table_cell');
 
       tableCells$.each(function() {
-        $(this).css('width', 120);
+        $(this).css('width', 100);
       });
 
       renderLoadingGif(tableCells$);
@@ -26,9 +26,9 @@
       var tableWidth = $('#totals_table').width();
       $('#table_tab_wrapper').width(tableWidth);
 
-      if (tableWidth < 1000) {
-        $('#table_chart_wrapper').width(tableWidth+460);
-        $('#totals_page').width(tableWidth+460);
+      if (tableWidth < 640) {
+        $('#table_chart_wrapper').width(tableWidth+320);
+        $('#totals_page').width(tableWidth+320);
       } else {
         $('#table_chart_wrapper').width(tableWidth);
         $('#totals_page').width(tableWidth);
