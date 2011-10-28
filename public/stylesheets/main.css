@@ -668,17 +668,17 @@ img {
 #table_tab_wrapper {
   position: relative;
   float: left;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 #totals_page .links .link img {
   padding-left: 8px;
-  padding-bottom: 2px;
 }
 
 #totals_table {
   position: relative;
   top: 22px;
-  padding-bottom: 20px;
 }
 
 #calculation_page .links .link, #totals_page .links .link {
@@ -911,17 +911,15 @@ div.clear {
 
 #chart_container {
     position: relative;
-    width: 300px;
-    float: right;
-    top: 30px;
+    width: 250px;
+    margin-top: 0px;
     padding-bottom: 20px;
     font-size: 150%;
 }
 
-#chart_container img {
+#chart-wrapper {
     display: none;
     position: relative;
-    float: right;
 }
 
 #empty_chart_banner {

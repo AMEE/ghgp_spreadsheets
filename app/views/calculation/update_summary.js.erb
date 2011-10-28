@@ -1,5 +1,4 @@
 $('#totals_table').html('<%= escape_javascript( render(:partial => 'totals_table')) %>');
 $('#chart_container').html('<%= escape_javascript( render(:partial => 'totals_chart')) %>');
-$('#chart_container img').slideDown(200, function() {
-  setContainerDimensions();
-});
+$('#chart-wrapper').show().height(350);
+setContainerDimensions();

@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
   end
 
   def is_demo_instance?
-    @demo = request.host =~ /(-demo|localhost)/ ? true : false
+    @demo = request.host =~ /(-demo)/ ? true : false
   end
 
 end

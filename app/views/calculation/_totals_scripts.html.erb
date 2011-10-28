@@ -29,25 +29,25 @@
       var verticalPadding = 50;
 
       $('#table_tab_wrapper').width(tableWidth);
-
-      if (tableWidth < 640) {
-        var horizontalPadding = 320;
+      
+      if (tableWidth < 680) {
+        var horizontalPadding = 280;
         $('#table_chart_wrapper').width(tableWidth+horizontalPadding);
         $('#totals_page').width(tableWidth+horizontalPadding);
         if (tableTabHeight > chartHeight) {
           $('#totals_page').height(tableTabHeight+verticalPadding);
+          $('#chart_container').css('top', (($('#table_chart_wrapper').height()-chartHeight)/2));
         } else {
           $('#totals_page').height(chartHeight+verticalPadding);
+          $('#chart_container').css('top',20);
         }
+        $('#chart_container').css('float','right')
       } else {
         var chartWidth = $('#chart_container').width();
-        if (chartHeight < 300) {
-          chartHeight = 70;
-        }
         $('#table_chart_wrapper').width(tableWidth);
         $('#totals_page').width(tableWidth);
         $('#totals_page').height(tableTabHeight+chartHeight+verticalPadding);
-        $('#chart_container').css('float', 'none').css('margin-left', ((tableWidth-chartWidth)/2));
+        $('#chart_container').css('clear','both').css('margin-left', ((tableWidth-chartWidth)/2));
       }
     }
 
