@@ -4,7 +4,7 @@
 
     $(document).ready(function(){
 
-      setContainerWidth();
+      setContainerDimensions();
 
       tableCells$ = $('td.totals_table_cell');
 
@@ -22,17 +22,32 @@
 
     });
 
-    function setContainerWidth() {
+    function setContainerDimensions() {
       var tableWidth = $('#totals_table').width();
+      var tableTabHeight = $('#table_tab_wrapper').height();
+      var chartHeight = $('#chart_container').height();
+      var verticalPadding = 50;
+
       $('#table_tab_wrapper').width(tableWidth);
 
       if (tableWidth < 640) {
-        $('#table_chart_wrapper').width(tableWidth+320);
-        $('#totals_page').width(tableWidth+320);
+        var horizontalPadding = 320;
+        $('#table_chart_wrapper').width(tableWidth+horizontalPadding);
+        $('#totals_page').width(tableWidth+horizontalPadding);
+        if (tableTabHeight > chartHeight) {
+          $('#totals_page').height(tableTabHeight+verticalPadding);
+        } else {
+          $('#totals_page').height(chartHeight+verticalPadding);
+        }
       } else {
+        var chartWidth = $('#chart_container').width();
+        if (chartHeight < 300) {
+          chartHeight = 70;
+        }
         $('#table_chart_wrapper').width(tableWidth);
         $('#totals_page').width(tableWidth);
-        $('#chart_container').css('float', 'left').css('clear', 'left');
+        $('#totals_page').height(tableTabHeight+chartHeight+verticalPadding);
+        $('#chart_container').css('float', 'none').css('margin-left', ((tableWidth-chartWidth)/2));
       }
     }
 

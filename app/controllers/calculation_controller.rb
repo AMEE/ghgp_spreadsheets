@@ -9,7 +9,6 @@ class CalculationController < ApplicationController
   MINIMUM_TABLE_SIZE_IN_ROWS = 8
 
   def summary
-    @title = 'Emissions summary'
     @prototype_outputs = prototype_outputs_in_order
     @headers = @prototype_outputs.map { |output| output.name }.unshift("Calculation methodology")
     @table = @prototype_calculations.map do |label,calc|
