@@ -84,6 +84,7 @@ calculation {
     name "Facility ID"
     label :facility_id
     path "facility_id"
+    type :string
     interface :text_box
     note "Provide a reference for the facility under consideration"
   }
@@ -92,6 +93,7 @@ calculation {
     name "Unit ID"
     label :unit_id
     path "unit_id"
+    type :string
     interface :text_box
     note "Provide a reference for the unit under consideration"
   }
@@ -219,6 +221,7 @@ calculation {
     name "Facility ID"
     label :facility_id
     path "facility_id"
+    type :string
     interface :text_box
     note "Provide a reference for the facility under consideration"
   }
@@ -227,6 +230,7 @@ calculation {
     name "Unit ID"
     label :unit_id
     path "unit_id"
+    type :string
     interface :text_box
     note "Provide a reference for the unit under consideration"
   }
@@ -265,7 +269,7 @@ calculation {
     path "emissFlowRate"
     default_unit :m³
     default_per_unit :min
-    alternative_units :L, :bbl, :oz_fl_uk, :gal_uk, :gallon_dry_us, :oz_fl, :bbl_fl_us, :gal
+    alternative_units :L, :bbl, :oz_fl_uk, :oz_fl, :bbl_fl_us, :gal, :gallon_dry_us, :gal_uk
     alternative_per_units :s, :h, :month, :week, :year, :day
     unit :m³
     per_unit :min
@@ -281,7 +285,7 @@ calculation {
     default_unit :g
     default_per_unit :m³
     alternative_units :kg, :oz, :lb, :t, :Mg, :Gg, :ton_us, :ton_uk
-    alternative_per_units :L, :bbl, :oz_fl_uk, :gal_uk, :gallon_dry_us, :oz_fl, :bbl_fl_us, :gal
+    alternative_per_units :L, :bbl, :oz_fl_uk, :oz_fl, :bbl_fl_us, :gal, :gallon_dry_us, :gal_uk
     unit :g
     per_unit :m³
     type :decimal
@@ -313,6 +317,7 @@ calculation {
     name "Stream ID"
     label :stream_id
     path "stream_id"
+    type :string
     interface :text_box
     note "Provide a reference for the stream under consideration"
   }
@@ -330,6 +335,7 @@ calculation {
     name "Facility ID"
     label :facility_id
     path "facility_id"
+    type :string
     interface :text_box
     note "Provide a reference for the facility under consideration"
   }
@@ -338,6 +344,7 @@ calculation {
     name "Unit ID"
     label :unit_id
     path "unit_id"
+    type :string
     interface :text_box
     note "Provide a reference for the unit under consideration"
   }

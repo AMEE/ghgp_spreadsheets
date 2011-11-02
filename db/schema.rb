@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111027211048) do
+ActiveRecord::Schema.define(:version => 20111102202643) do
 
   create_table "calculations", :force => true do |t|
     t.string   "profile_uid"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(:version => 20111027211048) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "admin",              :default => false, :null => false
+    t.string   "return_unit",        :default => "kg",  :null => false
   end
 
 end

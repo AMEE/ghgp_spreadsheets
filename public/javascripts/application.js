@@ -1,13 +1,6 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 
-$(document).ajaxSend(function(event, request, settings) {
-  if (typeof(AUTH_TOKEN) == "undefined") return;
-  // settings.data is a serialized string like "foo=bar&baz=boink" (or null)
-  settings.data = settings.data || "";
-  settings.data += (settings.data ? "&" : "") + "authenticity_token=" + encodeURIComponent(AUTH_TOKEN);
-});
-
 function renderLoadingGif(wrappedSet) {
   var template = $('.ajaxloader');
   wrappedSet.each(function(){
@@ -22,5 +15,10 @@ $(document).ready(function(){
     $(this).css('cursor','pointer');
    },function() {
     $(this).css('cursor','auto');
+  });
+
+  $('.form table tr:first td').css('border-top', '1px dashed LightGray');
+  $('.form table tr').each(function() {
+    $(this).children('td:last').css('border-right', '1px dashed LightGray');
   });
 });

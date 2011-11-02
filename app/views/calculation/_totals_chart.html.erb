@@ -1,7 +1,7 @@
 <% totals = @totals.compact %>
 <% unless totals.map(&:value).all? {|value| value == 0.0} %>
   <div id="chart_banner">
-    <h3>Emissions by greenhouse gas (kg)</h3>
+    <h3>Emissions by greenhouse gas (<%= current_user.return_unit %>)</h3>
   </div>
   <div id="chart-wrapper">
     <% totals.delete_if {|term| term.label == :co2e } %>
@@ -17,7 +17,7 @@
       url += "&chxs=0,676767,12|1,676767,12"
       url += "&chxt=x,y"
       url += "&chbh=#{bar_width}"
-      url += "&chs=#{width}x350"
+      url += "&chs=#{width}x300"
       url += "&cht=bvg"
       url += "&chco=3F9D9B"
       url += "&chma=60"

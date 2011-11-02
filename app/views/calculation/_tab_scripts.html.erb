@@ -2,67 +2,139 @@
 
   $(document).ready(function(){
 
-    //alert($(window).width());
+    $(window).resize(function(){
+      centreTabs();
+    });
 
+    stackTabs();
+
+    // make selected tab more prominent
     $("#calculation_tabs .selected").each(function() {
-
-      // make selected tab more prominent
-
       var currentHeight = $(this).height();
-      var newHeight = currentHeight * 1.4;
+      var newHeight = currentHeight + 10;
       $(this).height(newHeight);
+    });
 
-      // scroll enough to show selected tab
-
-      var pageWidth = $(window).width();
-      var offset = $(this).offset();
-      $("div#moving_tabs").scrollLeft(offset.left-(pageWidth/2));
+    // Show fully opaque tabs on hover
+    $("#calculation_tabs .tabs").live('mouseenter',function(){
+      $("#tab-wrapper").removeClass('tab-opacity');
+    }).live('mouseleave',function(){
+      $("#tab-wrapper").addClass('tab-opacity');
     });
 
     unselectedTabs = $("#calculation_tabs .tab").filter(function(){
       return !$(this).hasClass('selected');
-    }).filter(function(){
-      return !$(this).hasClass('dummy');
     });
 
+    // Make tabs grow on hover
     unselectedTabs.bind('mouseenter',function() {
       currentHeight = $(this).height();
-      newHeight = currentHeight * 1.4;
+      newHeight = currentHeight + 10;
       $(this).height(newHeight);
     });
 
+    // Make tabs shrink on hover end
     unselectedTabs.bind('mouseleave',function() {
       currentHeight = $(this).height();
-      newHeight = currentHeight / 1.4;
+      newHeight = currentHeight - 10;
       $(this).height(newHeight);
-    });
-
-    $('#scroll_right').bind('mousedown',function() {
-      $('#moving_tabs').animate({scrollLeft: 2200}, 5000);
-    });
-
-    $('#scroll_right').bind('mouseup',function() {
-      $('#moving_tabs').stop();
-    });
-
-    $('#scroll_left').bind('mousedown',function() {
-      $('#moving_tabs').animate({scrollLeft: -1500}, 5000);
-    });
-
-    $('#scroll_left').bind('mouseup',function() {
-      $('#moving_tabs').stop();
-    });
-
-    $('#scroll_left, #scroll_right').bind('mousedown mouseup',function() {
-      $(this).toggleClass('scroll_tab_click');
-    });
-
-    $('#scroll_left, #scroll_right').live('mouseover', function() {
-        $(this).css('cursor','pointer');
-      },function() {
-        $(this).css('cursor','auto');
     });
 
   });
+
+  // tab row padding gives some flexibility to the tab stacking algorithm by
+  // providing some extra room within which to organise tabs into appropriately
+  // sized rows
+  var tabRowPadding = 100;
+  var tabPaddingAndMargin = 22;
+
+  function getCumulativeWidth(array) {
+    width = 0;
+    for (i=0; i<array.length; i++) {
+      width = width + $(array[i]).width()+tabPaddingAndMargin;
+    }
+    return width;
+  };
+
+  // Returns the current window width, minus some padding space
+  function windowWidthForTabs() {
+    windowWidth = $(window).width();
+    if (windowWidth < 1000) {
+      windowWidth = 1000;
+    }
+    windowWidth -= tabRowPadding;
+    return windowWidth;
+  }
+
+  function centreTabs() {
+    windowWidth = windowWidthForTabs();
+    $('.tabs').each(function() {
+      $(this).css('left', ((windowWidth-$(this).width())/2)+tabRowPadding/2);
+    });
+  }
+
+  function stackTabs() {
+
+    windowWidth = windowWidthForTabs();
+    tabs = $("div#tab-wrapper div.tabs .tab");
+
+    tabCount = tabs.length;
+    totalTabWidth = getCumulativeWidth(tabs);
+    numberOfRows = Math.ceil(totalTabWidth/windowWidth);
+    maxRowWidth = (totalTabWidth/numberOfRows);
+
+    // Allow some flexibility around row width if max width does not exceed
+    // padded window width
+    if ((maxRowWidth) < windowWidth){
+      maxRowWidth += tabRowPadding;
+    }
+
+    // Keep track of which tab algorithm is up to
+    cumulativeTabIndex = 0;
+
+    for (r = 0;r <= numberOfRows; r++) {
+      tabIndex = cumulativeTabIndex;
+      cumulativeWidth = 0;
+      while (cumulativeWidth < maxRowWidth){
+        if (tabIndex-1 > tabCount) {
+          break;
+        } else if (tabIndex-1 == tabCount) {
+          row = tabs.slice(cumulativeTabIndex,tabIndex);
+        } else {
+          // Find cumulative width using next tab for next iteration
+          row = tabs.slice(cumulativeTabIndex,tabIndex+1);
+          cumulativeWidth = getCumulativeWidth(row);
+
+          // Make row contain only tabs which have had width compared so far
+          if (row.length > 0){
+            row = row.slice(0,-1);
+          }
+        }
+        tabIndex = tabIndex+1;
+      }
+
+      $(row).filter($('.tab')).each(function(){
+        currentHeight = $(this).height();
+        $(this).height(currentHeight + (30 * r));
+      });
+
+      newRow = $(document.createElement("div")).addClass('tabs').append(row);
+      $('#tab-wrapper').append(newRow);
+
+      cumulativeTabIndex = tabIndex-1;
+    }
+
+    // Remove original tab container
+    $('#calculation_tabs #original-tabs').remove();
+
+    // Add the appropriate z-indices to each row
+    z=1;
+    $($('#calculation_tabs .tabs').get().reverse()).each(function(){
+      $(this).css('z-index', z);
+      z=z+1;
+    });
+    
+    centreTabs();
+  }
 
 <% end %>

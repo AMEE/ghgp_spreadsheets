@@ -5,6 +5,7 @@ all_calculations {
     label :reporting_period
     interface :text_box
     note "Provide a reference for the reporting period under consideration"
+    type 'string'
   }
 
   # Correct titles for outputs
@@ -200,22 +201,20 @@ calculation {
   }
 }
 
-=begin
-  # NOT ON LIVE SERVER YET
-  calculation {
-    name 'Flaring'
-    label :flaring
-    path '/business/processes/flaring/ghgp'
-    terms_from_amee 'default'
-    correcting (:type) { hide! }
-    correcting (:comment) { hide! }
-
+calculation {
+  name 'Flaring'
+  label :flaring
+  path '/business/processes/flaring/ghgp'
+  terms_from_amee 'default'
+  correcting (:type) { hide! }
+  correcting (:comment) { hide! }
+  
   metadatum {
     label :note
     value "This methodology enables the calculation of CO2, CH4 and CO2e emissions associated with the flaring of waste gases"
     hide!
   }
-=end
+}
   
 calculation {
   name 'Onsite lime production'

@@ -51,7 +51,7 @@ a {
   font-weight: bold;
   background: #c8d828;
   padding: 5px 10px;
-  font-size: 100%;
+  font-size: 80%;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   -moz-border-radius-bottomleft: 10px;
@@ -78,7 +78,7 @@ div#contentarea {
   margin-right: auto;
   width: 1000px;
   position: relative;
-  top: 60px;
+  top: 40px;
 }
 
 
@@ -88,15 +88,11 @@ div#contentarea {
   position: fixed;
   right: 0px;
   top: 30px;
-  z-index: 1;
+  z-index: 5;
   width: 260px;
-  height: 80%;
+  height: 75%;
   background: transparent;
   padding-top: 0;
-}
-
-#guide_container img {
-
 }
 
 #help_container {
@@ -169,7 +165,7 @@ div.base {
     position: relative;
 }
 
-div.base span#discover-link {
+div.base span#discover-link h3 {
   width: 60%;
   clear: none;
 }
@@ -225,6 +221,11 @@ div.base h3:hover {
   padding-right: 10px;
   font-size: 12px;
 }
+
+.form table td select {
+    text-align: center;
+}
+
 
 .form input[type='text'], .form input[type='password'] {
     text-align: left;
@@ -300,10 +301,11 @@ div.base h3:hover {
     text-align: left;
     padding-left: 10px;
     padding-right: 10px;
+    border: 1px dashed LightGray;
 }
 
 #user_table table a {
-    color: DarkGray;
+    color: #525252;
 }
 
 #user_table table a:hover {
@@ -341,45 +343,37 @@ div.base h3:hover {
 }
 
 
-#scroll_left {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    -moz-box-shadow: 2px 1px 5px DarkGray;
-    -webkit-box-shadow: 2px 1px 5px DarkGray;
-    box-shadow: 2px 1px 5px DarkGray;
-}
-
-#scroll_right {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    -moz-box-shadow: -2px 1px 5px DarkGray;
-    -webkit-box-shadow: -2px 1px 5px DarkGray;
-    box-shadow: -2px 1px 5px DarkGray;
-}
-
 div#calculation_tabs {
    position: fixed;
-   width: 100%;
    bottom: 0px;
-   white-space: nowrap;
    background: transparent;
    z-index: 2;
-   display: inline-block;
    font-size: 10px;
    white-space: nowrap;
-   overflow-x: hidden;
+   overflow-x: show;
    text-align: bottom;
+   width: 100%;
+   height: auto;
 }
 
-#moving_tabs {
-   position: relative;
+#tab-wrapper {
+    position: relative;
+}
+
+.tab-opacity {
+    filter:alpha(opacity=40);
+    opacity: 0.4;
+    -moz-opacity:0.4;
+}
+
+.tabs {
+   position: absolute;
    margin-bottom: 0;
    padding: 0;
+   margin: auto;
+   text-align: center;
+   padding: 0;
    bottom: 0;
-   left: 0px;
-   overflow-x: hidden;
    vertical-align: bottom;
 }
 
@@ -396,8 +390,9 @@ div#calculation_tabs {
   -webkit-border-top-right-radius: 10px;
   white-space: nowrap;
   vertical-align: bottom;
-  border-top: 1px solid LightGray;
+  border-top: 1px solid White;
   border-right: 1px solid DarkGray;
+  margin: 0 1px;
 }
 
 #header_tabs .tab {
@@ -426,31 +421,6 @@ div#calculation_tabs {
   box-shadow: 0px 3px 7px DarkGray;
 }
 
-.scroll_tab {
-  display: inline-block;
-  background: #3f9d9b;
-  padding: 6px 10px;
-  font-size: 10px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  -moz-border-radius-topleft: 10px;
-  -moz-border-radius-topright: 10px;
-  -webkit-border-top-left-radius: 10px;
-  -webkit-border-top-right-radius: 10px;
-  vertical-align: bottom;
-   border-top: 1px solid White;
-   border-right: 1px solid DarkGray;
-   border-left: 1px solid White;
-   z-index: 3;
-   color: White;
-}
-
-.scroll_tab_click {
-   background: #c8d828;
-   color: Black;
-   text-shadow: 2px 2px 2px White;
-}
-
 #calculation_tabs .tab a {
   color: Black;
   text-shadow: 2px 2px 2px White;
@@ -460,15 +430,6 @@ div#calculation_tabs {
 #calculation_tabs .selected a {
   color: White;
   text-shadow: none;
-}
-
-#calculation_tabs div.dummy, #calculation_tabs div.dummy:hover {
-    background: transparent;
-    border: none;
-    color: transparent;
-    -moz-box-shadow: none;
-   -webkit-box-shadow: none;
-   box-shadow: none;
 }
 
 #calculation_tabs .tab:hover {
@@ -487,15 +448,6 @@ div#calculation_tabs {
   -moz-box-shadow: 1px 1px 5px DarkGray;
    -webkit-box-shadow: 1px 1px 5px DarkGray;
    box-shadow: 1px 1px 5px DarkGray;
-}
-
-.dummy a {
-    color: transparent;
-}
-
-
-.dummy a:hover {
-    color: transparent;
 }
 
 #header_tabs .tab a {
@@ -531,7 +483,6 @@ h1 {
 h3 {
   margin-left: auto;
   margin-right: auto;
-  clear: both;
   text-align: center;
 }
 
@@ -547,7 +498,7 @@ h3 {
 }
 
 #help-page .content_pane {
-    width: 800px;
+    width: 740px;
     padding: 40px;
     padding-top: 30px;
 }
@@ -660,7 +611,6 @@ img {
   position: relative;
   display: inline-block;
   vertical-align: top;
-  width: auto;
   margin-left: auto;
   margin-right: auto;
 }
@@ -708,11 +658,26 @@ img {
   color: #000;
 }
 
-#empty-tab {
-    position: relative;
-    background-color: White;
-    width: 20px;
-    display:inline;
+#generic-loading {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    display: none;
+    z-index: 1;
+    background: #E8E8E8;
+    filter:alpha(opacity=40);
+    opacity: 0.4;
+    -moz-opacity:0.4;
+    
+}
+
+#generic-loading img {
+    z-index: 2;
+    position: absolute;
+    top: 50%;
+    left: 50%;
 }
 
 div#table_container {
@@ -783,19 +748,25 @@ tr.total td, tr#totals td {
     font-weight: bold;
     font-size: 170%;
     color:  #0B7883;
+    border: none;
 }
 
 td {
     text-align: right;
     padding: 3px;
+    padding-right: 8px;
     white-space: nowrap;
     position: relative;
-    background: White;
+    background-color: White;
     font-size: 140%;
-    color: Darkgray;
+    color: #525252;
     vertical-align: middle;
     width: auto;
-    border: 1px dashed #F0F0F0;
+    border-bottom: 1px dashed LightGray;/*#F0F0F0;*/
+    border-left: 1px dashed LightGray;
+    border-color: LightGray;
+    border-left-width: 1px;
+    border-left-style: dashed;
 }
 
 td.calc-name {
@@ -804,12 +775,11 @@ td.calc-name {
 }
 
 td.amee-drill:hover, td.amee-drill:focus, td.amee-profile:hover, td.amee-drill:focus, td.amee-metadatum:hover, td.amee-metadatum:focus {
-    background: #F8F8F8;
-    border: 1px solid LightGray;
+    background: #F0F0F0;
 }
 
 td.amee-output {
-    color: #787878;
+    color: #525252;
     min-width: 140px;
 }
 
@@ -835,15 +805,16 @@ td select.term-per_unit {
 
 td select, input {
     border: 1px solid White;
-    background: inherit;
+    background-color: transparent;
     font-family: 'Trebuchet MS', Helvetica, sans-serif;
-    color: Darkgray;
+    color: #525252;
     vertical-align: middle;
     text-align: right;
     padding-right: 5px;
     font-size: 100%;
     width: auto;
-    display: inherit;
+    display:inline;
+
 }
 
 td input {
@@ -851,26 +822,31 @@ td input {
 }
 
 td select:focus, input:focus {
-    background: inherit;
-    color: DarkGray;
+    background: White;
 }
 
 td select:hover, input:hover {
-    color:DarkGray;
+    color: inherit;
 }
 
 #totals_table a {
-    color: DarkGray;
+    color: #3f9d9b;/*#525252;*/
+    font-weight: bold;
 }
 
 #totals_table a:hover {
     color: #3f9d9b;
+    text-decoration: underline;
 }
 
 #totals_table td {
-    min-width: 100px;
+    width: auto;
+    min-width: 50px;
     font-size: 160%;
     height: 20px;
+    padding-right: 8px;
+    padding-left: 5px;
+    color: #525252;
 }
 
 th {
@@ -881,7 +857,7 @@ th {
     text-shadow: 2px 2px 2px White;
     font-size: 130%;
     font-weight: normal;
-    /*white-space: nowrap;*/
+    border: none;
 }
 
 span.sort-buttons {
@@ -889,11 +865,16 @@ span.sort-buttons {
 }
 
 td.delete, th.delete {
-    border: 1px solid White;
+    border-left: 1px dashed LightGray;
+    border-bottom: none;
     background: White;
     padding-left: 4px;
     padding-right: 4px;
     width: 10px;
+}
+
+th.delete {
+  border: none;
 }
 
 table tr:hover {
@@ -912,23 +893,33 @@ div.clear {
 #chart_container {
     position: relative;
     width: 250px;
-    margin-top: 0px;
-    padding-bottom: 20px;
+    top: 10px;
     font-size: 150%;
+    height: auto;
+}
+
+
+#chart_banner {
+    position: relative;
+    margin-top: 0px;
+    max-height: 20px;
 }
 
 #chart-wrapper {
-    display: none;
     position: relative;
+    margin-top: 20px;
+    height: 300px;
 }
+
 
 #empty_chart_banner {
     position: relative;
+    max-height: 50px;
 }
 
 #amee-strap {
   position: absolute;
-  bottom: -60px;
+  bottom: -55px;
   left: 10px;
   padding-top:30px;
 }

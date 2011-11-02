@@ -5,6 +5,7 @@ all_calculations {
     label :facility_id
     interface :text_box
     note "Provide a reference for the facility under consideration"
+    type 'string'
   }
 
   metadatum {
@@ -12,6 +13,7 @@ all_calculations {
     label :unit_id
     interface :text_box
     note "Provide a reference for the unit under consideration"
+    type 'string'
   }
  
   # Correct titles for outputs
@@ -86,6 +88,7 @@ calculation {
     label :stream_id
     interface :text_box
     note "Provide a reference for the stream under consideration"
+    type 'string'
   }
 
   metadatum {

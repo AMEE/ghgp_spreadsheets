@@ -6,17 +6,9 @@ class CalculationController < ApplicationController
   before_filter :initialize_prototype_calculations
   helper_method :output_terms_in_order, :calculation_terms_in_table_order
 
-  MINIMUM_TABLE_SIZE_IN_ROWS = 8
+  MINIMUM_TABLE_SIZE_IN_ROWS = 7
 
   def summary
-    @prototype_outputs = prototype_outputs_in_order
-    @headers = @prototype_outputs.map { |output| output.name }.unshift("Calculation methodology")
-    @table = @prototype_calculations.map do |label,calc|
-      @prototype_outputs.map { |ghg| nil }.unshift(calc)
-    end
-  end
-
-  def update_summary
     generate_summary_data
   end
 
@@ -31,6 +23,7 @@ class CalculationController < ApplicationController
       session[type] = { :show_optional => false }
     end
     @calculations = find_calculations_by_type(type, :minimum => MINIMUM_TABLE_SIZE_IN_ROWS)
+    convert_outputs(@calculations)
     @prototype_calculation = @prototype_calculations[type]
     @title = @prototype_calculation.name
     render '_calculation'
@@ -46,6 +39,7 @@ class CalculationController < ApplicationController
     end
     @row_id = params[:row]
     @calculations = find_calculations_by_type(@calculation.label)
+    convert_outputs(@calculations)
     @prototype_calculation = @prototype_calculations[@calculation.label]
   end
 
@@ -62,6 +56,10 @@ class CalculationController < ApplicationController
     @calculation.calculate!
     @calculation.save
     @calculations = find_calculations_by_type(@calculation.label)
+    @calculation.outputs.each do |output|
+      @calculation.contents[output.label.to_sym] = output.convert_unit(:unit => current_user.return_unit)
+    end
+    convert_outputs(@calculations)
     @prototype_calculation = @prototype_calculations[@calculation.label]
     @row_id = params['row']
     if params['id'].nil? || (@calculation[params['path'].to_sym].is_a? AMEE::DataAbstraction::Drill)
@@ -80,6 +78,7 @@ class CalculationController < ApplicationController
       session[type] = { :show_optional => false }
     end
     @calculations = find_calculations_by_type(type, :minimum => MINIMUM_TABLE_SIZE_IN_ROWS)
+    convert_outputs(@calculations)
     @prototype_calculation = @prototype_calculations[type]
     @title = @prototype_calculation.name
     render 'update.js'
@@ -88,6 +87,7 @@ class CalculationController < ApplicationController
   def sort
     type = params[:type].to_sym
     @calculations = find_calculations_by_type(type)
+    convert_outputs(@calculations)
     @prototype_calculation = @prototype_calculations[type]
     @title = @prototype_calculation.name
     @calculations = @calculations.sort_by!(params[:ascending].to_sym) if params[:ascending]
@@ -130,6 +130,14 @@ class CalculationController < ApplicationController
     return outputs
   end
 
+  def convert_outputs(collection)
+    return collection if current_user.return_unit == 'kg' || collection.empty?
+    outputs = [collection.outputs.first_of_each_type.labels].flatten
+    outputs.each do |output|
+      collection.standardize_units!(output.to_sym, current_user.return_unit)
+    end
+  end
+
   def generate_summary_data
     @prototype_outputs = prototype_outputs_in_order
     @headers = @prototype_outputs.map { |output| output.name }.unshift("Calculation methodology")
@@ -145,6 +153,7 @@ class CalculationController < ApplicationController
       if calcs.empty?
         (outputs.size).times { array << nil }
       else
+        convert_outputs(calcs)
         outputs.each do |ghg|
           if ghg.label == :co2e
             array << calcs.co2_or_co2e_outputs.sum
@@ -159,6 +168,7 @@ class CalculationController < ApplicationController
   end
 
   def ghg_totals(calculations,outputs)
+    convert_outputs(calculations)
     totals = AMEE::DataAbstraction::TermsList.new
     outputs.each do |output|
       next if output.label == :co2e

@@ -67,10 +67,38 @@
       });
 
       $('#toggle-optional').live('ajax:before', function() {
-        renderLoadingGif($('#empty-tab'));
+        panel = $('#generic-loading');
+        panel.show();
+        renderLoadingGif(panel);
+      });
+
+      var rowShadeColor = '#f1f9f9';
+
+      $('td.amee-drill, td.amee-profile, td.amee-metadatum, td.amee-output').live('mouseenter', function() {
+        if ($(this).closest("tr").attr('focus') == null) {
+          shadeRow($(this),rowShadeColor);
+        }
+      }).live('mouseleave',function() {
+         if ($(this).closest("tr").attr('focus') == null) {
+          shadeRow($(this),'White');
+        }
+      });
+
+      $('td.amee-drill, td.amee-profile, td.amee-metadatum').live('focusin', function() {
+        $(this).closest("tr").attr('focus', 'true');
+        shadeRow($(this),rowShadeColor);
+      }).live('focusout', function() {
+        $(this).closest("tr").attr('focus', null);
+        shadeRow($(this),'White');
       });
 
     });
+
+   function shadeRow(cell, color) {
+     cell.closest('tr').children('td').not(".delete").each(function(){
+       $(this).css('background-color',color)
+     });
+   }
 
     function toggleGuide() {
       var helpContainerStatus = $('#guide_container').css('display');

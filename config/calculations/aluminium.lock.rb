@@ -1,6 +1,6 @@
 calculation {
 
-  name "Default approach for electrolysis CO2 emissions"
+  name "Default approach for electrolysis CO2"
   label :aluminium_default_electrolysis_co2
   path "/business/processes/production/aluminium/defaults"
 
@@ -70,6 +70,7 @@ calculation {
     name "Reporting period"
     label :reporting_period
     path "reporting_period"
+    type :string
     interface :text_box
     note "Provide a reference for the reporting period under consideration"
   }
@@ -78,7 +79,7 @@ calculation {
 
 calculation {
 
-  name "Søderberg electrolysis CO2 emissions"
+  name "Søderberg electrolysis CO2"
   label :aluminium_soderberg
   path "/business/processes/production/aluminium/soderberg"
 
@@ -253,6 +254,7 @@ calculation {
     name "Reporting period"
     label :reporting_period
     path "reporting_period"
+    type :string
     interface :text_box
     note "Provide a reference for the reporting period under consideration"
   }
@@ -261,7 +263,7 @@ calculation {
 
 calculation {
 
-  name "Prebake electrolysis CO2 emissions"
+  name "Prebake electrolysis CO2"
   label :aluminium_prebake
   path "/business/processes/production/aluminium/prebake/electrolysis"
 
@@ -352,6 +354,7 @@ calculation {
     name "Potline ID"
     label :potline_id
     path "potline_id"
+    type :string
     interface :text_box
     note "Provide a reference for the potline for which data is being entered"
   }
@@ -360,6 +363,7 @@ calculation {
     name "Reporting period"
     label :reporting_period
     path "reporting_period"
+    type :string
     interface :text_box
     note "Provide a reference for the reporting period under consideration"
   }
@@ -368,7 +372,7 @@ calculation {
 
 calculation {
 
-  name "Anode baking CO2 emissions (default waste tar quantity)"
+  name "Anode baking CO2 (default waste tar quantity)"
   label :aluminium_pitchcook_default_tar
   path "/business/processes/production/aluminium/prebake/pitchCooking"
 
@@ -501,6 +505,7 @@ calculation {
     name "Furnace ID"
     label :furnace_id
     path "furnace_id"
+    type :string
     interface :text_box
     note "Provide a reference for the furnace for which data is being entered"
   }
@@ -518,6 +523,7 @@ calculation {
     name "Reporting period"
     label :reporting_period
     path "reporting_period"
+    type :string
     interface :text_box
     note "Provide a reference for the reporting period under consideration"
   }
@@ -526,7 +532,7 @@ calculation {
 
 calculation {
 
-  name "Anode baking CO2 emissions (default anode weight)"
+  name "Anode baking CO2 (default anode weight)"
   label :aluminium_pitchcook_default_anode
   path "/business/processes/production/aluminium/prebake/pitchcooking"
 
@@ -659,6 +665,7 @@ calculation {
     name "Furnace ID"
     label :furnace_id
     path "furnace_id"
+    type :string
     interface :text_box
     note "Provide a reference for the furnace for which data is being entered"
   }
@@ -676,6 +683,7 @@ calculation {
     name "Reporting period"
     label :reporting_period
     path "reporting_period"
+    type :string
     interface :text_box
     note "Provide a reference for the reporting period under consideration"
   }
@@ -684,7 +692,7 @@ calculation {
 
 calculation {
 
-  name "Alternative approach for electrolysis CO2 emissions"
+  name "Alternative approach for electrolysis CO2"
   label :aluminium_alternative_electrolysis
   path "/business/processes/production/aluminium/alternative"
 
@@ -853,6 +861,7 @@ calculation {
     name "Reporting period"
     label :reporting_period
     path "reporting_period"
+    type :string
     interface :text_box
     note "Provide a reference for the reporting period under consideration"
   }
@@ -861,7 +870,7 @@ calculation {
 
 calculation {
 
-  name "CO2 emissions from coke calcination"
+  name "Coke calcination"
   label :aluminium_coke_calcination
   path "/business/processes/production/aluminium/coke"
 
@@ -1044,6 +1053,7 @@ calculation {
     name "Reporting period"
     label :reporting_period
     path "reporting_period"
+    type :string
     interface :text_box
     note "Provide a reference for the reporting period under consideration"
   }
@@ -1052,7 +1062,7 @@ calculation {
 
 calculation {
 
-  name "CO2 emissions from soda ash consumption"
+  name "Soda ash consumption"
   label :aluminium_soda_ash
   path "/business/processes/production/aluminium/sodaAsh"
 
@@ -1128,6 +1138,7 @@ calculation {
     name "Reporting period"
     label :reporting_period
     path "reporting_period"
+    type :string
     interface :text_box
     note "Provide a reference for the reporting period under consideration"
   }
@@ -1136,7 +1147,7 @@ calculation {
 
 calculation {
 
-  name "CO2 emissions from lime production"
+  name "Lime production"
   label :aluminium_lime_production
   path "/business/processes/production/lime/production"
 
@@ -1258,6 +1269,7 @@ calculation {
     name "Reporting period"
     label :reporting_period
     path "reporting_period"
+    type :string
     interface :text_box
     note "Provide a reference for the reporting period under consideration"
   }
@@ -1266,7 +1278,7 @@ calculation {
 
 calculation {
 
-  name "Default approach for electrolysis PFC emissions"
+  name "Default approach for electrolysis PFCs"
   label :aluminium_default_electrolysis_pfc
   path "/business/processes/production/aluminium/pfc/defaults"
 
@@ -1363,6 +1375,7 @@ calculation {
     name "Potline ID"
     label :potline_id
     path "potline_id"
+    type :string
     interface :text_box
     note "Provide a reference for the potline for which data is being entered"
   }
@@ -1380,6 +1393,7 @@ calculation {
     name "Reporting period"
     label :reporting_period
     path "reporting_period"
+    type :string
     interface :text_box
     note "Provide a reference for the reporting period under consideration"
   }
@@ -1388,7 +1402,7 @@ calculation {
 
 calculation {
 
-  name "Slope approach for electrolysis PFC emissions"
+  name "Slope approach for electrolysis PFCs"
   label :aluminium_slope_electrolysis_pfc
   path "/business/processes/production/aluminium/pfc/slope"
 
@@ -1506,6 +1520,7 @@ calculation {
     name "Potline ID"
     label :potline_id
     path "potline_id"
+    type :string
     interface :text_box
     note "Provide a reference for the potline for which data is being entered"
   }
@@ -1523,6 +1538,7 @@ calculation {
     name "Reporting period"
     label :reporting_period
     path "reporting_period"
+    type :string
     interface :text_box
     note "Provide a reference for the reporting period under consideration"
   }
@@ -1531,7 +1547,7 @@ calculation {
 
 calculation {
 
-  name "Overvoltage approach for electrolysis PFC emissions"
+  name "Overvoltage approach for electrolysis PFCs"
   label :aluminium_overvoltage_electrolysis_pfc
   path "/business/processes/production/aluminium/pfc/overvoltage"
 
@@ -1642,6 +1658,7 @@ calculation {
     name "Potline ID"
     label :potline_id
     path "potline_id"
+    type :string
     interface :text_box
     note "Provide a reference for the potline for which data is being entered"
   }
@@ -1659,6 +1676,7 @@ calculation {
     name "Reporting period"
     label :reporting_period
     path "reporting_period"
+    type :string
     interface :text_box
     note "Provide a reference for the reporting period under consideration"
   }

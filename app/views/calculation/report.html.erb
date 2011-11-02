@@ -24,7 +24,7 @@
 <table id="emissions_summary">
   <tr><th>Greenhouse gas</th><th>Estimated emissions (kg)</th></tr>
   <% @totals.each do |total| %>
-    <tr><td class="name"><%= total.name %></td><td class="value"><%= show_term_tag(total,:decimal_places => 2) %></td></tr>
+    <tr><td class="name"><%= total.name %></td><td class="value"><%= show_term_tag(total,:decimal_places => 2, :format_number => true, :delimiter => " ") %></td></tr>
   <% end %>
 </table>
 <br />
@@ -42,10 +42,10 @@
   <p><%= index + 1 %></p>
   <table id="calculation_table">
     <% calc.inputs.visible.each do |input| %>
-      <tr><td class="name"><%= input.name %></td><td class="value"><%= show_term_tag(input,:decimal_places => 2) %></td></tr>
+      <tr><td class="name"><%= input.name %></td><td class="value"><%= show_term_tag(input,:decimal_places => 2, :format_number => true, :delimiter => " ") %></td></tr>
     <% end %>
     <% calc.outputs.visible.each do |output| %>
-      <tr><td class="name"><%= output.name %></td><td class="value"><%= show_term_tag(output,:decimal_places => 2) %></td></tr>
+      <tr><td class="name"><%= output.name %></td><td class="value"><%= show_term_tag(output,:decimal_places => 2, :format_number => true, :delimiter => " ") %></td></tr>
     <% end %>
   </table>
   <br />

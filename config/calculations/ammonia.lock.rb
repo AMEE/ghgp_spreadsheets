@@ -131,6 +131,7 @@ calculation {
     name "Facility ID"
     label :facility_id
     path "facility_id"
+    type :string
     interface :text_box
     note "Provide a reference for the facility under consideration"
   }
@@ -139,6 +140,7 @@ calculation {
     name "Unit ID"
     label :unit_id
     path "unit_id"
+    type :string
     interface :text_box
     note "Provide a reference for the unit under consideration"
   }
@@ -278,6 +280,7 @@ calculation {
     name "Facility ID"
     label :facility_id
     path "facility_id"
+    type :string
     interface :text_box
     note "Provide a reference for the facility under consideration"
   }
@@ -286,6 +289,7 @@ calculation {
     name "Unit ID"
     label :unit_id
     path "unit_id"
+    type :string
     interface :text_box
     note "Provide a reference for the unit under consideration"
   }
@@ -409,6 +413,7 @@ calculation {
     name "Facility ID"
     label :facility_id
     path "facility_id"
+    type :string
     interface :text_box
     note "Provide a reference for the facility under consideration"
   }
@@ -417,6 +422,7 @@ calculation {
     name "Unit ID"
     label :unit_id
     path "unit_id"
+    type :string
     interface :text_box
     note "Provide a reference for the unit under consideration"
   }
@@ -540,6 +546,7 @@ calculation {
     name "Facility ID"
     label :facility_id
     path "facility_id"
+    type :string
     interface :text_box
     note "Provide a reference for the facility under consideration"
   }
@@ -548,6 +555,7 @@ calculation {
     name "Unit ID"
     label :unit_id
     path "unit_id"
+    type :string
     interface :text_box
     note "Provide a reference for the unit under consideration"
   }

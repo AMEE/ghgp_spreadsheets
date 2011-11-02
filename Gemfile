@@ -16,4 +16,5 @@ gem "sqlite3"
 group :development, :test do
   gem 'rspec', '~> 1.3'
   gem 'rspec-rails', '~> 1.3'
+  gem 'wkhtmltopdf-binary'
 end

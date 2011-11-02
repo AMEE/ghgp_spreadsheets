@@ -104,6 +104,7 @@ calculation {
     name "Reporting period"
     label :reporting_period
     path "reporting_period"
+    type :string
     interface :text_box
     note "Provide a reference for the reporting period under consideration"
   }
@@ -205,6 +206,7 @@ calculation {
     name "Reporting period"
     label :reporting_period
     path "reporting_period"
+    type :string
     interface :text_box
     note "Provide a reference for the reporting period under consideration"
   }
@@ -239,7 +241,7 @@ calculation {
     label :volume
     path "volume"
     default_unit :m³
-    alternative_units :L, :bbl, :oz_fl_uk, :gal_uk, :gallon_dry_us, :oz_fl, :bbl_fl_us, :gal
+    alternative_units :L, :bbl, :oz_fl_uk, :oz_fl, :bbl_fl_us, :gal, :gallon_dry_us, :gal_uk
     unit :m³
     type :decimal
     interface :text_box
@@ -306,6 +308,7 @@ calculation {
     name "Reporting period"
     label :reporting_period
     path "reporting_period"
+    type :string
     interface :text_box
     note "Provide a reference for the reporting period under consideration"
   }
@@ -527,6 +530,7 @@ calculation {
     name "Reporting period"
     label :reporting_period
     path "reporting_period"
+    type :string
     interface :text_box
     note "Provide a reference for the reporting period under consideration"
   }
@@ -674,6 +678,7 @@ calculation {
     name "Reporting period"
     label :reporting_period
     path "reporting_period"
+    type :string
     interface :text_box
     note "Provide a reference for the reporting period under consideration"
   }
@@ -849,6 +854,7 @@ calculation {
     name "Reporting period"
     label :reporting_period
     path "reporting_period"
+    type :string
     interface :text_box
     note "Provide a reference for the reporting period under consideration"
   }
@@ -1056,6 +1062,185 @@ calculation {
     name "Reporting period"
     label :reporting_period
     path "reporting_period"
+    type :string
+    interface :text_box
+    note "Provide a reference for the reporting period under consideration"
+  }
+
+}
+
+calculation {
+
+  name "Flaring"
+  label :flaring
+  path "/business/processes/flaring/ghgp"
+
+  drill {
+    name "Type of flaring"
+    label :type
+    path "type"
+    interface :drop_down
+    hide!
+  }
+
+  profile {
+    name "Combustion efficiency"
+    label :combustion_efficiency
+    path "combustionEfficiency"
+    value "0.98"
+    optional!
+    type :decimal
+    interface :text_box
+    note "Efficiency of hydrocarbon combustion. If no facility-specific value is specified a default value is assumed"
+  }
+
+  profile {
+    name "Fraction of carbon in hydrocarbon"
+    label :hydrocarbon_carbon_fraction
+    path "hydrocarbonCarbonFraction"
+    type :decimal
+    interface :text_box
+    note "Molar fraction of carbon in hydrocarbon, i.e. the ratio of moles of carbon to moles of hydrocarbon"
+  }
+
+  profile {
+    name "Fraction of hydrocarbon in gas"
+    label :gas_hydrocarbon_fraction
+    path "gasHydrocarbonFraction"
+    type :decimal
+    interface :text_box
+    note "Molar fraction of hydrocarbon in gas, i.e. the ratio of moles of hydrocarbon to total moles in gas"
+  }
+
+  profile {
+    name "Fraction of methane in gas"
+    label :gas_methane_fraction
+    path "gasMethaneFraction"
+    type :decimal
+    interface :text_box
+    note "Molar fraction of methane in gas, i.e. the ratio of moles of methane to total moles in gas"
+  }
+
+  profile {
+    name "Molar volume of gas"
+    label :molar_volume
+    path "molarVolume"
+    value "379.3"
+    optional!
+    default_unit :ft³
+    default_per_unit :lbmol
+    alternative_units :m³, :L, :bbl, :oz_fl_uk, :oz_fl, :bbl_fl_us, :gal, :gallon_dry_us, :gal_uk
+    alternative_per_units :mol
+    unit :ft³
+    per_unit :lbmol
+    type :decimal
+    interface :text_box
+    note "Molar volume of gas, i.e. the volume occupied by a given molar quantity of gas. If no facility-specific value is specified a default value is assumed"
+  }
+
+  profile {
+    name "Molecular mass of CH4"
+    label :molecular_mass_ch4
+    path "molecularMassCH4"
+    value "16.0"
+    optional!
+    type :decimal
+    interface :text_box
+    note "The molecular mass of methane"
+  }
+
+  profile {
+    name "Molecular mass of CO2"
+    label :molecular_mass_co2
+    path "molecularMassCO2"
+    value "44.0"
+    optional!
+    type :decimal
+    interface :text_box
+    note "The molecular mass of carbon dioxide"
+  }
+
+  profile {
+    name "Number of pounds in one metric tonne"
+    label :pounds_in_tonne
+    path "poundsInTonne"
+    value "2204.6"
+    optional!
+    default_unit :lb
+    default_per_unit :t
+    alternative_units :kg, :g, :oz, :t, :Mg, :Gg, :ton_us, :ton_uk
+    alternative_per_units :kg, :g, :oz, :lb, :Gg, :ton_us, :ton_uk
+    unit :lb
+    per_unit :t
+    type :decimal
+    interface :text_box
+    note "The number of pounds in one metric tonne"
+  }
+
+  profile {
+    name "Stoichiometric ratio of C to CO2"
+    label :c_to_co2_stoichiometry
+    path "cToCO2Stoichiometry"
+    value "1.0"
+    optional!
+    type :decimal
+    interface :text_box
+    note "The stoichiometric factor relating the molar quantites of reactant carbon ~(C) and product carbon dioxide (CO,,2,,)"
+  }
+
+  profile {
+    name "Volume of gas flared"
+    label :volume
+    path "volume"
+    default_unit :ft³
+    alternative_units :m³, :L, :bbl, :oz_fl_uk, :oz_fl, :bbl_fl_us, :gal, :gallon_dry_us, :gal_uk
+    unit :ft³
+    type :decimal
+    interface :text_box
+    note "Total volume of gas flared"
+  }
+
+  output {
+    name "CH4"
+    label :ch4
+    path "CH4"
+    default_unit :kg
+    alternative_units :g, :oz, :lb, :t, :Mg, :Gg, :ton_us, :ton_uk
+    unit :kg
+  }
+
+  output {
+    name "CO2"
+    label :co2
+    path "CO2"
+    default_unit :kg
+    alternative_units :g, :oz, :lb, :t, :Mg, :Gg, :ton_us, :ton_uk
+    unit :kg
+  }
+
+  output {
+    name "CO2e"
+    label :co2e
+    path "CO2e"
+    default_unit :kg
+    alternative_units :g, :oz, :lb, :t, :Mg, :Gg, :ton_us, :ton_uk
+    unit :kg
+  }
+
+  metadatum {
+    name "Note"
+    label :note
+    path "note"
+    value "This methodology enables the calculation of CO2, CH4 and CO2e emissions associated with the flaring of waste gases"
+    interface :drop_down
+    hide!
+  }
+
+  metadatum {
+    name "Reporting period"
+    label :reporting_period
+    path "reporting_period"
+    type :string
     interface :text_box
     note "Provide a reference for the reporting period under consideration"
   }
@@ -1165,6 +1350,7 @@ calculation {
     name "Reporting period"
     label :reporting_period
     path "reporting_period"
+    type :string
     interface :text_box
     note "Provide a reference for the reporting period under consideration"
   }
@@ -1295,6 +1481,7 @@ calculation {
     name "Reporting period"
     label :reporting_period
     path "reporting_period"
+    type :string
     interface :text_box
     note "Provide a reference for the reporting period under consideration"
   }

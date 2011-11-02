@@ -2,6 +2,7 @@
 <%= render :partial => 'help' %>
 <span class="ajaxloader" style="display:none;"><%= image_tag 'loading_small.gif' %></span>
 <div id="calculation_page" class="content_pane">
+  <div id="generic-loading"></div>
   <div id="amee-strap" class="calculation">
     <%= image_tag 'AMEE-Logo2011-LINE_Green-small.png', :alt => 'AMEE: Environment Intelligence. Everywhere' %>
   </div>
@@ -23,7 +24,6 @@
     <div id="guide-switch" class="link">
       <%= "Show guide" %>
     </div>
-    <div id="empty-tab"></div>
   </div>
   <br />
   <div id="table_container">
@@ -47,7 +47,7 @@
         <th class="delete"></th>
       </tr>
       <% @calculations.each do |calc| %>
-        <tr><%= render 'edit_row', :calculation=>calc, :optional => optional %></tr>
+        <%= render 'edit_row', :calculation=>calc, :optional => optional %>
       <%end%>
       <tr id="totals">
         <%= render("total_row", :calculations => @calculations, :prototype_calculation => @prototype_calculation, :optional => optional) unless @calculations.empty? %>

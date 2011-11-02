@@ -4,10 +4,10 @@
 <% end %>
 <% output_terms_in_order(prototype_calculation.outputs.visible).each do |term| %>
   <% if calculations.respond_to?(term.label) %>
-    <% result = calculations.send(term.label).sum rescue nil %>
-    <td class="amee-result <%= "calc-#{term.label}" %>"><%= show_term_tag(result,:decimal_places => 2) %></td>
+    <% result = calculations.send(term.label).sum(current_user.return_unit) rescue nil %>
+    <td class="amee-result <%= "calc-#{term.label}" %>"><%= show_term_tag(result,:decimal_places => 2, :format_number => true, :delimiter => " ") %></td>
   <% else %>
     <td class="amee-result <%= "calc-#{term.label}" %>"><%= "0.0" %></td>
   <% end %>
 <% end %>
-<td></td>
+<td class="delete"></td>
