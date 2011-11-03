@@ -31,6 +31,9 @@ class CalculationController < ApplicationController
 
   def add
     @calculation = initialize_calculation(params[:type])
+    @calculation.outputs.each do |output|
+      @calculation.contents[output.label.to_sym] = output.convert_unit(:unit => current_user.return_unit)
+    end
   end
 
   def delete
