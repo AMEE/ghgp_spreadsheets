@@ -137,7 +137,7 @@ class CalculationController < ApplicationController
     return collection if current_user.return_unit == 'kg' || collection.empty?
     outputs = [collection.outputs.first_of_each_type.labels].flatten
     outputs.each do |output|
-      collection.standardize_units!(output.to_sym, current_user.return_unit)
+      collection.standardize_units!(output.to_sym, current_user.return_unit) if collection.respond_to?(output.to_sym)
     end
   end
 

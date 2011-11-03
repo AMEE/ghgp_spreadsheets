@@ -8,6 +8,7 @@ $sheet_types = {
   'iron_and_steel' => 'the Iron and Steel Sector',
   'lime' => 'the Lime Sector',
   'nitric' => 'the Nitric Acid Sector',
-  'stationary_combustion' => 'Stationary Combustion'
+  'stationary_combustion' => 'Stationary Combustion',
+  'transport' => 'Transport'
 }
 $tool_name = $sheet_types[$sheet]
