@@ -12,6 +12,8 @@ all_calculations {
   correcting(:co2e)  { name "CO2e" }
   correcting(:c2_f6) { name "C2F6" }
   correcting(:cf4)   { name "CF4" }
+
+  correcting(:comment) { hide! }
 }
 
 calculation {
@@ -19,7 +21,6 @@ calculation {
   label :aluminium_default_electrolysis_co2
   path '/business/processes/production/aluminium/defaults'
   terms_from_amee 'default'
-  correcting(:comment) { hide! }
 
   metadatum {
     label :note
@@ -37,7 +38,6 @@ calculation {
   label :aluminium_soderberg
   path '/business/processes/production/aluminium/soderberg'
   terms_from_amee 'default'
-  correcting(:comment) { hide! }
   
   metadatum {
     label :note
@@ -65,7 +65,6 @@ calculation {
   path '/business/processes/production/aluminium/prebake/electrolysis'
   terms_from_amee 'default'
   correcting(:type) { hide! }
-  correcting(:comment) { hide! }
   
   metadatum {
     label :note
@@ -90,7 +89,6 @@ calculation {
   label :aluminium_pitchcook_default_tar
   path '/business/processes/production/aluminium/prebake/pitchCooking'
   terms_from_amee 'defaultWasteTarQuantity'
-  correcting(:comment) { hide! }
   
   metadatum {
     name 'Furnace ID'
@@ -121,7 +119,6 @@ calculation {
   label :aluminium_pitchcook_default_anode
   path '/business/processes/production/aluminium/prebake/pitchcooking'
   terms_from_amee 'defaultAnodeWeight'
-  correcting(:comment) { hide! }
   
   metadatum {
     name 'Furnace ID'
@@ -153,7 +150,6 @@ calculation {
   path '/business/processes/production/aluminium/alternative'
   terms_from_amee 'default'
   correcting(:type) { hide! }
-  correcting(:comment) { hide! }
   
   metadatum {
     label :note
@@ -180,7 +176,6 @@ calculation {
   path '/business/processes/production/aluminium/coke'
   terms_from_amee 'default'
   correcting(:type) { hide! }
-  correcting(:comment) { hide! }
   
   metadatum {
     label :note
@@ -208,7 +203,6 @@ calculation {
   path '/business/processes/production/aluminium/sodaAsh'
   terms_from_amee 'default'
   correcting(:type) { hide! }
-  correcting(:comment) { hide! }
 
   metadatum {
     label :note
@@ -226,7 +220,6 @@ calculation {
   label :aluminium_lime_production
   path '/business/processes/production/lime/production'
   terms_from_amee 'default'
-  correcting(:comment) { hide! }
   
   metadatum {
     label :note
@@ -250,7 +243,6 @@ calculation {
   label :aluminium_default_electrolysis_pfc
   path '/business/processes/production/aluminium/pfc/defaults'
   terms_from_amee 'default'
-  correcting (:comment) { hide! }
   
   metadatum {
     name 'Potline ID'
@@ -278,7 +270,6 @@ calculation {
   label :aluminium_slope_electrolysis_pfc
   path '/business/processes/production/aluminium/pfc/slope'
   terms_from_amee 'default'
-  correcting (:comment) { hide! }
 
   metadatum {
     name 'Potline ID'
@@ -308,7 +299,6 @@ calculation {
   label :aluminium_overvoltage_electrolysis_pfc
   path '/business/processes/production/aluminium/pfc/overvoltage'
   terms_from_amee 'default'
-  correcting (:comment) { hide! }
 
   metadatum {
     name 'Potline ID'

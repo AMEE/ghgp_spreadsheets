@@ -135,7 +135,8 @@ class CalculationController < ApplicationController
 
   def convert_outputs(collection)
     return collection if current_user.return_unit == 'kg' || collection.empty?
-    outputs = [collection.outputs.first_of_each_type.labels].flatten
+    outputs = [collection.outputs.visible.first_of_each_type.labels].flatten
+    pp outputs
     outputs.each do |output|
       collection.standardize_units!(output.to_sym, current_user.return_unit) if collection.respond_to?(output.to_sym)
     end
@@ -171,7 +172,9 @@ class CalculationController < ApplicationController
   end
 
   def ghg_totals(calculations,outputs)
+    pp calculations
     convert_outputs(calculations)
+    pp calculations
     totals = AMEE::DataAbstraction::TermsList.new
     outputs.each do |output|
       next if output.label == :co2e
