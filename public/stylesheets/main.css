@@ -229,7 +229,7 @@ div.base h3:hover {
 
 .form input[type='text'], .form input[type='password'] {
     text-align: left;
-    width: 250px;
+    width: 98%;
 }
 
 .form input[type='submit'] {

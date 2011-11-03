@@ -10,38 +10,21 @@
 
       setContainerDimensions();
 
-      colorTableRows();
-
-    });
-
-    function colorTableRows() {
       tableRowBackgroundColor($("table#totals_table tbody tr:not(:last):odd"), 'White');
       tableRowBackgroundColor($("table#totals_table tbody tr:not(:last):even"), '#f1f9f9');
-    }
 
-    function tableRowBackgroundColor(rows,color) {
-      $(rows).each(function() {
-        cells$ = $(this).children("td");
-        cells$.each(function(){
-          $(this).css('background',color);
-          children = $(this).children("select input");
-          children.each(function(){
-            $(this).css('background',color);
-          });
-        });
-      });
-    }
+    });
 
     function setContainerDimensions() {
 
       var tableWidth = $('#totals_table').width();
       var tableTabHeight = $('#table_tab_wrapper').height();
-      var verticalPadding = 50;
-
+      
       $('#table_tab_wrapper').width(tableWidth);
 
       if (tableWidth < 670) {
         var horizontalPadding = 270;
+        var verticalPadding = 50;
         $('#table_chart_wrapper').width(tableWidth+horizontalPadding);
         $('#totals_page').width(tableWidth+horizontalPadding);
         chartHeight = $('#chart_container').height();
@@ -56,9 +39,11 @@
       } else {
         var chartHeight = $('#chart_container').height();
         var chartWidth = $('#chart_container').width();
+        var verticalPadding = 70;
         $('#table_chart_wrapper').width(tableWidth);
         $('#totals_page').width(tableWidth);
         $('#totals_page').height(chartHeight+tableTabHeight+verticalPadding);
+        $('#chart_container').css('margin-top', tableTabHeight+50);
         $('#chart_container').css('margin-left', ((tableWidth-chartWidth)/2));
       }
     }

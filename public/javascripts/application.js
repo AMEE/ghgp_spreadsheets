@@ -8,6 +8,19 @@ function renderLoadingGif(wrappedSet) {
   });
 };
 
+function tableRowBackgroundColor(rows,color) {
+  $(rows).each(function() {
+    cells$ = $(this).children("td");
+    cells$.each(function(){
+      $(this).css('background',color);
+      children = $(this).children("select input");
+      children.each(function(){
+        $(this).css('background',color);
+      });
+    });
+  });
+}
+
 $(document).ready(function(){
   $('#contentarea').hide().fadeIn('slow');
 
@@ -21,4 +34,8 @@ $(document).ready(function(){
   $('.form table tr').each(function() {
     $(this).children('td:last').css('border-right', '1px dashed LightGray');
   });
+
+  $(".form table select, .form table input").css('background-color', '#f1f9f9');
+  tableRowBackgroundColor($("#user_table tr:odd"), 'White');
+  tableRowBackgroundColor($("#user_table tr:even"), '#f1f9f9');
 });
