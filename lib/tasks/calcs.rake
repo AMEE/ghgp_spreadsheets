@@ -12,7 +12,6 @@ namespace :calcs do
     desc 'Regenerates all locks files. Run as: rake "calcs:config:lock_all"'
     task :lock_all => [:environment] do |t, args|
       $sheet_types.each_key do |key|
-        puts key
         AMEE::DataAbstraction::CalculationSet.regenerate_lock_file(key.to_s)
       end
     end

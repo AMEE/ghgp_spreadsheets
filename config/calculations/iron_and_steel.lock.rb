@@ -1,7 +1,7 @@
 calculation {
 
   name "Stationary fuel combustion by energy"
-  label :stationary_combustion_by_energy
+  label :iron_and_steel_fuel_combustion_by_energy
   path "/business/energy/stationaryCombustion"
 
   drill {
@@ -114,7 +114,7 @@ calculation {
 calculation {
 
   name "Stationary fuel combustion by mass"
-  label :stationary_combustion_by_mass
+  label :iron_and_steel_fuel_combustion_by_mass
   path "/business/energy/stationaryCombustion"
 
   drill {
@@ -216,7 +216,7 @@ calculation {
 calculation {
 
   name "Stationary fuel combustion by volume"
-  label :stationary_combustion_by_volume
+  label :iron_and_steel_fuel_combustion_by_volume
   path "/business/energy/stationaryCombustion"
 
   drill {
@@ -241,7 +241,7 @@ calculation {
     label :volume
     path "volume"
     default_unit :m³
-    alternative_units :L, :bbl, :oz_fl_uk, :oz_fl, :bbl_fl_us, :gal, :gallon_dry_us, :gal_uk
+    alternative_units :L, :bbl, :bbl_fl_us, :gal, :gallon_dry_us, :gal_uk, :oz_fl, :oz_fl_uk
     unit :m³
     type :decimal
     interface :text_box
@@ -1129,7 +1129,7 @@ calculation {
     optional!
     default_unit :ft³
     default_per_unit :lbmol
-    alternative_units :m³, :L, :bbl, :oz_fl_uk, :oz_fl, :bbl_fl_us, :gal, :gallon_dry_us, :gal_uk
+    alternative_units :m³, :L, :bbl, :bbl_fl_us, :gal, :gallon_dry_us, :gal_uk, :oz_fl, :oz_fl_uk
     alternative_per_units :mol
     unit :ft³
     per_unit :lbmol
@@ -1185,7 +1185,7 @@ calculation {
     optional!
     type :decimal
     interface :text_box
-    note "The stoichiometric factor relating the molar quantites of reactant carbon ~(C) and product carbon dioxide (CO,,2,,)"
+    note "The stoichiometric factor relating the molar quantites of reactant carbon (C) and product carbon dioxide (CO2)"
   }
 
   profile {
@@ -1193,11 +1193,11 @@ calculation {
     label :volume
     path "volume"
     default_unit :ft³
-    alternative_units :m³, :L, :bbl, :oz_fl_uk, :oz_fl, :bbl_fl_us, :gal, :gallon_dry_us, :gal_uk
+    alternative_units :m³, :L, :bbl, :bbl_fl_us, :gal, :gallon_dry_us, :gal_uk, :oz_fl, :oz_fl_uk
     unit :ft³
     type :decimal
     interface :text_box
-    note "Total volume of gas flared"
+    note "Specify the quantity of CH4 emitted per unit of sinter produced during the reporting period"
   }
 
   output {
@@ -1207,6 +1207,7 @@ calculation {
     default_unit :kg
     alternative_units :g, :oz, :lb, :t, :Mg, :Gg, :ton_us, :ton_uk
     unit :kg
+    note "CH4 emissions calculated based on data entered for each scenario."
   }
 
   output {
@@ -1216,6 +1217,7 @@ calculation {
     default_unit :kg
     alternative_units :g, :oz, :lb, :t, :Mg, :Gg, :ton_us, :ton_uk
     unit :kg
+    note "CO2 emissions calculated based on data entered for each scenario"
   }
 
   output {
@@ -1225,6 +1227,7 @@ calculation {
     default_unit :kg
     alternative_units :g, :oz, :lb, :t, :Mg, :Gg, :ton_us, :ton_uk
     unit :kg
+    note "CO2e emissions calculated based on data entered for each scenario. This represents the combined effect of all greenhouse gas emissions, expressed in terms of the equivalent quantity of CO2"
   }
 
   metadatum {

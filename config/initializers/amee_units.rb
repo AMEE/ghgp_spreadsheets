@@ -16,4 +16,12 @@ Quantify::Unit::NonSI.configure do
     unit.symbol = 'gal (UK)'
   end
 
+  Unit.oz_fl.configure_as_canonical do |unit|
+    unit.symbol = 'fl oz (US)'
+  end
+
+  Unit.oz_fl_uk.configure_as_canonical do |unit|
+    unit.symbol = 'fl oz (UK)'
+  end
+
 end

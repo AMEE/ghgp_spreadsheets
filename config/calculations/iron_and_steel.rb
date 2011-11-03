@@ -17,7 +17,7 @@ all_calculations {
 
 calculation {
   name "Stationary fuel combustion by energy"
-  label :stationary_combustion_by_energy
+  label :iron_and_steel_fuel_combustion_by_energy
   path "/business/energy/stationaryCombustion"
   terms_from_amee 'byEnergy'
   correcting (:comment) { hide! }
@@ -41,7 +41,7 @@ calculation {
 
 calculation {
   name "Stationary fuel combustion by mass"
-  label :stationary_combustion_by_mass
+  label :iron_and_steel_fuel_combustion_by_mass
   path "/business/energy/stationaryCombustion"
   terms_from_amee 'byMass'
   correcting (:comment) { hide! }
@@ -66,7 +66,7 @@ calculation {
 
 calculation {
   name "Stationary fuel combustion by volume"
-  label :stationary_combustion_by_volume
+  label :iron_and_steel_fuel_combustion_by_volume
   path "/business/energy/stationaryCombustion"
   terms_from_amee 'byVolume'
   correcting (:comment) { hide! }
@@ -214,6 +214,13 @@ calculation {
     value "This methodology enables the calculation of CO2, CH4 and CO2e emissions associated with the flaring of waste gases"
     hide!
   }
+
+  correcting(:c_to_co2_stoichiometry)      {note "The stoichiometric factor relating the molar quantites of reactant carbon (C) and product carbon dioxide (CO2)"}
+  correcting(:volume)                      {note "Specify the quantity of CH4 emitted per unit of sinter produced during the reporting period"}
+  correcting(:co2)                         {note "CO2 emissions calculated based on data entered for each scenario"}
+  correcting(:ch4)                         {note "CH4 emissions calculated based on data entered for each scenario."}
+  correcting(:co2e)                        {note "CO2e emissions calculated based on data entered for each scenario. This represents the combined effect of all greenhouse gas emissions, expressed in terms of the equivalent quantity of CO2"}
+
 }
   
 calculation {

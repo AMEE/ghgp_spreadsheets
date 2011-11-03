@@ -269,7 +269,7 @@ calculation {
     path "emissFlowRate"
     default_unit :m³
     default_per_unit :min
-    alternative_units :L, :bbl, :oz_fl_uk, :oz_fl, :bbl_fl_us, :gal, :gallon_dry_us, :gal_uk
+    alternative_units :L, :bbl, :bbl_fl_us, :gal, :gallon_dry_us, :gal_uk, :oz_fl, :oz_fl_uk
     alternative_per_units :s, :h, :month, :week, :year, :day
     unit :m³
     per_unit :min
@@ -285,7 +285,7 @@ calculation {
     default_unit :g
     default_per_unit :m³
     alternative_units :kg, :oz, :lb, :t, :Mg, :Gg, :ton_us, :ton_uk
-    alternative_per_units :L, :bbl, :oz_fl_uk, :oz_fl, :bbl_fl_us, :gal, :gallon_dry_us, :gal_uk
+    alternative_per_units :L, :bbl, :bbl_fl_us, :gal, :gallon_dry_us, :gal_uk, :oz_fl, :oz_fl_uk
     unit :g
     per_unit :m³
     type :decimal
