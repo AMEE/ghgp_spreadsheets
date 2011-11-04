@@ -64,6 +64,8 @@ calculation {
   path "/transport/ghgp/vehicle/uk/heavygoods"
   terms_from_amee 'default'
 
+  correcting(:co2e) { hide! }
+
   metadatum {
     label :note
     value "This methodology enables the calculation of CO2 emissions associated with UK road vehicles"

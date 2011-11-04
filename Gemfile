@@ -11,10 +11,10 @@ gem "amee-analytics", ">= 2.1.2"
 gem "amee-data-entry", "~> 2.0.0"
 gem "amee-auth", ">= 1.0.0"
 gem "pdfkit"
-gem "sqlite3"
 
 group :development, :test do
   gem 'rspec', '~> 1.3'
   gem 'rspec-rails', '~> 1.3'
   gem 'wkhtmltopdf-binary'
+  gem "sqlite3"
 end
