@@ -1,3 +1,6 @@
+# Copyright (C) 2008-2012 AMEE UK Ltd. - http://www.amee.com
+# Released as Open Source Software under the BSD 3-Clause license. See LICENSE.txt for details.
+
 GHGSuite::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -12,7 +15,7 @@ GHGSuite::Application.routes.draw do
 
   match "login" => 'user_sessions#new', :as => :login
   resources :users
-  resource :user_session
+  resource  :user_session
 
   match "feedback" => 'application#feedback', :as => :feedback
   match "report" => 'calculation#report', :as => :report

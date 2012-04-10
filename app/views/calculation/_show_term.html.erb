@@ -1,0 +1,20 @@
+<% value = rounded_term_value(term,decimal_places) %>
+<% if format_number && term.has_numeric_value? %>
+  <% options = {} %>
+  <% options[:delimiter] = delimiter if delimiter %>
+  <% options[:separator] = separator if separator %>
+  <% value = number_with_delimiter(value, options) %>
+<% end %>
+<%= content_tag tag.to_sym, value, :class => html_class_for_term(term, :value) %>
+<% unless term.unit.nil? %>
+  <%= content_tag tag.to_sym, term.unit.send(unit_format), :class => html_class_for_term(term, :unit) %>
+<% else %>
+  <%= content_tag tag.to_sym, nil, :class => html_class_for_term(term, :unit) %>
+<% end %>
+<% unless term.per_unit.nil? %>
+  <%= content_tag tag.to_sym, per_unit_delimiter, :class => html_class_for_term(term, :per_unit_delimiter) %>
+  <%= content_tag tag.to_sym, term.per_unit.send(unit_format), :class => html_class_for_term(term, :per_unit) %>
+<% else %>
+  <%= content_tag tag.to_sym, nil, :class => html_class_for_term(term, :per_unit_delimiter) %>
+  <%= content_tag tag.to_sym, nil, :class => html_class_for_term(term, :per_unit) %>
+<% end %>

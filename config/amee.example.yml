@@ -1,3 +1,6 @@
+# Copyright (C) 2008-2012 AMEE UK Ltd. - http://www.amee.com
+# Released as Open Source Software under the BSD 3-Clause license. See LICENSE.txt for details.
+
 production:
   server: live.amee.com
   username: 
@@ -5,13 +8,13 @@ production:
   cache: rails
 
 development:
-  server: platform-science.amee.com
+  server: stage.amee.com
   username: 
   password: 
   cache: rails
   
 test:
-  server: platform-science.amee.com
+  server: stage.amee.com
   username: 
   password: 
 

@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(:version => 20111102202643) do
   create_table "terms", :force => true do |t|
     t.integer  "calculation_id"
     t.string   "label"
-    t.text     "value"
+    t.text     "value",          :limit => 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "unit"

@@ -1,12 +1,17 @@
+# Copyright (C) 2008-2012 AMEE UK Ltd. - http://www.amee.com
+# Released as Open Source Software under the BSD 3-Clause license. See LICENSE.txt for details.
+
 class CalculationController < ApplicationController
 
-  acts_as_amee_calculator :calculation_set => AMEE::DataAbstraction::CalculationSet.find($sheet)
+  helper CalculationHelper
 
   before_filter :login_required
   before_filter :initialize_prototype_calculations
   helper_method :output_terms_in_order, :calculation_terms_in_table_order
 
   MINIMUM_TABLE_SIZE_IN_ROWS = 7
+
+  @@calculation_set = AMEE::DataAbstraction::CalculationSet.find($sheet)
 
   def summary
     generate_summary_data
@@ -19,13 +24,15 @@ class CalculationController < ApplicationController
   
   def calculation
     type = params[:type].to_sym
+
     unless defined?(session[type][:show_optional])
       session[type] = { :show_optional => false }
     end
-    @calculations = find_calculations_by_type(type, :minimum => MINIMUM_TABLE_SIZE_IN_ROWS)
-    convert_outputs(@calculations)
+
+    @calculations          = find_calculations_by_type(type, :minimum => MINIMUM_TABLE_SIZE_IN_ROWS) and convert_outputs(@calculations)
     @prototype_calculation = @prototype_calculations[type]
-    @title = @prototype_calculation.name
+    @title                 = @prototype_calculation.name
+
     render '_calculation'
   end
 
@@ -43,6 +50,7 @@ class CalculationController < ApplicationController
     @row_id = params[:row]
     @calculations = find_calculations_by_type(@calculation.label)
     convert_outputs(@calculations)
+
     @prototype_calculation = @prototype_calculations[@calculation.label]
   end
 
@@ -65,6 +73,7 @@ class CalculationController < ApplicationController
     convert_outputs(@calculations)
     @prototype_calculation = @prototype_calculations[@calculation.label]
     @row_id = params['row']
+
     if params['id'].nil? || (@calculation[params['path'].to_sym].is_a? AMEE::DataAbstraction::Drill)
       render 'update_row.js'
     else
@@ -74,39 +83,103 @@ class CalculationController < ApplicationController
 
   def toggle_optional
     type = params[:type].to_sym
+    
     if params[:show_optional] == 'true'
       session[type] = { :show_optional => true }
     end
     if params[:show_optional] == 'false'
       session[type] = { :show_optional => false }
     end
-    @calculations = find_calculations_by_type(type, :minimum => MINIMUM_TABLE_SIZE_IN_ROWS)
-    convert_outputs(@calculations)
+
+    @calculations          = find_calculations_by_type(type, :minimum => MINIMUM_TABLE_SIZE_IN_ROWS) and convert_outputs(@calculations)
     @prototype_calculation = @prototype_calculations[type]
-    @title = @prototype_calculation.name
+    @title                 = @prototype_calculation.name
+
     render 'update.js'
   end
 
   def sort
     type = params[:type].to_sym
-    @calculations = find_calculations_by_type(type)
-    convert_outputs(@calculations)
+
+    @calculations          = find_calculations_by_type(type) and convert_outputs(@calculations)
     @prototype_calculation = @prototype_calculations[type]
-    @title = @prototype_calculation.name
+    @title                 = @prototype_calculation.name
+
     @calculations = @calculations.sort_by!(params[:ascending].to_sym) if params[:ascending]
     @calculations = @calculations.sort_by!(params[:descending].to_sym).reverse! if params[:descending]
+
     if @calculations.size < MINIMUM_TABLE_SIZE_IN_ROWS
       (MINIMUM_TABLE_SIZE_IN_ROWS - @calculations.size).times do
         @calculations << initialize_calculation(type)
       end
     end
+
     render 'update.js'
   end
 
   protected
 
+  def self.calculation_set
+    class_variable_get("@@calculation_set")
+  end
+
+  def calculation_set
+    CalculationController.calculation_set
+  end
+
+  # Find a specific calcualtion on the basis of it's database reference
+  def find_calculation_by_id(id)
+    AMEE::DataAbstraction::OngoingCalculation.find(id.to_i, :include => 'terms')
+  end
+
+  # Find all stored calculations for a particular calculation type. First
+  # argument must represent the label (string or symbol) of the calcualtion
+  # type. Two other options can be specified as a hash.
+  #
+  # :minimum => <an integer> #=> Returns the specified minumim number
+  # of calculations. If the number of
+  # retrieved calculations is smaller
+  # than the minimum, the number is made
+  # up by initializing blank calculations
+  #
+  # :calculation_set => <instance of AMEE::DataAbstraction::CalculationSet>
+  #
+  # #=> Specifies the calculation set within
+  # which to find the calculation type
+  # required. This is only required if
+  # a minimum requirement is specified
+  # AND the calculation set is NOT declared
+  # at the controller level (see the
+  # controller class methods, above).
+  #
+  #
+  def find_calculations_by_type(label,options={})
+    collection = AMEE::DataAbstraction::OngoingCalculation.find_by_type(:all, label.to_s, :include => 'terms')
+    if options[:minimum] and collection.size < options[:minimum]
+      (options[:minimum] - collection.size).times do
+        collection << initialize_calculation(label)
+      end
+    end
+    return collection
+  end
+
+  # Initialize a new calculation of a type specified by the first argument.
+  # This argument should represent the label of the prototype caluclation
+  # required. The calculation set within which the prototype calculation can
+  # be found should be passed as a second argument unless this is defined at
+  # the controller level (see controller class methods, above).
+  #
+  def initialize_calculation(label)
+    label = label.to_sym unless label.is_a? Symbol
+    if calculation_set
+      calculation_set[label].begin_calculation
+    else
+      raise ArgumentError, "CalculationSet for controller not defined. Must specify at controller level or provide as second argument."
+    end
+  end
+
   def initialize_prototype_calculations
-    @calculation_set = CalculationController.calculation_set
+    @calculation_set        = calculation_set
     @prototype_calculations = @calculation_set.calculations
   end
 
@@ -117,8 +190,8 @@ class CalculationController < ApplicationController
   end
 
   def calculation_terms_in_table_order(calculation,include_optional=false,include_outputs=true)
-    terms = []
-    terms = terms + calculation.metadata.visible
+    terms  = []
+    terms  = terms + calculation.metadata.visible
     terms += calculation.drills.visible
     terms += calculation.profiles.compulsory.visible
     terms += calculation.profiles.optional.visible if include_optional
@@ -143,10 +216,10 @@ class CalculationController < ApplicationController
 
   def generate_summary_data
     @prototype_outputs = prototype_outputs_in_order
-    @headers = @prototype_outputs.map { |output| output.name }.unshift("Calculation methodology")
-    @table = ghg_totals_by_calculation(@prototype_outputs)
-    @all_calculations = @calculation_set.all_ongoing_calculations
-    @totals = ghg_totals(@all_calculations,@prototype_outputs)
+    @headers           = @prototype_outputs.map { |output| output.name }.unshift("Calculation methodology")
+    @table             = ghg_totals_by_calculation(@prototype_outputs)
+    @all_calculations  = @calculation_set.all_ongoing_calculations
+    @totals            = ghg_totals(@all_calculations,@prototype_outputs)
   end
 
   def ghg_totals_by_calculation(outputs)
@@ -161,7 +234,7 @@ class CalculationController < ApplicationController
           if ghg.label == :co2e
             array << calcs.co2_or_co2e_outputs.sum
           else
-            array << ( calc[ghg.label] ? calcs.send(ghg.label).sum : nil)
+            array << (calc[ghg.label] ? calcs.send(ghg.label).sum : nil)
           end
         end
       end
@@ -171,9 +244,7 @@ class CalculationController < ApplicationController
   end
 
   def ghg_totals(calculations,outputs)
-    pp calculations
     convert_outputs(calculations)
-    pp calculations
     totals = AMEE::DataAbstraction::TermsList.new
     outputs.each do |output|
       next if output.label == :co2e

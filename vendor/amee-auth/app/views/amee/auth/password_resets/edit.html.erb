@@ -1,0 +1,8 @@
+<% @show_model_errors = [@user] %>
+
+<%= form_for @user, :url => password_reset_path, :html => {:class => "password-form"} do |f| %>
+    <div class="labelfield formintro">Enter a new password</div>
+    <div class="labelfield"><div class="label"><%= f.label :password %></div><div class="field"><%= f.password_field :password %></div></div>
+    <div class="labelfield"><div class="label"><%= f.label :password_confirmation %></div><div class="field"><%= f.password_field :password_confirmation %></div></div>
+    <div class="labelfield"><div class="submit"><%= submit_tag 'Change Password' %></div></div>
+<% end %>
